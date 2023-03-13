@@ -7,8 +7,6 @@ services:
       dockerfile: Dockerfile
     working_dir: /app
     volumes:
-      - ./submodules/quiver-data:/app/submodules/quiver-data
-      - ./submodules/oton:/app/submodules/oton
       - ./models:/usr/local/share/ocrd-resources/
       - ./data:/app/data
       - ./workflows:/app/workflows

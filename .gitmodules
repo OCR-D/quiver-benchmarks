@@ -1,6 +1,0 @@
-[submodule "submodules/quiver-data"]
-	path = submodules/quiver-data
-	url = https://github.com/OCR-D/quiver-data.git
-[submodule "submodules/oton"]
-	path = submodules/oton
-	url = https://github.com/MehmedGIT/OtoN_Converter
