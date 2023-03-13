@@ -10,15 +10,21 @@ QuiVer Benchmarks is based on `ocrd/all:maximum` and has all OCR-D processors at
 
 - Docker >= 23.0.0
 
-To speed up QuiVer Benchmarks you can mount already downloaded text recognition models to `/usr/local/share/ocrd-resources/` in [`docker-compose.yml`]().
-Otherwise the tool will download the models on each run.
+To speed up QuiVer Benchmarks you can mount already downloaded text recognition models to `/usr/local/share/ocrd-resources/` in `docker-compose.yml` by adding
+
+```yml
+- path/to/your/models:/usr/local/share/ocrd-resources/
+```
+
+to the `volumes` section.
+Otherwise the tool will download all `ocrd-tesserocr-recognize` models as well as `ocrd-calamari-recognize qurator-gt4histocr-1.0` on each run.
 
 ## Usage
 
 - clone this repository
 - [customize](#custom-workflows-and-data) QuiVer Benchmarks according to your needs
 - run `docker compose build && docker compose up`
-- the benchmarks and the evaluation results will be available in `data/`
+- the benchmarks and the evaluation results will be available at `data/workflows.json` on your host system
 
 ## Benchmarks Considered
 
@@ -47,11 +53,17 @@ Add new OCR-D workflows to the directory `workflows/ocrd_worflows` according to 
 - workflows have to be TXT files
 - all workflows have to use [`ocrd process`](https://ocr-d.de/en/user_guide#ocrd-process)
 
-Since the `workflows` directory is mounted to the container spun up by `docker compose up` it is not necessary to rebuild the Docker image.
+You can then either rebuild the Docker image via `docker compose build` or mount the directory to the container via
+
+```yml
+- ./workflows/ocrd_workflows:/app/workflows/ocrd_workflows
+```
+
+and spin up a new run with `docker compose up`.
 
 ### Removing OCR-D Workflows
 
-Delete the respective TXT files from `workflows/ocrd_workflows`.
+Delete the respective TXT files from `workflows/ocrd_workflows` and either rebuild the image or mount the directory as volume as described [above](#adding-new-ocr-d-workflows).
 
 ### Using Custom Data
 
