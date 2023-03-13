@@ -4,8 +4,7 @@ services:
   benchmarks:
     build:
       context: .
-      dockerfile: Docker/Dockerfile.benchmarks
-    image: quiver:benchmarks
+      dockerfile: Dockerfile
     working_dir: /app
     volumes:
       - ./submodules/quiver-data:/app/submodules/quiver-data
