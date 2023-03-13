@@ -59,7 +59,7 @@ You can then either rebuild the Docker image via `docker compose build` or mount
 - ./workflows/ocrd_workflows:/app/workflows/ocrd_workflows
 ```
 
-and spin up a new run with `docker compose up`.
+in the `volumes` section and spin up a new run with `docker compose up`.
 
 ### Removing OCR-D Workflows
 

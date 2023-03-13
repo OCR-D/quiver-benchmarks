@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     working_dir: /app
     volumes:
-      - ./models:/usr/local/share/ocrd-resources/
-      - ./data:/app/data
-      - ./workflows:/app/workflows
+      - ./data:/app/data # this will write the results to your host system
+      # mount your modules, custom workflows and data here
+      # - /path/to/models/on/host:/usr/local/share/ocrd-resources/
+      # - ./workflows/ocrd_workflows:/app/workflows/ocrd_workflows
+      # - TODO/custom/data
