@@ -1,0 +1,11 @@
+*.egg-info
+*.pyc
+*pycache*
+workflows/workspaces
+.nextflow*
+work/
+workflows/nf-results/*
+workflows/results
+workflows/ocrd-workflows/*.nf
+models
+submodules/*

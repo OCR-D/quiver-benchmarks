@@ -1,0 +1,1215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pc:PcGts xmlns:pc="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+    <pc:Metadata>
+        <pc:Creator>OCR-D</pc:Creator>
+        <pc:Created>2016-09-21T15:36:39.616000+02:00</pc:Created>
+        <pc:LastChange>2017-01-04T10:01:42.088000+01:00</pc:LastChange>
+    </pc:Metadata>
+    <pc:Page imageFilename="OCR-D-IMG/OCR-D-IMG_0009.tif" imageWidth="1124" imageHeight="1833" type="content">
+        <pc:PrintSpace>
+            <pc:Coords points="91,81 1051,81 1051,1574 91,1574"/>
+        </pc:PrintSpace>
+        <pc:ReadingOrder>
+            <pc:OrderedGroup id="ro_1483520502119" caption="Regions reading order">
+                <pc:RegionRefIndexed index="0" regionRef="region_1481117182004_85"/>
+                <pc:RegionRefIndexed index="1" regionRef="region_1481117043508_82"/>
+                <pc:RegionRefIndexed index="2" regionRef="r_2_1"/>
+                <pc:RegionRefIndexed index="3" regionRef="TextRegion_1481645808173_48"/>
+                <pc:RegionRefIndexed index="4" regionRef="TextRegion_1481645808169_47"/>
+                <pc:RegionRefIndexed index="5" regionRef="r_2_2"/>
+                <pc:RegionRefIndexed index="6" regionRef="region_1481118659508_99"/>
+                <pc:RegionRefIndexed index="7" regionRef="r_2_3"/>
+                <pc:RegionRefIndexed index="8" regionRef="region_1481119332148_128"/>
+            </pc:OrderedGroup>
+        </pc:ReadingOrder>
+        <pc:TextRegion id="region_1481117182004_85" type="header">
+            <pc:Coords points="293,103 682,103 682,163 293,163"/>
+            <pc:TextLine id="line_1481117186832_86">
+                <pc:Coords points="307,103 632,110 631,160 306,153"/>
+                <pc:Baseline points="306,148 631,155"/>
+                <pc:Word id="word_1481117191359_87">
+                    <pc:Coords points="305,107 551,107 551,158 305,158"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>LIBER</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481117193708_88">
+                    <pc:Coords points="587,114 631,114 631,157 587,157"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>I.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>LIBER I.</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextEquiv>
+                <pc:Unicode>LIBER I.</pc:Unicode>
+            </pc:TextEquiv>
+        </pc:TextRegion>
+        <pc:TextRegion id="region_1481117043508_82" type="page-number">
+            <pc:Coords points="852,121 911,121 911,170 852,170"/>
+            <pc:TextLine id="line_1481117048702_83">
+                <pc:Coords points="860,114 892,114 892,164 860,164"/>
+                <pc:Baseline points="860,159 892,159"/>
+                <pc:Word id="word_1481117052884_84">
+                    <pc:Coords points="865,125 895,125 895,164 865,164"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>5</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>5</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextEquiv>
+                <pc:Unicode>5</pc:Unicode>
+            </pc:TextEquiv>
+        </pc:TextRegion>
+        <pc:TextRegion id="r_2_1" type="paragraph">
+            <pc:Coords points="96,171 896,173 896,607 96,605"/>
+            <pc:TextLine id="tl_1" primaryLanguage="German">
+                <pc:Coords points="97,172 884,172 884,234 97,234"/>
+                <pc:Baseline points="97,215 884,215"/>
+                <pc:Word id="w_w1aab1b3b2b1b1ab1">
+                    <pc:Coords points="97,173 231,173 231,216 97,216"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ficiem</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b1ac15">
+                    <pc:Coords points="249,174 415,174 415,217 249,217"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ducent.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b1b1b1">
+                    <pc:Coords points="436,174 505,174 505,215 436,215"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Eſt</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b1b1b9">
+                    <pc:Coords points="524,189 657,174 656,238 524,216"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>nanqꝫ</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b1b2b7">
+                    <pc:Coords points="666,172 884,172 884,229 666,229"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſuperficies</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>ficiem ducent. Eſt nanqꝫ ſuperficies</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_2" primaryLanguage="German">
+                <pc:Coords points="99,232 893,229 893,280 99,283"/>
+                <pc:Baseline points="99,268 880,270"/>
+                <pc:Word id="w_w1aab1b3b2b1b3ab1">
+                    <pc:Coords points="99,244 280,244 280,270 99,270"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>extrema</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b3ac17">
+                    <pc:Coords points="291,233 476,233 476,282 291,282"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>corporis</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481118600358_98">
+                    <pc:Coords points="592,283 488,283 488,244 592,244"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>pars,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481118600357_97">
+                    <pc:Coords points="684,283 592,283 592,244 684,244"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>quæ</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b3ac53">
+                    <pc:Coords points="695,243 782,243 782,269 695,269"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>non</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b3ac61">
+                    <pc:Coords points="791,237 882,237 882,282 791,282"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>pro-</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>extrema corporis pars, quæ non pro-</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_3" primaryLanguage="German">
+                <pc:Coords points="101,283 889,280 889,333 101,336"/>
+                <pc:Baseline points="101,322 881,324"/>
+                <pc:Word id="w_w1aab1b3b2b1b5ab1">
+                    <pc:Coords points="101,283 300,283 300,325 101,325"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>funditate</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b5ac21">
+                    <pc:Coords points="317,284 470,284 470,336 317,336"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>aliqua,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b5ac37">
+                    <pc:Coords points="492,283 553,283 553,322 492,322"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſed</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b5ac45">
+                    <pc:Coords points="570,284 778,284 778,323 570,323"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>latitudine</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b5ac67">
+                    <pc:Coords points="798,296 881,296 881,324 798,324"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>tan-</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>funditate aliqua, ſed latitudine tan-</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_4" primaryLanguage="German">
+                <pc:Coords points="102,337 882,337 882,395 102,395"/>
+                <pc:Baseline points="102,376 882,376"/>
+                <pc:Word id="w_w1aab1b3b2b1b7ab1">
+                    <pc:Coords points="102,349 192,349 192,378 102,378"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>tum</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b7ac11">
+                    <pc:Coords points="206,337 523,337 523,394 206,394"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>longitudineq́ꝫ,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b7ac41">
+                    <pc:Coords points="533,350 611,350 611,395 533,395"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>atqꝫ</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b7ac51">
+                    <pc:Coords points="629,338 793,338 793,390 629,390"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>perinde</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b7ac67">
+                    <pc:Coords points="807,338 882,338 882,377 807,377"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſuis</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>tum longitudineq́ꝫ, atqꝫ perinde ſuis</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_5" primaryLanguage="German">
+                <pc:Coords points="101,390 882,387 882,441 101,444"/>
+                <pc:Baseline points="101,430 875,430"/>
+                <pc:Word id="w_w1aab1b3b2b1b9ab1">
+                    <pc:Coords points="101,392 363,392 363,444 101,444"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>qualitatibus</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b9ac27">
+                    <pc:Coords points="382,390 667,390 667,443 382,443"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>cognoſcatur.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1b9ac53">
+                    <pc:Coords points="691,392 876,392 876,443 691,443"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Qualita-</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>qualitatibus cognoſcatur. Qualita-</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_6" primaryLanguage="German">
+                <pc:Coords points="103,444 883,444 883,496 103,496"/>
+                <pc:Baseline points="103,483 883,483"/>
+                <pc:Word id="w_w1aab1b3b2b1c11ab1">
+                    <pc:Coords points="103,457 193,457 193,486 103,486"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>tum</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c11ab9">
+                    <pc:Coords points="210,446 295,446 295,485 210,485"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>aliæ</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c11ac21">
+                    <pc:Coords points="309,449 363,449 363,484 309,484"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ita</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c11ac29">
+                    <pc:Coords points="379,444 592,444 592,496 379,496"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſuperficiei</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c11ac53">
+                    <pc:Coords points="610,445 825,445 825,494 610,494"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>inhærent,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c11ac73">
+                    <pc:Coords points="838,458 883,458 883,485 838,485"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ut</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>tum aliæ ita ſuperficiei inhærent, ut</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_7" primaryLanguage="German">
+                <pc:Coords points="102,496 882,496 882,550 102,550"/>
+                <pc:Baseline points="102,537 882,537"/>
+                <pc:Word id="w_w1aab1b3b2b1c13ab1">
+                    <pc:Coords points="102,498 180,498 180,538 102,538"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>niſi</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c13ac11">
+                    <pc:Coords points="196,498 355,498 355,550 196,550"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>prorſus</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c13ac27">
+                    <pc:Coords points="372,498 533,498 533,537 372,537"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>alterata</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c13ac45">
+                    <pc:Coords points="553,496 751,496 751,549 553,549"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſuperficie</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c13ac67">
+                    <pc:Coords points="766,502 882,502 882,538 766,538"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>mini-</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>niſi prorſus alterata ſuperficie mini-</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_8" primaryLanguage="German">
+                <pc:Coords points="102,549 839,549 839,604 102,604"/>
+                <pc:Baseline points="102,590 839,590"/>
+                <pc:Word id="w_w1aab1b3b2b1c15ab1">
+                    <pc:Coords points="102,566 169,566 169,591 102,591"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>me</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c15ab7">
+                    <pc:Coords points="191,551 226,551 226,589 191,589"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſe</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c15ac13">
+                    <pc:Coords points="239,554 416,554 416,599 239,599"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>moueri,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c15ac29">
+                    <pc:Coords points="428,562 496,562 496,590 428,590"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>aut</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c15ac37">
+                    <pc:Coords points="512,549 663,549 663,604 512,604"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſeiungi</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b1c15ac53">
+                    <pc:Coords points="678,564 839,564 839,604 678,604"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>queant.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>me ſe moueri, aut ſeiungi queant.</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextEquiv>
+                <pc:Unicode>ficiem ducent. Eſt nanqꝫ ſuperficies
+extrema corporis pars, quæ non pro-
+funditate aliqua, ſed latitudine tan-
+tum longitudineq́ꝫ, atqꝫ perinde ſuis
+qualitatibus cognoſcatur. Qualita-
+tum aliæ ita ſuperficiei inhærent, ut
+niſi prorſus alterata ſuperficie mini-
+me ſe moueri, aut ſeiungi queant.</pc:Unicode>
+            </pc:TextEquiv>
+        </pc:TextRegion>
+        <pc:TextRegion id="TextRegion_1481645808173_48" type="marginalia">
+            <pc:Coords points="1049,361 900,361 900,218 1049,217"/>
+            <pc:TextLine id="line_1481118123770_90">
+                <pc:Coords points="908,222 1031,221 1031,271 908,272"/>
+                <pc:Baseline points="908,267 1031,266"/>
+                <pc:Word id="word_1481118159725_94">
+                    <pc:Coords points="907,229 1030,229 1030,270 907,270"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Superfi-</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>Superfi-</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="line_1481118141413_92">
+                <pc:Coords points="905,274 968,279 964,329 901,324"/>
+                <pc:Baseline points="901,319 964,324"/>
+                <pc:Word id="word_1481118162325_95">
+                    <pc:Coords points="906,286 967,286 967,326 906,326"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>cies.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>cies.</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextEquiv>
+                <pc:Unicode>Superfi-
+cies.</pc:Unicode>
+            </pc:TextEquiv>
+        </pc:TextRegion>
+        <pc:TextRegion id="TextRegion_1481645808169_47" type="marginalia">
+            <pc:Coords points="900,503 900,361 1049,361 1049,502"/>
+            <pc:TextLine id="line_1481118146400_93">
+                <pc:Coords points="906,392 1042,385 1044,435 908,442"/>
+                <pc:Baseline points="908,437 1044,430"/>
+                <pc:Word id="word_1481118165589_96">
+                    <pc:Coords points="907,394 1046,394 1046,440 907,440"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Qualitas.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>Qualitas.</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextEquiv>
+                <pc:Unicode>Qualitas.</pc:Unicode>
+            </pc:TextEquiv>
+        </pc:TextRegion>
+        <pc:TextRegion id="r_2_2" type="paragraph">
+            <pc:Coords points="100,602 888,608 888,1525 100,1519"/>
+            <pc:TextLine id="tl_9" primaryLanguage="German">
+                <pc:Coords points="179,603 882,603 882,657 179,657"/>
+                <pc:Baseline points="179,643 882,643"/>
+                <pc:Word id="w_w1aab1b3b2b3b1ab1">
+                    <pc:Coords points="179,603 292,603 292,644 179,644"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Aliàs</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b1ac13">
+                    <pc:Coords points="312,618 408,618 408,643 312,643"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>uerò</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b1ac23">
+                    <pc:Coords points="426,606 633,606 633,657 426,657"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>qualitates</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b1ac45">
+                    <pc:Coords points="655,604 882,604 882,645 655,645"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>huiuſmodi</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>Aliàs uerò qualitates huiuſmodi</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_10" primaryLanguage="German">
+                <pc:Coords points="102,656 880,656 880,710 102,710"/>
+                <pc:Baseline points="102,696 880,696"/>
+                <pc:Word id="word_1481119022341_108">
+                    <pc:Coords points="210,706 102,706 102,656 210,656"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſunt,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119022341_107">
+                    <pc:Coords points="396,706 210,706 210,656 396,656"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>uteadem</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b3ac29">
+                    <pc:Coords points="406,657 501,657 501,697 406,697"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>facie</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b3ac41">
+                    <pc:Coords points="511,656 724,656 724,710 511,710"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſuperficiei</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b3ac65">
+                    <pc:Coords points="734,673 880,673 880,699 734,699"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>manen</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>ſunt, uteadem facie ſuperficiei manen</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_11" primaryLanguage="German">
+                <pc:Coords points="102,711 881,711 881,763 102,763"/>
+                <pc:Baseline points="102,750 881,750"/>
+                <pc:Word id="w_w1aab1b3b2b3b5ab1">
+                    <pc:Coords points="102,722 155,722 155,760 102,760"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>te,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b5ab9">
+                    <pc:Coords points="168,715 221,715 221,750 168,750"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ita</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b5ac17">
+                    <pc:Coords points="231,711 298,711 298,752 231,752"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſub</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b5ac25">
+                    <pc:Coords points="308,711 463,711 463,763 308,763"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>aſpectu</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b5ac43">
+                    <pc:Coords points="475,724 608,724 608,750 475,750"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>tamen</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119046302_110">
+                    <pc:Coords points="784,761 619,761 619,715 784,715"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>iaceant,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119046301_109">
+                    <pc:Coords points="829,761 784,761 784,715 829,715"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ut</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b5ac79">
+                    <pc:Coords points="839,712 881,712 881,752 839,752"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſu</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>te, ita ſub aſpectu tamen iaceant, ut ſu</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_12" primaryLanguage="German">
+                <pc:Coords points="103,762 880,762 880,816 103,816"/>
+                <pc:Baseline points="103,805 880,805"/>
+                <pc:Word id="w_w1aab1b3b2b3b7ab1">
+                    <pc:Coords points="103,762 277,762 277,816 103,816"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>perficies</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b7ac21">
+                    <pc:Coords points="290,765 501,765 501,805 290,805"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>uiſentibus</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b7ac43">
+                    <pc:Coords points="512,766 680,767 675,809 512,804"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>alterata</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b7ac63">
+                    <pc:Coords points="684,764 754,764 754,804 684,804"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>eſſe</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b7ac73">
+                    <pc:Coords points="766,766 880,766 880,805 766,805"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>uidea</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>perficies uiſentibus alterata eſſe uidea</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_13" primaryLanguage="German">
+                <pc:Coords points="102,817 877,817 877,874 102,874"/>
+                <pc:Baseline points="102,857 877,857"/>
+                <pc:Word id="w_w1aab1b3b2b3b9ab1">
+                    <pc:Coords points="102,830 191,830 191,874 102,874"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>tur.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b9b1b1">
+                    <pc:Coords points="206,818 418,818 418,874 206,874"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Perpetuæ</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b9b1c23">
+                    <pc:Coords points="436,833 570,826 578,863 436,858"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>autem</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3b9b2b9">
+                    <pc:Coords points="587,817 877,817 877,869 587,869"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſuperficierum</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>tur. Perpetuæ autem ſuperficierum</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_14" primaryLanguage="German">
+                <pc:Coords points="101,873 877,873 877,926 101,926"/>
+                <pc:Baseline points="101,911 877,911"/>
+                <pc:Word id="w_w1aab1b3b2b3c11ab1">
+                    <pc:Coords points="101,873 306,873 306,923 101,923"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>qualitates</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119072014_112">
+                    <pc:Coords points="493,925 315,925 315,873 493,873"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>geminæ</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119072013_111">
+                    <pc:Coords points="595,925 493,925 493,873 595,873"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſunt.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119087246_114">
+                    <pc:Coords points="712,926 609,926 609,873 712,873"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Vna</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119087245_113">
+                    <pc:Coords points="877,926 712,926 712,873 877,873"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>quidem</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>qualitates geminæ ſunt. Vna quidem</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_15" primaryLanguage="German">
+                <pc:Coords points="101,927 875,927 875,978 101,978"/>
+                <pc:Baseline points="101,965 875,965"/>
+                <pc:Word id="w_w1aab1b3b2b3c13ab1">
+                    <pc:Coords points="101,938 194,938 194,977 101,977"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>quæ</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119104301_116">
+                    <pc:Coords points="283,978 208,978 208,939 283,939"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>per</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119104301_115">
+                    <pc:Coords points="511,978 283,978 283,939 511,939"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>extremum</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c13ac35">
+                    <pc:Coords points="530,927 646,927 646,966 530,966"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>illum</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c13ac47">
+                    <pc:Coords points="664,930 875,930 875,976 664,976"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ambitum,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>quæ per extremum illum ambitum,</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_16" primaryLanguage="German">
+                <pc:Coords points="101,978 877,978 877,1032 101,1032"/>
+                <pc:Baseline points="101,1019 877,1019"/>
+                <pc:Word id="w_w1aab1b3b2b3c15ab1">
+                    <pc:Coords points="101,992 188,992 188,1031 101,1031"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>quo</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c15ab9">
+                    <pc:Coords points="213,978 430,978 430,1032 213,1032"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſuperficies</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c15ac33">
+                    <pc:Coords points="452,981 671,981 671,1029 452,1029"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>clauditur,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c15ac57">
+                    <pc:Coords points="686,981 877,981 877,1023 686,1023"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>noteſcat,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>quo ſuperficies clauditur, noteſcat,</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_17" primaryLanguage="German">
+                <pc:Coords points="102,1034 877,1034 877,1086 102,1086"/>
+                <pc:Baseline points="102,1073 877,1073"/>
+                <pc:Word id="w_w1aab1b3b2b3c17ab1">
+                    <pc:Coords points="102,1046 224,1046 224,1084 102,1084"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>quem</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119126398_118">
+                    <pc:Coords points="402,1086 233,1086 233,1034 402,1034"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>quidem</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119126397_117">
+                    <pc:Coords points="601,1086 402,1086 402,1034 601,1034"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ambitum</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119141430_120">
+                    <pc:Coords points="811,1074 615,1074 615,1035 811,1035"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>nonnulli</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119141429_119">
+                    <pc:Coords points="877,1074 811,1074 811,1035 877,1035"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ori</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>quem quidem ambitum nonnulli ori</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_18" primaryLanguage="German">
+                <pc:Coords points="104,1087 880,1083 880,1136 104,1140"/>
+                <pc:Baseline points="104,1126 870,1125"/>
+                <pc:Word id="w_w1aab1b3b2b3c19ab1">
+                    <pc:Coords points="104,1098 277,1095 276,1133 104,1125"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>zontem</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c19b1b5">
+                    <pc:Coords points="281,1099 528,1099 528,1140 281,1140"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>nuncupant.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c19b1c27">
+                    <pc:Coords points="542,1087 633,1087 633,1127 542,1127"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Nos</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c19b1c35">
+                    <pc:Coords points="647,1087 672,1087 672,1126 647,1126"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſi</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c19b1c41">
+                    <pc:Coords points="684,1089 808,1089 808,1137 684,1137"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>liceat,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c19b1c57">
+                    <pc:Coords points="820,1089 874,1089 874,1127 820,1127"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>la-</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>zontem nuncupant. Nos ſi liceat, la-</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_19" primaryLanguage="German">
+                <pc:Coords points="104,1140 878,1140 878,1195 104,1195"/>
+                <pc:Baseline points="104,1180 867,1180"/>
+                <pc:Word id="w_w1aab1b3b2b3c21ab1">
+                    <pc:Coords points="104,1143 193,1143 193,1179 104,1179"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>tino</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c21ac11">
+                    <pc:Coords points="213,1141 408,1141 408,1180 213,1180"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>uocabulo</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c21ac29">
+                    <pc:Coords points="426,1140 683,1140 683,1180 426,1180"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ſimilitudine</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c21ac55">
+                    <pc:Coords points="701,1143 874,1143 874,1195 701,1195"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>quadam</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>tino uocabulo ſimilitudine quadam</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_20" primaryLanguage="German">
+                <pc:Coords points="102,1195 876,1193 876,1244 102,1246"/>
+                <pc:Baseline points="102,1234 873,1234"/>
+                <pc:Word id="w_w1aab1b3b2b3c23ab1">
+                    <pc:Coords points="102,1195 355,1195 351,1244 102,1246"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>appellemus</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c23b1b5">
+                    <pc:Coords points="363,1209 478,1209 478,1236 363,1236"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>oram</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c23b2b3">
+                    <pc:Coords points="499,1207 509,1207 509,1236 499,1236"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>:</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c23b2b7">
+                    <pc:Coords points="528,1207 614,1207 614,1242 528,1242"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>aut,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c23b2c17">
+                    <pc:Coords points="634,1197 730,1197 730,1235 634,1235"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>dum</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c23b2c25">
+                    <pc:Coords points="750,1199 803,1199 803,1234 750,1234"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ita</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c23b2c33">
+                    <pc:Coords points="820,1196 873,1196 873,1234 820,1234"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>li-</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>appellemus oram : aut, dum ita li-</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_21" primaryLanguage="German">
+                <pc:Coords points="102,1245 876,1245 876,1306 102,1306"/>
+                <pc:Baseline points="102,1288 876,1288"/>
+                <pc:Word id="word_1481119220478_124">
+                    <pc:Coords points="207,1295 100,1295 100,1244 207,1244"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>beat,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119220477_123">
+                    <pc:Coords points="415,1296 207,1295 207,1244 415,1245"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>fimbriam.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c25ac31">
+                    <pc:Coords points="433,1250 563,1250 563,1306 433,1306"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Eritq́ꝫ</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c25ac45">
+                    <pc:Coords points="577,1249 629,1250 626,1296 577,1287"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>&amp;</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119247093_126">
+                    <pc:Coords points="715,1301 631,1301 631,1246 715,1246"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ipſa</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="word_1481119247093_125">
+                    <pc:Coords points="876,1301 715,1301 715,1246 876,1246"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>fimbria</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>beat, fimbriam. Eritq́ꝫ &amp; ipſa fimbria</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_22" primaryLanguage="German">
+                <pc:Coords points="103,1301 875,1301 875,1355 103,1355"/>
+                <pc:Baseline points="103,1342 875,1342"/>
+                <pc:Word id="w_w1aab1b3b2b3c27ab1">
+                    <pc:Coords points="103,1313 174,1313 174,1340 103,1340"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>aut</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c27ab9">
+                    <pc:Coords points="192,1306 303,1306 303,1342 192,1342"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>unica</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c27ac21">
+                    <pc:Coords points="319,1304 446,1304 446,1349 319,1349"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>linea,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c27ac37">
+                    <pc:Coords points="463,1315 531,1315 531,1343 463,1343"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>aut</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c27ac45">
+                    <pc:Coords points="553,1304 737,1304 737,1355 553,1355"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>pluribus</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c27ac63">
+                    <pc:Coords points="762,1301 875,1301 875,1342 762,1342"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>lineis</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>aut unica linea, aut pluribus lineis</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_23" primaryLanguage="German">
+                <pc:Coords points="105,1352 876,1352 876,1409 105,1409"/>
+                <pc:Baseline points="105,1396 876,1396"/>
+                <pc:Word id="w_w1aab1b3b2b3c29ab1">
+                    <pc:Coords points="105,1352 297,1352 297,1405 105,1405"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>perfinita.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c29ac23">
+                    <pc:Coords points="317,1356 471,1356 471,1406 317,1406"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Vnica,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c29ac37">
+                    <pc:Coords points="484,1369 528,1369 528,1397 484,1397"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>ut</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c29ac43">
+                    <pc:Coords points="541,1358 739,1358 739,1405 541,1405"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>circulari,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c29ac65">
+                    <pc:Coords points="751,1358 876,1358 876,1409 751,1409"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>pluri-</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>perfinita. Vnica, ut circulari, pluri-</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_24" primaryLanguage="German">
+                <pc:Coords points="104,1408 877,1408 877,1460 104,1460"/>
+                <pc:Baseline points="104,1450 877,1450"/>
+                <pc:Word id="w_w1aab1b3b2b3c31ab1">
+                    <pc:Coords points="104,1408 179,1408 179,1446 104,1446"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>bus</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c31ab9">
+                    <pc:Coords points="195,1421 259,1421 259,1450 195,1450"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>aut</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c31ac17">
+                    <pc:Coords points="277,1409 397,1409 397,1450 277,1450"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>altera</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c31ac31">
+                    <pc:Coords points="408,1410 529,1410 529,1460 408,1460"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>flexa,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c31ac45">
+                    <pc:Coords points="539,1411 662,1411 662,1450 539,1450"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>altera</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c31ac59">
+                    <pc:Coords points="673,1411 799,1411 799,1452 673,1452"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>recta,</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c31ac75">
+                    <pc:Coords points="809,1423 877,1423 877,1450 809,1450"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>aut</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>bus aut altera flexa, altera recta, aut</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="tl_25" primaryLanguage="German">
+                <pc:Coords points="105,1463 876,1463 876,1518 105,1518"/>
+                <pc:Baseline points="105,1503 876,1503"/>
+                <pc:Word id="w_w1aab1b3b2b3c33ab1">
+                    <pc:Coords points="105,1463 221,1463 221,1503 105,1503"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>etiam</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c33ac13">
+                    <pc:Coords points="243,1476 332,1476 332,1517 243,1517"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>quæ</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c33ac23">
+                    <pc:Coords points="360,1465 547,1465 547,1518 360,1518"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>pluribus</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c33ac41">
+                    <pc:Coords points="575,1464 691,1464 691,1503 575,1503"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>rectis</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b3c33ac57">
+                    <pc:Coords points="717,1463 876,1463 876,1504 717,1504"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>flexisúe</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>etiam quæ pluribus rectis flexisúe</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextEquiv>
+                <pc:Unicode>Aliàs uerò qualitates huiuſmodi
+ſunt, uteadem facie ſuperficiei manen
+te, ita ſub aſpectu tamen iaceant, ut ſu
+perficies uiſentibus alterata eſſe uidea
+tur. Perpetuæ autem ſuperficierum
+qualitates geminæ ſunt. Vna quidem
+quæ per extremum illum ambitum,
+quo ſuperficies clauditur, noteſcat,
+quem quidem ambitum nonnulli ori
+zontem nuncupant. Nos ſi liceat, la-
+tino uocabulo ſimilitudine quadam
+appellemus oram : aut, dum ita li-
+beat, fimbriam. Eritq́ꝫ &amp; ipſa fimbria
+aut unica linea, aut pluribus lineis
+perfinita. Vnica, ut circulari, pluri-
+bus aut altera flexa, altera recta, aut
+etiam quæ pluribus rectis flexisúe</pc:Unicode>
+            </pc:TextEquiv>
+        </pc:TextRegion>
+        <pc:TextRegion id="region_1481118659508_99" type="marginalia">
+            <pc:Coords points="1030,1069 886,1069 886,1274 1030,1274"/>
+            <pc:TextLine id="line_1481118702093_100">
+                <pc:Coords points="896,1083 1025,1085 1024,1135 895,1133"/>
+                <pc:Baseline points="895,1128 1024,1130"/>
+                <pc:Word id="word_1481118713565_103">
+                    <pc:Coords points="897,1089 1027,1089 1027,1134 897,1134"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Orizon.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>Orizon.</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="line_1481118705557_101">
+                <pc:Coords points="894,1132 964,1134 963,1184 893,1182"/>
+                <pc:Baseline points="893,1177 963,1179"/>
+                <pc:Word id="word_1481118716045_104">
+                    <pc:Coords points="891,1145 965,1145 965,1183 891,1183"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Ora.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>Ora.</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextLine id="line_1481118709164_102">
+                <pc:Coords points="893,1189 1022,1189 1022,1239 893,1239"/>
+                <pc:Baseline points="893,1234 1022,1234"/>
+                <pc:Word id="word_1481118719301_105">
+                    <pc:Coords points="892,1192 1025,1192 1025,1241 892,1241"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>Fimbria.</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>Fimbria.</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextEquiv>
+                <pc:Unicode>Orizon.
+Ora.
+Fimbria.</pc:Unicode>
+            </pc:TextEquiv>
+        </pc:TextRegion>
+        <pc:TextRegion id="r_2_3" type="signature-mark">
+            <pc:Coords points="569,1518 682,1519 682,1570 569,1569"/>
+            <pc:TextLine id="tl_26" primaryLanguage="German">
+                <pc:Coords points="570,1519 681,1519 681,1568 570,1568"/>
+                <pc:Baseline points="570,1556 676,1558"/>
+                <pc:Word id="w_w1aab1b3b2b5b1ab1">
+                    <pc:Coords points="570,1532 595,1532 595,1558 570,1558"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>a</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:Word id="w_w1aab1b3b2b5b1ab5">
+                    <pc:Coords points="650,1534 666,1534 666,1568 650,1568"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>3</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>a 3</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextEquiv>
+                <pc:Unicode>a 3</pc:Unicode>
+            </pc:TextEquiv>
+        </pc:TextRegion>
+        <pc:TextRegion id="region_1481119332148_128" type="catch-word">
+            <pc:Coords points="755,1514 887,1514 887,1566 755,1566"/>
+            <pc:TextLine id="line_1481119337703_129">
+                <pc:Coords points="760,1512 881,1512 881,1562 760,1562"/>
+                <pc:Baseline points="760,1557 881,1557"/>
+                <pc:Word id="word_1481119342853_130">
+                    <pc:Coords points="756,1563 880,1563 880,1513 756,1513"/>
+                    <pc:TextEquiv>
+                        <pc:Unicode>lineis</pc:Unicode>
+                    </pc:TextEquiv>
+                </pc:Word>
+                <pc:TextEquiv>
+                    <pc:Unicode>lineis</pc:Unicode>
+                </pc:TextEquiv>
+            </pc:TextLine>
+            <pc:TextEquiv>
+                <pc:Unicode>lineis</pc:Unicode>
+            </pc:TextEquiv>
+        </pc:TextRegion>
+    </pc:Page>
+</pc:PcGts>

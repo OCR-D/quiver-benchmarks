@@ -1,0 +1,7 @@
+click >=7
+tomli
+uvicorn
+fastapi
+requests
+pyaml
+nextflow
