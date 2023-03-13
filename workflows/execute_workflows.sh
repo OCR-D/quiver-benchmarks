@@ -13,6 +13,10 @@ if [[ -d  workflows/nf-results ]]; then
     rm -rf workflows/nf-results
 fi
 
+if [[ -d  workflows/results ]]; then
+    rm -rf workflows/results
+fi
+
 set -euo pipefail
 
 adjust_workflow_settings() {
@@ -158,8 +162,9 @@ echo "Summarize JSONs to one file …"
 quiver summarize-benchmarks
 echo "Done."
 
-# clean up
+echo "Cleaning up …"
 rm -rf "$WORKSPACE_DIR"
 rm -rf "$ROOT"/work
 rm -rf "$WORKFLOW_DIR"/nf-results
-rm "$WORKFLOW_DIR"/results/*.json
+rm -rf "$WORKFLOW_DIR"/results
+rm "$WORKFLOW_DIR"/ocrd_workflows/*.nf
