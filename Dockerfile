@@ -14,7 +14,6 @@ COPY README.md README.md
 
 RUN git init
 RUN git submodule add https://github.com/MehmedGIT/OtoN_Converter submodules/oton
-RUN git submodule add https://github.com/OCR-D/quiver-data submodules/quiver-data
 RUN git submodule update --init
 
 RUN cd submodules/oton && \

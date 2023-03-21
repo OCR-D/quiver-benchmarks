@@ -101,21 +101,34 @@ cd "$WORKSPACE_DIR" || exit
 
 # create workspace for all OCR workflows.
 # each workflow has a separate workspace to work with.
+echo "Create workflow specific workspaces for each dir in ./gt …"
+for DIR in "$ROOT"/gt/*/; do
+    DIR_NAME=$(basename "$DIR")
+    if grep -q "multivolume work" <<< "$(cat $DIR/mets.xml)"; then
+        echo "$DIR_NAME is a multivolume work"
 
-echo "Restore OCR-D workspaces from BagIts and create workflow specific workspaces …"
-for BAGIT in "$ROOT"/submodules/quiver-data/*.zip
-do
-    BAGIT_NAME=$(basename -s .ocrd.zip "$BAGIT")
-    ocrd zip spill "$BAGIT" -d "$WORKSPACE_DIR"/tmp > "$WORKSPACE_DIR"/log.log
-    unzip "$BAGIT" METADATA.yml -d "$WORKSPACE_DIR"/tmp/"$BAGIT_NAME"
+        for WORKFLOW in "$OCRD_WORKFLOW_DIR"/*ocr.txt.nf
+        do
+            WF_NAME=$(basename -s .txt.nf "$WORKFLOW")
+            for SUB_WORK in $DIR/*/; do
+                SUB_WORK_DIR_NAME=$(basename "$SUB_WORK")
+                TARGET="$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$SUB_WORK_DIR_NAME"_"$WF_NAME"
+                cp -r "$ROOT"/gt/"$DIR_NAME"/"$SUB_WORK_DIR_NAME" "$TARGET"
+                if [[ -f "$ROOT"/gt/"$DIR_NAME"/metadata.json ]]; then
+                    cp -r "$ROOT"/gt/"$DIR_NAME"/metadata.json "$TARGET"/metadata.json
+                fi
+                cp "$WORKFLOW" "$TARGET"/data/
+            done
 
-    for WORKFLOW in "$OCRD_WORKFLOW_DIR"/*ocr.txt.nf
-    do
-        WF_NAME=$(basename -s .txt.nf "$WORKFLOW")
-        cp -r "$WORKSPACE_DIR"/tmp/"$BAGIT_NAME" "$WORKSPACE_DIR"/tmp/"$BAGIT_NAME"_"$WF_NAME"
-        cp "$WORKFLOW" "$WORKSPACE_DIR"/tmp/"$BAGIT_NAME"_"$WF_NAME"/
-    done
-    rm -r "$WORKSPACE_DIR"/tmp/"$BAGIT_NAME"
+        done
+    else
+        for WORKFLOW in "$OCRD_WORKFLOW_DIR"/*ocr.txt.nf
+        do
+            WF_NAME=$(basename -s .txt.nf "$WORKFLOW")
+            cp -r "$ROOT"/gt/"$DIR_NAME" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"
+            cp "$WORKFLOW" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"/
+        done
+    fi
 done
 
 echo "Clean up intermediate dirs …"
@@ -124,6 +137,8 @@ do
     DIR_NAME=$(basename "$DIR")
     mv "$DIR" "$WORKSPACE_DIR"/"$DIR_NAME"
     cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$WORKSPACE_DIR"/"$DIR_NAME"
+    ls "$WORKSPACE_DIR"/"$DIR_NAME"
+    cp -r "$WORKSPACE_DIR"/"$DIR_NAME"/data/* "$WORKSPACE_DIR"/"$DIR_NAME"/
 done
 
 rm -rf "$WORKSPACE_DIR"/tmp
