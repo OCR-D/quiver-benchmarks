@@ -11,7 +11,7 @@ QuiVer Benchmarks is based on `ocrd/all:maximum` and has all OCR-D processors at
 - Docker >= 23.0.0
 - [Docker Compose plugin](https://docs.docker.com/compose/install/linux/#install-using-the-repository)
 
-To speed up QuiVer Benchmarks you can mount already downloaded text recognition models to `/usr/local/share/ocrd-resources/` in `docker compose.yml` by adding
+To speed up QuiVer Benchmarks you can mount already downloaded text recognition models to `/usr/local/share/ocrd-resources/` in `docker-compose.yml` by adding
 
 ```yml
 - path/to/your/models:/usr/local/share/ocrd-resources/
