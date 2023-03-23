@@ -5,6 +5,7 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 
 RUN apt install git
+RUN apt install -y jq
 RUN apt-get update
 RUN apt-get install -y --fix-missing openjdk-11-jre
 
@@ -21,10 +22,13 @@ RUN cd submodules/oton && \
     sed -i "s \$projectDir/ocrd-workspace/ $WORKSPACE_DIR/CURRENT/ g" oton/config.toml && \
     pip install .
 
+COPY prepare.sh prepare.sh
+COPY default_data_sources.txt default_data_sources.txt
+
 RUN pip3 install -r requirements.txt
 RUN pip3 install .
 RUN nextflow
 
 COPY workflows workflows
 
-CMD [ "bash", "workflows/execute_workflows.sh" ]
+ENTRYPOINT [ "bash" ]

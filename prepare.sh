@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir gt
+
 while IFS= read -r URL; do
     OWNER=$(echo "$URL" | cut -d'/' -f4)
     REPO=$(echo "$URL" | cut -d'/' -f5)
