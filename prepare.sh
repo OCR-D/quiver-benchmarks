@@ -17,6 +17,13 @@ while IFS= read -r URL; do
 done < default_data_sources.txt
 
 cd gt || exit
+# the default data is structured like this:
+# repository_name.zip
+# |___ subordinate_work_1.zip
+# |___ subordinate_work_2.zip
+# |___ ...
+# $ZIP refers to the release itself which is on level "repository_name.zip"
+# the subordinate works are also OCR-D BagIts / zips. these are referred to by $INNER_ZIP.
 for ZIP in *.zip; do
     NAME=$(echo "$ZIP" | cut -d"." -f1)
     echo "Processing $NAME"
