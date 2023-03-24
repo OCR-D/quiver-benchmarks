@@ -112,7 +112,7 @@ def get_gt_workspace(workspace_path: str) -> Dict[str, str]:
     if split_workspace_name[1] == 'ant':
         font = 'Antiqua'
     elif split_workspace_name[1] == 'frak':
-        font = 'Black letter'
+        font = 'Fraktur'
     else:
         font = 'Font Mix'
     url = 'https://github.com/OCR-D/quiver-data/blob/main/' + workspace_name_wo_workflow + '.ocrd.zip'
