@@ -22,11 +22,12 @@ Otherwise, the tool will download all `ocrd-tesserocr-recognize` models as well 
 
 ## Usage
 
-- clone this repository
+- clone this repository and switch to the cloned directory
 - (optional) [customize](#custom-workflows-and-data) QuiVer Benchmarks according to your needs
-- run `docker compose run --build benchmarks`
-- run `bash prepare.sh`
-- run `bash workflows/execute-workflows.sh`
+- build the image with `docker compose build`
+- spin up a container with `docker compose run -d app`
+- run `docker compose exec bash prepare.sh`
+- run `docker compose exec bash workflows/execute-workflows.sh`
 - the benchmarks and the evaluation results will be available at `data/workflows.json` on your host system
 
 ## Benchmarks Considered
