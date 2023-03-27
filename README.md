@@ -27,7 +27,7 @@ Otherwise, the tool will download all `ocrd-tesserocr-recognize` models as well 
 - build the image with `docker compose build`
 - spin up a container with `docker compose run -d app`
 - run `docker compose exec bash prepare.sh`
-- run `docker compose exec bash workflows/execute-workflows.sh`
+- run `docker compose exec app bash workflows/execute_workflows.sh`
 - the benchmarks and the evaluation results will be available at `data/workflows.json` on your host system
 
 ## Benchmarks Considered
