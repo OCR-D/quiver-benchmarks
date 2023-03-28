@@ -2,6 +2,8 @@
 
 mkdir gt
 
+echo "Prepare OCR-D Ground Truth …"
+
 while IFS= read -r URL; do
     OWNER=$(echo "$URL" | cut -d'/' -f4)
     REPO=$(echo "$URL" | cut -d'/' -f5)
@@ -27,15 +29,29 @@ cd gt || exit
 for ZIP in *.zip; do
     NAME=$(echo "$ZIP" | cut -d"." -f1)
     echo "Processing $NAME"
-    unzip -qq -d "$NAME" "$ZIP"
-    mv "$NAME"/ocrdzip_out/* "$NAME" && rm -r "$NAME"/ocrdzip_out
-    for INNER_ZIP in "$NAME"/*.zip; do
-        echo "Dealing with inner zip files …"
-        INNER_ZIP_NAME=$(basename "$INNER_ZIP" .ocrd.zip)
-        unzip -qq -d "$NAME"/"$INNER_ZIP_NAME" "$INNER_ZIP" && rm "$INNER_ZIP"
+    if [[ ! -d  $NAME ]]; then 
+        unzip -qq -d "$NAME" "$ZIP"
+        mv "$NAME"/ocrdzip_out/* "$NAME" && rm -r "$NAME"/ocrdzip_out
+        for INNER_ZIP in "$NAME"/*.zip; do
+            echo "Dealing with inner zip files …"
+            INNER_ZIP_NAME=$(basename "$INNER_ZIP" .ocrd.zip)
+            unzip -qq -d "$NAME"/"$INNER_ZIP_NAME" "$INNER_ZIP" && rm "$INNER_ZIP"
 
-        echo "Done."
-    done
+            echo "Done."
+        done  
+    fi
 done
+
+echo "Prepare Reichsanzeiger GT …"
+
+if [[ ! -d reichsanzeiger-gt ]]; then
+    git clone https://github.com/UB-Mannheim/reichsanzeiger-gt.git
+fi
+RA_GT=/app/gt/reichsanzeiger-gt
+DATA_DIR=/$RA_GT/data
+cd $DATA_DIR|| exit
+bash download_images.sh
+cp images/* reichsanzeiger-1820-1939/GT-PAGE
+python3 /app/scripts/convert-yml-to-json.py --indent 2 $RA_GT/METADATA.yml $RA_GT/metadata.json
 
 echo " … and ready to go!"

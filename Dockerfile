@@ -12,6 +12,7 @@ RUN apt-get install -y --fix-missing openjdk-11-jre
 COPY src src
 COPY setup.py setup.py
 COPY README.md README.md
+COPY scripts scripts
 
 RUN git init
 RUN git submodule add https://github.com/MehmedGIT/OtoN_Converter submodules/oton
