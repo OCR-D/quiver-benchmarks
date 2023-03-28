@@ -9,3 +9,4 @@ workflows/results
 workflows/ocrd-workflows/*.nf
 models
 .idea
+gt/*

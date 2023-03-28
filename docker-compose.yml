@@ -1,14 +1,16 @@
 version: '3.4'
 
 services:
-  benchmarks:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
     working_dir: /app
     volumes:
       - ./data:/app/data # this will write the results to your host system
+      - ./gt:/app/gt
       # mount your modules, custom workflows and data here
-      # - /path/to/models/on/host:/usr/local/share/ocrd-resources/
+      - ./models:/usr/local/share/ocrd-resources/
+      #- ./workflows:/app/workflows
       # - ./workflows/ocrd_workflows:/app/workflows/ocrd_workflows
       # - TODO/custom/data
