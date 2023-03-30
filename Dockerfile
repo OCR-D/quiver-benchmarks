@@ -13,6 +13,7 @@ COPY src src
 COPY setup.py setup.py
 COPY README.md README.md
 COPY scripts scripts
+COPY data_srcs data_srcs
 
 RUN git init
 RUN git submodule add https://github.com/MehmedGIT/OtoN_Converter submodules/oton
