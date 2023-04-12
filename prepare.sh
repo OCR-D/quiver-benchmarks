@@ -37,8 +37,17 @@ for ZIP in *.zip; do
             INNER_ZIP_NAME=$(basename "$INNER_ZIP" .ocrd.zip)
             unzip -qq -d "$NAME"/"$INNER_ZIP_NAME" "$INNER_ZIP" && rm "$INNER_ZIP"
 
+            echo "Recreate required directory structure for $INNER_ZIP_NAME."
+            mkdir "$NAME"/"$INNER_ZIP_NAME"/data/"$INNER_ZIP_NAME"
+            mv "$NAME"/"$INNER_ZIP_NAME"/data/OCR-* "$NAME"/"$INNER_ZIP_NAME"/data/"$INNER_ZIP_NAME"
+            mv "$NAME"/"$INNER_ZIP_NAME"/data/mets.xml "$NAME"/"$INNER_ZIP_NAME"/data/"$INNER_ZIP_NAME"
+            cp "$NAME"/metadata.json "$NAME"/"$INNER_ZIP_NAME"/data/metadata.json
+
+            echo "Moving $INNER_ZIP_NAME higher in dir structure."
+            mv "$NAME"/"$INNER_ZIP_NAME" .
             echo "Done."
-        done  
+        done
+        rm -rf "$NAME"
     fi
 done
 
