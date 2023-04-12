@@ -41,7 +41,7 @@ for ZIP in *.zip; do
             mkdir "$NAME"/"$INNER_ZIP_NAME"/data/"$INNER_ZIP_NAME"
             mv "$NAME"/"$INNER_ZIP_NAME"/data/OCR-* "$NAME"/"$INNER_ZIP_NAME"/data/"$INNER_ZIP_NAME"
             mv "$NAME"/"$INNER_ZIP_NAME"/data/mets.xml "$NAME"/"$INNER_ZIP_NAME"/data/"$INNER_ZIP_NAME"
-            cp "$NAME"/metadata.json "$NAME"/"$INNER_ZIP_NAME"/data/metadata.json
+            cp "$NAME"/metadata.json "$NAME"/"$INNER_ZIP_NAME"/data/"$INNER_ZIP_NAME"/metadata.json
 
             echo "Moving $INNER_ZIP_NAME higher in dir structure."
             mv "$NAME"/"$INNER_ZIP_NAME" .
@@ -66,8 +66,8 @@ if [[ $1 == "ra-full" ]]; then
     
     if [[ -d reichsanzeiger-1820-1939/OCR-D-IMG ]]; then
         echo "Skip downloading Reichsanzeiger images."
-    #else
-    #    bash download_images.sh
+    else
+        bash download_images.sh
     fi
     cd reichsanzeiger-1820-1939 || exit
     ocrd workspace init

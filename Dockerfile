@@ -24,8 +24,6 @@ RUN cd submodules/oton && \
     sed -i "s \$projectDir/ocrd-workspace/ $WORKSPACE_DIR/CURRENT/ g" oton/config.toml && \
     pip install .
 
-COPY prepare.sh prepare.sh
-
 RUN pip3 install -r requirements.txt
 RUN pip3 install .
 RUN nextflow
