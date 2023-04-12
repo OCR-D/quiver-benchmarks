@@ -58,50 +58,16 @@ create_wf_specific_workspaces() {
 
     # create workspace for all OCR workflows.
     # each workflow has a separate workspace to work with.
-    echo "Create workflow specific workspaces for each dir in ./gt …"
     for DIR in "$ROOT"/gt/*/; do
         DIR_NAME=$(basename "$DIR")
         if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
-            # The extracted dirs of the collected sample GT has the following structure:
-            # century_font_layout-type
-            # |_ metadata.json
-            # |_ subordinate_work_1
-            # |  |_ data
-            # |      |_ mets.xml
-            # |      |_ OCR-D-IMG
-            # |      |_ OCR-D-GT-SEG-LINE
-            # |_ subordinate_work_2
-            #    |_ data
-            #        |_ mets.xml
-            #        |_ OCR-D-IMG
-            #        |_ OCR-D-GT-SEG-LINE
-            if grep -q "multivolume work" <<< "$(cat $DIR/mets.xml)"; then
-                echo "$DIR_NAME is a multivolume work"
-
-                #for WORKFLOW in "$OCRD_WORKFLOW_DIR"/*ocr.txt.nf
-                #do
-                #    WF_NAME=$(basename -s .txt.nf "$WORKFLOW")
-                #    for SUB_WORK in "$DIR"/*/; do
-                #        SUB_WORK_DIR_NAME=$(basename "$SUB_WORK")
-                #        TARGET="$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$SUB_WORK_DIR_NAME"_"$WF_NAME"
-                #        cp -r "$ROOT"/gt/"$DIR_NAME"/"$SUB_WORK_DIR_NAME" "$TARGET"
-                #        if [[ -f "$ROOT"/gt/"$DIR_NAME"/metadata.json ]]; then
-                #            cp -r "$ROOT"/gt/"$DIR_NAME"/metadata.json "$TARGET"/data/metadata.json
-                #        fi
-                #        cp "$WORKFLOW" "$TARGET"/data/
-                #    done
-#
-                #done
-            else
-                echo "$DIR_NAME is a single work."
-                for WORKFLOW in "$OCRD_WORKFLOW_DIR"/*ocr.txt.nf
-                do
-                    WF_NAME=$(basename -s .txt.nf "$WORKFLOW")
-                    cp -r "$ROOT"/gt/"$DIR_NAME" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"
-                    cp "$WORKFLOW" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"/data/*/
-                    cp -r "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"/data/* "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"/
-                done
-            fi
+            echo "Create workflow specific workspace for $DIR_NAME."
+            for WORKFLOW in "$OCRD_WORKFLOW_DIR"/*ocr.txt.nf
+            do
+                WF_NAME=$(basename -s .txt.nf "$WORKFLOW")
+                cp -r "$ROOT"/gt/"$DIR_NAME" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"
+                cp "$WORKFLOW" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"/data/*/
+            done
         fi
     done
 }
@@ -110,10 +76,10 @@ clean_up_tmp_dirs() {
     echo "Clean up intermediate dirs …"
     for DIR in "$WORKSPACE_DIR"/tmp/*
     do
+        echo "Cleaning up $DIR."
         DIR_NAME=$(basename "$DIR")
         mv "$DIR" "$WORKSPACE_DIR"/"$DIR_NAME"
         cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$WORKSPACE_DIR"/"$DIR_NAME"/data/*/
-        #cp -r "$WORKSPACE_DIR"/"$DIR_NAME"/data/*/*/ "$WORKSPACE_DIR"/"$DIR_NAME"/
     done
 
     rm -rf "$WORKSPACE_DIR"/tmp
@@ -125,7 +91,6 @@ execute_wfs_and_extract_benchmarks() {
     # for all data sets…
     for WS_DIR in "$WORKSPACE_DIR"/*
     do
-        echo "Bla bka bla $WORKFLOW"
         if [ -d "$WS_DIR" ]; then
             echo "Switching to $WS_DIR."
 
@@ -149,8 +114,6 @@ execute_wfs_and_extract_benchmarks() {
 adjust_workflow_settings() {
     # $1: $WORKFLOW
     # $2: $DIR_NAME
-    echo app/workflows/workspaces/$2
-    echo $1
     sed -i "s CURRENT app/workflows/workspaces/$2/data/*/ g" "$1"
 }
 
@@ -161,13 +124,13 @@ rename_and_move_nextflow_result() {
     WORKFLOW_NAME=$(basename -s .txt.nf "$1")
     rm "$WORKFLOW_DIR"/nf-results/*process_completed.json
     mv "$WORKFLOW_DIR"/nf-results/*_completed.json "$WORKFLOW_DIR"/results/"$2"_"$WORKFLOW_NAME"_completed.json
-    if [ $WORKFLOW_NAME != "dinglehopper_eval" ]; then
+    if [ "$WORKFLOW_NAME" != "dinglehopper_eval" ]; then
         for DIR in "$WORKSPACE_DIR"/work/*
         do
-            WORK_DIR_NAME=$(basename $DIR)
-            for SUB_WORK_DIR in $DIR/*
+            WORK_DIR_NAME=$(basename "$DIR")
+            for SUB_WORK_DIR in "$DIR"/*
             do
-                SUB_WORK_DIR_NAME=$(basename $SUB_WORK_DIR)
+                SUB_WORK_DIR_NAME=$(basename "$SUB_WORK_DIR")
                 mv "$WORKSPACE_DIR"/work/"$WORK_DIR_NAME"/"$SUB_WORK_DIR_NAME"/.command.log "$WORKSPACE_DIR"/"$2"/"$WORK_DIR_NAME"_"$SUB_WORK_DIR_NAME".command.log
             done
             
@@ -192,7 +155,7 @@ save_workspaces() {
     # $2: $DIR_NAME
     # $3: $WORKFLOW
     echo "Zipping workspace $1"
-    ocrd zip bag -d $DIR_NAME/data/* -i $DIR_NAME/data/* $DIR_NAME
+    ocrd zip bag -d "$DIR_NAME"/data/* -i "$DIR_NAME"/data/* "$DIR_NAME"
     WORKFLOW_NAME=$(basename -s .txt.nf "$3")
     mv "$WORKSPACE_DIR"/"$2".zip "$WORKFLOW_DIR"/results/"$2"_"$WORKFLOW_NAME".zip
 }
