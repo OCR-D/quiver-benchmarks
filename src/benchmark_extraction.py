@@ -42,6 +42,8 @@ def get_workflow(workspace_path: str, wf_type: str) -> Dict[str, str]:
     else:
         pattern = r'ocr.txt.nf'
 
+    print(f"Der aktuelle workspace_path: {workspace_path}")
+
     for file in listdir(workspace_path):
         result = re.search(pattern, file)
         if result:
@@ -95,6 +97,7 @@ def get_workflow_model(mets_path: str) -> str:
         return params_json['checkpoint_dir']
     except:
         xpath = f'.//{METS}agent[@OTHERROLE="layout/segmentation/region"]/{METS}note[@{OCRD}option="parameter"]'
+        print(mets_path)
         parameters = get_node_from_mets(mets_path, xpath)[-1].text
         params_json = json.loads(parameters)
         return params_json['model']
@@ -106,17 +109,18 @@ def get_eval_tool(mets_path: str) -> str:
 
 def get_gt_workspace(workspace_path: str) -> Dict[str, str]:
     current_workspace = get_workspace_name(workspace_path)
-    split_workspace_name = current_workspace.split('_')
-    workspace_name_wo_workflow = split_workspace_name[0] + '_' + split_workspace_name[1] + '_' + split_workspace_name[2]
-    font = ''
-    if split_workspace_name[1] == 'ant':
-        font = 'Antiqua'
-    elif split_workspace_name[1] == 'frak':
-        font = 'Fraktur'
-    else:
-        font = 'Font Mix'
-    url = 'https://github.com/OCR-D/quiver-data/blob/main/' + workspace_name_wo_workflow + '.ocrd.zip'
-    label = f'GT workspace {split_workspace_name[0]}th century {font} {split_workspace_name[2]} layout'
+    print(f"Der aktuelle workspace ist {current_workspace}")
+    #split_workspace_name = current_workspace.split('_')
+    #workspace_name_wo_workflow = split_workspace_name[0] + '_' + split_workspace_name[1] + '_' + split_workspace_name[2]
+    #font = ''
+    #if split_workspace_name[1] == 'ant':
+    #    font = 'Antiqua'
+    #elif split_workspace_name[1] == 'frak':
+    #    font = 'Fraktur'
+    #else:
+    #    font = 'Font Mix'
+    url = 'https://github.com/OCR-D/quiver-data/blob/main/' + current_workspace + '.ocrd.zip'
+    label = f'GT workspace {current_workspace}'
     return {
         '@id': url,
         'label': label
@@ -196,7 +200,9 @@ def get_nextflow_completed_process_file(workspace_path: str):
     return file
 
 def get_nextflow_time(workspace_path: str, time_type: str) -> float:
-    files = listdir(workspace_path)
+    highest_workspace_dir = '/'.join(workspace_path.split('/')[:-2])
+    print(f"Highest dir is {highest_workspace_dir}")
+    files = listdir(highest_workspace_dir)
     logs = []
     for file in files:
         if '.command.log' in file:
@@ -204,7 +210,7 @@ def get_nextflow_time(workspace_path: str, time_type: str) -> float:
 
     time_per_workflow_step = []
     for log in logs:
-        with open(workspace_path + '/' + log, 'r', encoding='utf-8') as l:
+        with open(highest_workspace_dir + '/' + log, 'r', encoding='utf-8') as l:
             log_file = l.read()
             no_sec_s = re.search(rf'([0-9]+?\.[0-9]+?)s \({time_type}\)', log_file).group(1)
             time_per_workflow_step.append(float(no_sec_s))

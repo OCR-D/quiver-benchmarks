@@ -25,7 +25,6 @@ RUN cd submodules/oton && \
     pip install .
 
 COPY prepare.sh prepare.sh
-COPY default_data_sources.txt default_data_sources.txt
 
 RUN pip3 install -r requirements.txt
 RUN pip3 install .

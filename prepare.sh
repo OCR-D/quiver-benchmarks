@@ -16,7 +16,7 @@ while IFS= read -r URL; do
         ZIP_URL=$(echo  "$RESULT" | jq -r '.assets | .[].browser_download_url')
         curl -L -o gt/"$REPO".zip "$ZIP_URL"
     fi
-done < default_data_sources.txt
+done < data_srcs/default_data_sources.txt
 
 cd gt || exit
 # the default data is structured like this:
@@ -29,7 +29,7 @@ cd gt || exit
 for ZIP in *.zip; do
     NAME=$(echo "$ZIP" | cut -d"." -f1)
     echo "Processing $NAME"
-    if [[ ! -d  $NAME ]]; then 
+    if [[ ! -d  $NAME && $NAME != "reichsanzeiger-gt" ]]; then 
         unzip -qq -d "$NAME" "$ZIP"
         mv "$NAME"/ocrdzip_out/* "$NAME" && rm -r "$NAME"/ocrdzip_out
         for INNER_ZIP in "$NAME"/*.zip; do
@@ -44,14 +44,46 @@ done
 
 echo "Prepare Reichsanzeiger GT …"
 
-if [[ ! -d reichsanzeiger-gt ]]; then
-    git clone https://github.com/UB-Mannheim/reichsanzeiger-gt.git
-fi
-RA_GT=/app/gt/reichsanzeiger-gt
-DATA_DIR=/$RA_GT/data
-cd $DATA_DIR|| exit
-bash download_images.sh
-cp images/* reichsanzeiger-1820-1939/GT-PAGE
-python3 /app/scripts/convert-yml-to-json.py --indent 2 $RA_GT/METADATA.yml $RA_GT/metadata.json
+if [[ $1 == "ra-full" ]]; then
+    echo "Preparing the full Reichsanzeiger GT."
 
-echo " … and ready to go!"
+    if [ ! -d reichsanzeiger-gt ]; then
+        git clone https://github.com/UB-Mannheim/reichsanzeiger-gt
+    fi
+
+    RA_GT=/app/gt/reichsanzeiger-gt
+    DATA_DIR=/$RA_GT/data
+    cd $DATA_DIR|| exit
+    
+    if [[ -d reichsanzeiger-1820-1939/OCR-D-IMG ]]; then
+        echo "Skip downloading Reichsanzeiger images."
+    #else
+    #    bash download_images.sh
+    fi
+    cd reichsanzeiger-1820-1939 || exit
+    ocrd workspace init
+    mkdir OCR-D-IMG
+    cp ../images/* OCR-D-IMG
+    rm -rf ../images
+    rm -rf ../reichsanzeiger-1820-1939_with-TableRegion
+    cp -r GT-PAGE OCR-D-GT-SEG-LINE
+    
+    echo "Adding images to mets …"
+    
+    FILEGRP="OCR-D-IMG"
+    EXT=".jpg"  # the actual extension of the image files
+    MEDIATYPE='image/jpeg'  # the actual media type of the image files
+    for i in "$FILEGRP"/*"$EXT"; do
+      BASE=$(basename "${i}" $EXT);
+      ocrd workspace add -G $FILEGRP -i ${FILEGRP}_"${BASE}" -g P_"${BASE}" -m $MEDIATYPE "${i}";
+    done
+    
+    python3 /app/scripts/convert-yml-to-json.py --indent 2 $RA_GT/METADATA.yml $RA_GT/metadata.json
+    
+    echo " … and ready to go!"
+   
+else
+    echo "Prepare smaller sets of Reichsanzeiger GT."
+    cd /app || exit
+    bash /app/scripts/prepare_reichsanzeiger_sets.sh
+fi
