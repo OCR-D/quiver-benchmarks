@@ -68,8 +68,8 @@
         },
         "evaluation_results": {
             "document_wide": {
-                "wall_time": 438.350731,
-                "cpu_time": 582.637321,
+                "wall_time": 530.564159,
+                "cpu_time": 724.869668,
                 "cer_mean": 1.479972651687655,
                 "cer_median": 1.331401349741961,
                 "cer_range": [
@@ -78,7 +78,7 @@
                 ],
                 "cer_standard_deviation": 0.3854879135899152,
                 "wer": 1.7910299442503619,
-                "pages_per_minute": 0.6843834828691092
+                "pages_per_minute": 0.5654358571175178
             },
             "by_page": [
                 {
@@ -105,6 +105,1035 @@
                     "page_id": "P_1936_123_0292",
                     "cer": 1.7931505410232167,
                     "wer": 1.9725058915946583
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-datasilesius_seelenlust01_1657-eval",
+        "label": "Workflow on data silesius_seelenlust01_1657",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/silesius_seelenlust01_1657.ocrd.zip",
+                "label": "GT workspace silesius_seelenlust01_1657"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/silesius_seelenlust01_1657_ocr.zip",
+                "label": "OCR workspace for silesius_seelenlust01_1657"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/silesius_seelenlust01_1657_evaluation.zip",
+                "label": "Evaluation workspace for silesius_seelenlust01_1657"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1600-1700",
+                    "publication_decade": "",
+                    "publication_year": "17th century",
+                    "number_of_pages": 5,
+                    "layout": "complex"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 13.583684,
+                "cpu_time": 17.039027,
+                "cer_mean": 0.3007055286105995,
+                "cer_median": 0.2951219512195122,
+                "cer_range": [
+                    0.19271623672230653,
+                    0.44970414201183434
+                ],
+                "cer_standard_deviation": 0.10657123719012947,
+                "wer": 0.5174305966287508,
+                "pages_per_minute": 22.08531941703002
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.44970414201183434,
+                    "wer": 0.7101449275362319
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.20913884007029876,
+                    "wer": 0.5104166666666666
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.2951219512195122,
+                    "wer": 0.4647887323943662
+                },
+                {
+                    "page_id": "phys_0004",
+                    "cer": 0.19271623672230653,
+                    "wer": 0.3870967741935484
+                },
+                {
+                    "page_id": "phys_0005",
+                    "cer": 0.35684647302904565,
+                    "wer": 0.5147058823529411
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-databenner_herrnhuterey04_1748-eval",
+        "label": "Workflow on data benner_herrnhuterey04_1748",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/benner_herrnhuterey04_1748.ocrd.zip",
+                "label": "GT workspace benner_herrnhuterey04_1748"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/benner_herrnhuterey04_1748_ocr.zip",
+                "label": "OCR workspace for benner_herrnhuterey04_1748"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/benner_herrnhuterey04_1748_evaluation.zip",
+                "label": "Evaluation workspace for benner_herrnhuterey04_1748"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1700-1800",
+                    "publication_decade": "",
+                    "publication_year": "18th century",
+                    "number_of_pages": 4,
+                    "layout": "complex"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 19.971749,
+                "cpu_time": 23.245253,
+                "cer_mean": 0.20433470587543373,
+                "cer_median": 0.1700173533179325,
+                "cer_range": [
+                    0.04063745019920319,
+                    0.43666666666666665
+                ],
+                "cer_standard_deviation": 0.19097881579976753,
+                "wer": 0.31449770246107817,
+                "pages_per_minute": 12.016974577439363
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.43666666666666665,
+                    "wer": 0.583941605839416
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.04063745019920319,
+                    "wer": 0.10344827586206896
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.05536912751677853,
+                    "wer": 0.18435754189944134
+                },
+                {
+                    "page_id": "phys_0004",
+                    "cer": 0.28466557911908646,
+                    "wer": 0.3862433862433862
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-databohse_helicon_1696-eval",
+        "label": "Workflow on data bohse_helicon_1696",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/bohse_helicon_1696.ocrd.zip",
+                "label": "GT workspace bohse_helicon_1696"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/bohse_helicon_1696_ocr.zip",
+                "label": "OCR workspace for bohse_helicon_1696"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/bohse_helicon_1696_evaluation.zip",
+                "label": "Evaluation workspace for bohse_helicon_1696"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1600-1700",
+                    "publication_decade": "",
+                    "publication_year": "17th century",
+                    "number_of_pages": 5,
+                    "layout": "simple"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 16.040643,
+                "cpu_time": 19.265802,
+                "cer_mean": 0.40403175304113403,
+                "cer_median": 0.45517241379310347,
+                "cer_range": [
+                    0.1955040871934605,
+                    0.5079365079365079
+                ],
+                "cer_standard_deviation": 0.12207840266111031,
+                "wer": 0.5356334009868995,
+                "pages_per_minute": 18.70249216318822
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.5079365079365079,
+                    "wer": 0.6382978723404256
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.40540540540540543,
+                    "wer": 0.5740740740740741
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.45517241379310347,
+                    "wer": 0.5467625899280576
+                },
+                {
+                    "page_id": "phys_0004",
+                    "cer": 0.45614035087719296,
+                    "wer": 0.6018518518518519
+                },
+                {
+                    "page_id": "phys_0005",
+                    "cer": 0.1955040871934605,
+                    "wer": 0.31718061674008813
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-databuerger_gedichte_1778-eval",
+        "label": "Workflow on data buerger_gedichte_1778",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/buerger_gedichte_1778.ocrd.zip",
+                "label": "GT workspace buerger_gedichte_1778"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/buerger_gedichte_1778_ocr.zip",
+                "label": "OCR workspace for buerger_gedichte_1778"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/buerger_gedichte_1778_evaluation.zip",
+                "label": "Evaluation workspace for buerger_gedichte_1778"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1700-1800",
+                    "publication_decade": "",
+                    "publication_year": "18th century",
+                    "number_of_pages": 2,
+                    "layout": "complex"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 5.921714,
+                "cpu_time": 7.016172,
+                "cer_mean": 0.10672693293515115,
+                "cer_median": 0.10672693293515115,
+                "cer_range": [
+                    0.04484304932735426,
+                    0.16861081654294804
+                ],
+                "cer_standard_deviation": 0.08751702749046443,
+                "wer": 0.23135901859306116,
+                "pages_per_minute": 20.26440317786371
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.16861081654294804,
+                    "wer": 0.3546099290780142
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.04484304932735426,
+                    "wer": 0.10810810810810811
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-datarollenhagen_reysen_1603-eval",
+        "label": "Workflow on data rollenhagen_reysen_1603",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/rollenhagen_reysen_1603.ocrd.zip",
+                "label": "GT workspace rollenhagen_reysen_1603"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/rollenhagen_reysen_1603_ocr.zip",
+                "label": "OCR workspace for rollenhagen_reysen_1603"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/rollenhagen_reysen_1603_evaluation.zip",
+                "label": "Evaluation workspace for rollenhagen_reysen_1603"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1600-1700",
+                    "publication_decade": "",
+                    "publication_year": "17th century",
+                    "number_of_pages": 3,
+                    "layout": "simple"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 16.777821,
+                "cpu_time": 19.16547,
+                "cer_mean": 0.21046220070684576,
+                "cer_median": 0.16929133858267717,
+                "cer_range": [
+                    0.14512471655328799,
+                    0.3169705469845722
+                ],
+                "cer_standard_deviation": 0.093027024434784,
+                "wer": 0.3190752126565147,
+                "pages_per_minute": 10.728449183001775
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.3169705469845722,
+                    "wer": 0.4649122807017544
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.16929133858267717,
+                    "wer": 0.28104575163398693
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.14512471655328799,
+                    "wer": 0.2112676056338028
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-dataeuler_rechenkunst01_1738-eval",
+        "label": "Workflow on data euler_rechenkunst01_1738",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/euler_rechenkunst01_1738.ocrd.zip",
+                "label": "GT workspace euler_rechenkunst01_1738"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/euler_rechenkunst01_1738_ocr.zip",
+                "label": "OCR workspace for euler_rechenkunst01_1738"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/euler_rechenkunst01_1738_evaluation.zip",
+                "label": "Evaluation workspace for euler_rechenkunst01_1738"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1700-1800",
+                    "publication_decade": "",
+                    "publication_year": "18th century",
+                    "number_of_pages": 6,
+                    "layout": "complex"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 18.514995,
+                "cpu_time": 23.577633,
+                "cer_mean": 0.25835849983393794,
+                "cer_median": 0.230420483908856,
+                "cer_range": [
+                    0.08586296617519515,
+                    0.5747368421052632
+                ],
+                "cer_standard_deviation": 0.16915619139008603,
+                "wer": 0.37827288927088376,
+                "pages_per_minute": 19.443699552713895
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.08586296617519515,
+                    "wer": 0.10465116279069768
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.5747368421052632,
+                    "wer": 0.7987804878048781
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.2767102229054573,
+                    "wer": 0.3786407766990291
+                },
+                {
+                    "page_id": "phys_0004",
+                    "cer": 0.22828282828282828,
+                    "wer": 0.27741935483870966
+                },
+                {
+                    "page_id": "phys_0005",
+                    "cer": 0.152,
+                    "wer": 0.27218934911242604
+                },
+                {
+                    "page_id": "phys_0006",
+                    "cer": 0.23255813953488372,
+                    "wer": 0.43795620437956206
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-datakistler_kraeuter_1500-eval",
+        "label": "Workflow on data kistler_kraeuter_1500",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/kistler_kraeuter_1500.ocrd.zip",
+                "label": "GT workspace kistler_kraeuter_1500"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/kistler_kraeuter_1500_ocr.zip",
+                "label": "OCR workspace for kistler_kraeuter_1500"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/kistler_kraeuter_1500_evaluation.zip",
+                "label": "Evaluation workspace for kistler_kraeuter_1500"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1500-1600",
+                    "publication_decade": "",
+                    "publication_year": "16th century",
+                    "number_of_pages": 2,
+                    "layout": "simple"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 7.833456,
+                "cpu_time": 9.538595,
+                "cer_mean": 0.1809783660358373,
+                "cer_median": 0.1809783660358373,
+                "cer_range": [
+                    0.13479623824451412,
+                    0.2271604938271605
+                ],
+                "cer_standard_deviation": 0.06531139146173669,
+                "wer": 0.408373786407767,
+                "pages_per_minute": 15.318909048573197
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0007",
+                    "cer": 0.2271604938271605,
+                    "wer": 0.441747572815534
+                },
+                {
+                    "page_id": "phys_0021",
+                    "cer": 0.13479623824451412,
+                    "wer": 0.375
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-datacalvi_beutelschneider01_1627-eval",
+        "label": "Workflow on data calvi_beutelschneider01_1627",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/calvi_beutelschneider01_1627.ocrd.zip",
+                "label": "GT workspace calvi_beutelschneider01_1627"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/calvi_beutelschneider01_1627_ocr.zip",
+                "label": "OCR workspace for calvi_beutelschneider01_1627"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/calvi_beutelschneider01_1627_evaluation.zip",
+                "label": "Evaluation workspace for calvi_beutelschneider01_1627"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1600-1700",
+                    "publication_decade": "",
+                    "publication_year": "17th century",
+                    "number_of_pages": 3,
+                    "layout": "simple"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 7.37275,
+                "cpu_time": 9.77562,
+                "cer_mean": 0.08254540344028655,
+                "cer_median": 0.09331797235023041,
+                "cer_range": [
+                    0.05025996533795494,
+                    0.1040582726326743
+                ],
+                "cer_standard_deviation": 0.02847104928930229,
+                "wer": 0.1821206964037463,
+                "pages_per_minute": 24.41422806958055
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.1040582726326743,
+                    "wer": 0.21656050955414013
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.09331797235023041,
+                    "wer": 0.20689655172413793
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.05025996533795494,
+                    "wer": 0.12290502793296089
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-dataarnimb_goethe03_1835-eval",
+        "label": "Workflow on data arnimb_goethe03_1835",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/arnimb_goethe03_1835.ocrd.zip",
+                "label": "GT workspace arnimb_goethe03_1835"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/arnimb_goethe03_1835_ocr.zip",
+                "label": "OCR workspace for arnimb_goethe03_1835"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/arnimb_goethe03_1835_evaluation.zip",
+                "label": "Evaluation workspace for arnimb_goethe03_1835"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Fraktur"
+                    ],
+                    "publication_century": "1800-1900",
+                    "publication_decade": "",
+                    "publication_year": "19th century",
+                    "number_of_pages": 1,
+                    "layout": "simple"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 4.707975,
+                "cpu_time": 5.426059,
+                "cer_mean": 0.004721435316336166,
+                "cer_median": 0.004721435316336166,
+                "cer_range": [
+                    0.004721435316336166,
+                    0.004721435316336166
+                ],
+                "cer_standard_deviation": null,
+                "wer": 0.015873015873015872,
+                "pages_per_minute": 12.744332754528221
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.004721435316336166,
+                    "wer": 0.015873015873015872
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-datablumenbach_anatomie_1805-eval",
+        "label": "Workflow on data blumenbach_anatomie_1805",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/blumenbach_anatomie_1805.ocrd.zip",
+                "label": "GT workspace blumenbach_anatomie_1805"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/blumenbach_anatomie_1805_ocr.zip",
+                "label": "OCR workspace for blumenbach_anatomie_1805"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/blumenbach_anatomie_1805_evaluation.zip",
+                "label": "Evaluation workspace for blumenbach_anatomie_1805"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1800-1900",
+                    "publication_decade": "",
+                    "publication_year": "19th century",
+                    "number_of_pages": 3,
+                    "layout": "simple"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 13.404813,
+                "cpu_time": 15.520204,
+                "cer_mean": 0.08328200324172261,
+                "cer_median": 0.08736842105263158,
+                "cer_range": [
+                    0.04055496264674493,
+                    0.12192262602579132
+                ],
+                "cer_standard_deviation": 0.04083746158658049,
+                "wer": 0.23519468186134854,
+                "pages_per_minute": 13.428012759297722
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.08736842105263158,
+                    "wer": 0.22666666666666666
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.04055496264674493,
+                    "wer": 0.14814814814814814
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.12192262602579132,
+                    "wer": 0.33076923076923076
                 }
             ]
         }
@@ -178,8 +1207,8 @@
         },
         "evaluation_results": {
             "document_wide": {
-                "wall_time": 408.921199,
-                "cpu_time": 512.340968,
+                "wall_time": 470.537927,
+                "cpu_time": 603.540066,
                 "cer_mean": 0.5074594248191785,
                 "cer_median": 0.3389393598117977,
                 "cer_range": [
@@ -188,7 +1217,7 @@
                 ],
                 "cer_standard_deviation": 0.36783069273412317,
                 "wer": 0.630009265947987,
-                "pages_per_minute": 0.7336376806427196
+                "pages_per_minute": 0.6375681593037663
             },
             "by_page": [
                 {
@@ -215,6 +1244,410 @@
                     "page_id": "P_1918_267_0129",
                     "cer": 0.769041769041769,
                     "wer": 0.953976870427189
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-dataluther_auszlegunge_1520-eval",
+        "label": "Workflow on data luther_auszlegunge_1520",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/luther_auszlegunge_1520.ocrd.zip",
+                "label": "GT workspace luther_auszlegunge_1520"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/luther_auszlegunge_1520_ocr.zip",
+                "label": "OCR workspace for luther_auszlegunge_1520"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/luther_auszlegunge_1520_evaluation.zip",
+                "label": "Evaluation workspace for luther_auszlegunge_1520"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1500-1600",
+                    "publication_decade": "",
+                    "publication_year": "16th century",
+                    "number_of_pages": 2,
+                    "layout": "simple"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 10.160861,
+                "cpu_time": 11.973182,
+                "cer_mean": 0.24855845660550213,
+                "cer_median": 0.24855845660550213,
+                "cer_range": [
+                    0.07865168539325842,
+                    0.4184652278177458
+                ],
+                "cer_standard_deviation": 0.2402844601873776,
+                "wer": 0.37300307219662054,
+                "pages_per_minute": 11.81002279235982
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.4184652278177458,
+                    "wer": 0.48333333333333334
+                },
+                {
+                    "page_id": "phys_0029",
+                    "cer": 0.07865168539325842,
+                    "wer": 0.2626728110599078
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-datahuebner_handbuch_1696-eval",
+        "label": "Workflow on data huebner_handbuch_1696",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/huebner_handbuch_1696.ocrd.zip",
+                "label": "GT workspace huebner_handbuch_1696"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/huebner_handbuch_1696_ocr.zip",
+                "label": "OCR workspace for huebner_handbuch_1696"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/huebner_handbuch_1696_evaluation.zip",
+                "label": "Evaluation workspace for huebner_handbuch_1696"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1600-1700",
+                    "publication_decade": "",
+                    "publication_year": "17th century",
+                    "number_of_pages": 3,
+                    "layout": "complex"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 15.981865,
+                "cpu_time": 18.106327,
+                "cer_mean": 0.20627969569747484,
+                "cer_median": 0.08702290076335878,
+                "cer_range": [
+                    0.08487084870848709,
+                    0.44694533762057875
+                ],
+                "cer_standard_deviation": 0.20842533731220508,
+                "wer": 0.3271033769383102,
+                "pages_per_minute": 11.262765640931143
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.44694533762057875,
+                    "wer": 0.6341463414634146
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.08702290076335878,
+                    "wer": 0.1504424778761062
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.08487084870848709,
+                    "wer": 0.19672131147540983
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-datann_besuch_1780-eval",
+        "label": "Workflow on data nn_besuch_1780",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/nn_besuch_1780.ocrd.zip",
+                "label": "GT workspace nn_besuch_1780"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/nn_besuch_1780_ocr.zip",
+                "label": "OCR workspace for nn_besuch_1780"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/nn_besuch_1780_evaluation.zip",
+                "label": "Evaluation workspace for nn_besuch_1780"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1700-1800",
+                    "publication_decade": "",
+                    "publication_year": "18th century",
+                    "number_of_pages": 4,
+                    "layout": "complex"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 14.316583,
+                "cpu_time": 16.701302,
+                "cer_mean": 0.06315407734401027,
+                "cer_median": 0.026726016076928857,
+                "cer_range": [
+                    0.01878453038674033,
+                    0.18037974683544303
+                ],
+                "cer_standard_deviation": 0.07825196427362012,
+                "wer": 0.11662846322503488,
+                "pages_per_minute": 16.76377666374721
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_00001",
+                    "cer": 0.18037974683544303,
+                    "wer": 0.1896551724137931
+                },
+                {
+                    "page_id": "phys_00002",
+                    "cer": 0.01878453038674033,
+                    "wer": 0.08670520231213873
+                },
+                {
+                    "page_id": "phys_00003",
+                    "cer": 0.02505446623093682,
+                    "wer": 0.08670520231213873
+                },
+                {
+                    "page_id": "phys_00004",
+                    "cer": 0.028397565922920892,
+                    "wer": 0.10344827586206896
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-databallenstedt_delatio_1777-eval",
+        "label": "Workflow on data ballenstedt_delatio_1777",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/ballenstedt_delatio_1777.ocrd.zip",
+                "label": "GT workspace ballenstedt_delatio_1777"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/ballenstedt_delatio_1777_ocr.zip",
+                "label": "OCR workspace for ballenstedt_delatio_1777"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/ballenstedt_delatio_1777_evaluation.zip",
+                "label": "Evaluation workspace for ballenstedt_delatio_1777"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1700-1800",
+                    "publication_decade": "",
+                    "publication_year": "18th century",
+                    "number_of_pages": 3,
+                    "layout": "simple"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 21.444519,
+                "cpu_time": 24.028484,
+                "cer_mean": 0.06438361522903834,
+                "cer_median": 0.03969957081545064,
+                "cer_range": [
+                    0.021764032073310423,
+                    0.13168724279835392
+                ],
+                "cer_standard_deviation": 0.058972490200809365,
+                "wer": 0.16906902212925057,
+                "pages_per_minute": 8.393753200992757
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_00003",
+                    "cer": 0.021764032073310423,
+                    "wer": 0.12236286919831224
+                },
+                {
+                    "page_id": "phys_00005",
+                    "cer": 0.13168724279835392,
+                    "wer": 0.2603305785123967
+                },
+                {
+                    "page_id": "phys_00010",
+                    "cer": 0.03969957081545064,
+                    "wer": 0.1245136186770428
                 }
             ]
         }
@@ -288,8 +1721,8 @@
         },
         "evaluation_results": {
             "document_wide": {
-                "wall_time": 323.270346,
-                "cpu_time": 380.887788,
+                "wall_time": 344.194331,
+                "cpu_time": 401.989378,
                 "cer_mean": 1.3340240550306781,
                 "cer_median": 0.7412443874278384,
                 "cer_range": [
@@ -298,7 +1731,7 @@
                 ],
                 "cer_standard_deviation": 1.378192503303974,
                 "wer": 1.8653811990174032,
-                "pages_per_minute": 0.9280158347713093
+                "pages_per_minute": 0.8716006423708356
             },
             "by_page": [
                 {
@@ -325,6 +1758,920 @@
                     "page_id": "P_1883_55_0044",
                     "cer": 1.2073319135990264,
                     "wer": 1.4705882352941178
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-databernd_lebensbeschreibung_1738-eval",
+        "label": "Workflow on data bernd_lebensbeschreibung_1738",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/bernd_lebensbeschreibung_1738.ocrd.zip",
+                "label": "GT workspace bernd_lebensbeschreibung_1738"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/bernd_lebensbeschreibung_1738_ocr.zip",
+                "label": "OCR workspace for bernd_lebensbeschreibung_1738"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/bernd_lebensbeschreibung_1738_evaluation.zip",
+                "label": "Evaluation workspace for bernd_lebensbeschreibung_1738"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1700-1800",
+                    "publication_decade": "",
+                    "publication_year": "18th century",
+                    "number_of_pages": 3,
+                    "layout": "complex"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 8.577653,
+                "cpu_time": 10.790615,
+                "cer_mean": 0.1790109644215708,
+                "cer_median": 0.05504587155963303,
+                "cer_range": [
+                    0.008409785932721712,
+                    0.4735772357723577
+                ],
+                "cer_standard_deviation": 0.2561653709691831,
+                "wer": 0.2391410103864555,
+                "pages_per_minute": 20.984761216150854
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.4735772357723577,
+                    "wer": 0.5882352941176471
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.05504587155963303,
+                    "wer": 0.09821428571428571
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.008409785932721712,
+                    "wer": 0.030973451327433628
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-dataweigel_gnothi02_1618-eval",
+        "label": "Workflow on data weigel_gnothi02_1618",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/weigel_gnothi02_1618.ocrd.zip",
+                "label": "GT workspace weigel_gnothi02_1618"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/weigel_gnothi02_1618_ocr.zip",
+                "label": "OCR workspace for weigel_gnothi02_1618"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/weigel_gnothi02_1618_evaluation.zip",
+                "label": "Evaluation workspace for weigel_gnothi02_1618"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1600-1700",
+                    "publication_decade": "",
+                    "publication_year": "17th century",
+                    "number_of_pages": 4,
+                    "layout": "simple"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 27.856097,
+                "cpu_time": 31.285033,
+                "cer_mean": 0.11399763421865425,
+                "cer_median": 0.09987627660053089,
+                "cer_range": [
+                    0.07531106745252128,
+                    0.18092691622103388
+                ],
+                "cer_standard_deviation": 0.047514032403792344,
+                "wer": 0.19377061794956923,
+                "pages_per_minute": 8.615708079994121
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.18092691622103388,
+                    "wer": 0.3282051282051282
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.07531106745252128,
+                    "wer": 0.15019762845849802
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.11397849462365592,
+                    "wer": 0.15934065934065933
+                },
+                {
+                    "page_id": "phys_0004",
+                    "cer": 0.08577405857740586,
+                    "wer": 0.13733905579399142
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-datalessing_menschengeschlecht_1780-eval",
+        "label": "Workflow on data lessing_menschengeschlecht_1780",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/lessing_menschengeschlecht_1780.ocrd.zip",
+                "label": "GT workspace lessing_menschengeschlecht_1780"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/lessing_menschengeschlecht_1780_ocr.zip",
+                "label": "OCR workspace for lessing_menschengeschlecht_1780"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/lessing_menschengeschlecht_1780_evaluation.zip",
+                "label": "Evaluation workspace for lessing_menschengeschlecht_1780"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1700-1800",
+                    "publication_decade": "",
+                    "publication_year": "18th century",
+                    "number_of_pages": 1,
+                    "layout": "simple"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 2.026755,
+                "cpu_time": 2.56115,
+                "cer_mean": 0.02493765586034913,
+                "cer_median": 0.02493765586034913,
+                "cer_range": [
+                    0.02493765586034913,
+                    0.02493765586034913
+                ],
+                "cer_standard_deviation": null,
+                "wer": 0.09836065573770492,
+                "pages_per_minute": 29.60397285315689
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.02493765586034913,
+                    "wer": 0.09836065573770492
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-dataalberti_pictura_1540-eval",
+        "label": "Workflow on data alberti_pictura_1540",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/alberti_pictura_1540.ocrd.zip",
+                "label": "GT workspace alberti_pictura_1540"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/alberti_pictura_1540_ocr.zip",
+                "label": "OCR workspace for alberti_pictura_1540"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/alberti_pictura_1540_evaluation.zip",
+                "label": "Evaluation workspace for alberti_pictura_1540"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1500-1600",
+                    "publication_decade": "",
+                    "publication_year": "16th century",
+                    "number_of_pages": 3,
+                    "layout": "complex"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 7.85773,
+                "cpu_time": 9.961092,
+                "cer_mean": 0.10240852523716282,
+                "cer_median": 0.10536980749746708,
+                "cer_range": [
+                    0.07124352331606218,
+                    0.1306122448979592
+                ],
+                "cer_standard_deviation": 0.02979493530847308,
+                "wer": 0.23466068901129858,
+                "pages_per_minute": 22.907379103125205
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0007",
+                    "cer": 0.07124352331606218,
+                    "wer": 0.2231404958677686
+                },
+                {
+                    "page_id": "phys_0008",
+                    "cer": 0.10536980749746708,
+                    "wer": 0.2484472049689441
+                },
+                {
+                    "page_id": "phys_0009",
+                    "cer": 0.1306122448979592,
+                    "wer": 0.2323943661971831
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-dataheyden_paedono_1548-eval",
+        "label": "Workflow on data heyden_paedono_1548",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/heyden_paedono_1548.ocrd.zip",
+                "label": "GT workspace heyden_paedono_1548"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/heyden_paedono_1548_ocr.zip",
+                "label": "OCR workspace for heyden_paedono_1548"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/heyden_paedono_1548_evaluation.zip",
+                "label": "Evaluation workspace for heyden_paedono_1548"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1500-1600",
+                    "publication_decade": "",
+                    "publication_year": "16th century",
+                    "number_of_pages": 3,
+                    "layout": "simple"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 8.303854,
+                "cpu_time": 10.292532,
+                "cer_mean": 0.07452119312897007,
+                "cer_median": 0.0629800307219662,
+                "cer_range": [
+                    0.037037037037037035,
+                    0.12354651162790697
+                ],
+                "cer_standard_deviation": 0.044394494261965886,
+                "wer": 0.22683890077340793,
+                "pages_per_minute": 21.676681695029803
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0007",
+                    "cer": 0.0629800307219662,
+                    "wer": 0.21359223300970873
+                },
+                {
+                    "page_id": "phys_0013",
+                    "cer": 0.12354651162790697,
+                    "wer": 0.33980582524271846
+                },
+                {
+                    "page_id": "phys_0014",
+                    "cer": 0.037037037037037035,
+                    "wer": 0.1271186440677966
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-dataluz_blitz_1784-eval",
+        "label": "Workflow on data luz_blitz_1784",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/luz_blitz_1784.ocrd.zip",
+                "label": "GT workspace luz_blitz_1784"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/luz_blitz_1784_ocr.zip",
+                "label": "OCR workspace for luz_blitz_1784"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/luz_blitz_1784_evaluation.zip",
+                "label": "Evaluation workspace for luz_blitz_1784"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1700-1800",
+                    "publication_decade": "",
+                    "publication_year": "18th century",
+                    "number_of_pages": 4,
+                    "layout": "complex"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 19.577649,
+                "cpu_time": 22.415525,
+                "cer_mean": 0.030367084502750087,
+                "cer_median": 0.02381735856100435,
+                "cer_range": [
+                    0.014354066985645933,
+                    0.05947955390334572
+                ],
+                "cer_standard_deviation": 0.02030808283356641,
+                "wer": 0.08722583259487592,
+                "pages_per_minute": 12.258877457655922
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.05947955390334572,
+                    "wer": 0.1794871794871795
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.014354066985645933,
+                    "wer": 0.043478260869565216
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.02869097429766886,
+                    "wer": 0.07924528301886792
+                },
+                {
+                    "page_id": "phys_0004",
+                    "cer": 0.01894374282433984,
+                    "wer": 0.04669260700389105
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-dataestor_rechtsgelehrsamkeit02_1758-eval",
+        "label": "Workflow on data estor_rechtsgelehrsamkeit02_1758",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/estor_rechtsgelehrsamkeit02_1758.ocrd.zip",
+                "label": "GT workspace estor_rechtsgelehrsamkeit02_1758"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/estor_rechtsgelehrsamkeit02_1758_ocr.zip",
+                "label": "OCR workspace for estor_rechtsgelehrsamkeit02_1758"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/estor_rechtsgelehrsamkeit02_1758_evaluation.zip",
+                "label": "Evaluation workspace for estor_rechtsgelehrsamkeit02_1758"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1700-1800",
+                    "publication_decade": "",
+                    "publication_year": "18th century",
+                    "number_of_pages": 4,
+                    "layout": "complex"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 19.327455,
+                "cpu_time": 22.561449,
+                "cer_mean": 0.11589408928020027,
+                "cer_median": 0.10084584323499293,
+                "cer_range": [
+                    0.05331088664421998,
+                    0.2085737840065952
+                ],
+                "cer_standard_deviation": 0.07259145757108061,
+                "wer": 0.20102650242627845,
+                "pages_per_minute": 12.417568686617043
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.06310013717421124,
+                    "wer": 0.11403508771929824
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.13859154929577464,
+                    "wer": 0.22340425531914893
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.05331088664421998,
+                    "wer": 0.13333333333333333
+                },
+                {
+                    "page_id": "phys_0004",
+                    "cer": 0.2085737840065952,
+                    "wer": 0.3333333333333333
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-datatrota_mordtbrenner_1540-eval",
+        "label": "Workflow on data trota_mordtbrenner_1540",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/trota_mordtbrenner_1540.ocrd.zip",
+                "label": "GT workspace trota_mordtbrenner_1540"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/trota_mordtbrenner_1540_ocr.zip",
+                "label": "OCR workspace for trota_mordtbrenner_1540"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/trota_mordtbrenner_1540_evaluation.zip",
+                "label": "Evaluation workspace for trota_mordtbrenner_1540"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1500-1600",
+                    "publication_decade": "",
+                    "publication_year": "16th century",
+                    "number_of_pages": 2,
+                    "layout": "simple"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 7.192959,
+                "cpu_time": 8.533417,
+                "cer_mean": 0.043071000855431994,
+                "cer_median": 0.043071000855431994,
+                "cer_range": [
+                    0.014285714285714285,
+                    0.0718562874251497
+                ],
+                "cer_standard_deviation": 0.04070854266369089,
+                "wer": 0.10714905431199029,
+                "pages_per_minute": 16.682981232063188
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.0718562874251497,
+                    "wer": 0.19469026548672566
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.014285714285714285,
+                    "wer": 0.0196078431372549
+                }
+            ]
+        }
+    },
+    {
+        "eval_workflow_id": "wf-datajusti_abhandlung01_1758-eval",
+        "label": "Workflow on data justi_abhandlung01_1758",
+        "metadata": {
+            "ocr_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/minimal_ocr.txt",
+                "label": "OCR Workflow minimal_ocr"
+            },
+            "eval_workflow": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/ocrd_workflows/dinglehopper_eval.txt",
+                "label": "Evaluation Workflow dinglehopper_eval"
+            },
+            "gt_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-data/blob/main/justi_abhandlung01_1758.ocrd.zip",
+                "label": "GT workspace justi_abhandlung01_1758"
+            },
+            "ocr_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/justi_abhandlung01_1758_ocr.zip",
+                "label": "OCR workspace for justi_abhandlung01_1758"
+            },
+            "eval_workspace": {
+                "@id": "https://github.com/OCR-D/quiver-back-end/blob/main/workflows/results/justi_abhandlung01_1758_evaluation.zip",
+                "label": "Evaluation workspace for justi_abhandlung01_1758"
+            },
+            "workflow_steps": [
+                {
+                    "id": "ocrd-tesserocr-recognize",
+                    "params": {
+                        "segmentation_level": "region",
+                        "textequiv_level": "word",
+                        "find_tables": true,
+                        "model": "Fraktur_GT4HistOCR",
+                        "dpi": 0,
+                        "padding": 0,
+                        "overwrite_segments": false,
+                        "overwrite_text": true,
+                        "shrink_polygons": false,
+                        "block_polygons": false,
+                        "find_staves": false,
+                        "sparse_text": false,
+                        "raw_lines": false,
+                        "char_whitelist": "",
+                        "char_blacklist": "",
+                        "char_unblacklist": "",
+                        "tesseract_parameters": {},
+                        "xpath_parameters": {},
+                        "xpath_model": {},
+                        "auto_model": false,
+                        "oem": "DEFAULT"
+                    }
+                }
+            ],
+            "workflow_model": "Fraktur_GT4HistOCR",
+            "eval_tool": "ocrd-dinglehopper vNone",
+            "document_metadata": {
+                "data_properties": {
+                    "fonts": [
+                        "Antiqua",
+                        "Fraktur"
+                    ],
+                    "publication_century": "1700-1800",
+                    "publication_decade": "",
+                    "publication_year": "18th century",
+                    "number_of_pages": 4,
+                    "layout": "complex"
+                }
+            }
+        },
+        "evaluation_results": {
+            "document_wide": {
+                "wall_time": 13.437096,
+                "cpu_time": 16.64254,
+                "cer_mean": 0.12942563348778183,
+                "cer_median": 0.13278777025964683,
+                "cer_range": [
+                    0.09893550407013149,
+                    0.15319148936170213
+                ],
+                "cer_standard_deviation": 0.022501323128153037,
+                "wer": 0.19483806092245076,
+                "pages_per_minute": 17.861002109384348
+            },
+            "by_page": [
+                {
+                    "page_id": "phys_0001",
+                    "cer": 0.13375130616509928,
+                    "wer": 0.2
+                },
+                {
+                    "page_id": "phys_0002",
+                    "cer": 0.15319148936170213,
+                    "wer": 0.22916666666666666
+                },
+                {
+                    "page_id": "phys_0003",
+                    "cer": 0.09893550407013149,
+                    "wer": 0.12992125984251968
+                },
+                {
+                    "page_id": "phys_0004",
+                    "cer": 0.1318242343541944,
+                    "wer": 0.22026431718061673
                 }
             ]
         }
@@ -398,8 +2745,8 @@
         },
         "evaluation_results": {
             "document_wide": {
-                "wall_time": 623.58917,
-                "cpu_time": 821.985029,
+                "wall_time": 636.322401,
+                "cpu_time": 852.529652,
                 "cer_mean": 1.1094634128044334,
                 "cer_median": 0.8993673021608106,
                 "cer_range": [
@@ -408,7 +2755,7 @@
                 ],
                 "cer_standard_deviation": 0.645494993792005,
                 "wer": 1.3304151477151094,
-                "pages_per_minute": 0.5773031625934106
+                "pages_per_minute": 0.565750945486516
             },
             "by_page": [
                 {
