@@ -10,6 +10,6 @@ services:
       - ./data:/app/data # this will write the results to your host system
       - ./gt:/app/gt
       # mount your modules, custom workflows and data here
-      - ./models/ocrd-tesserocr-recognize:/usr/local/share/tessdata/
-      - ./models/ocrd-calamari-recognize:/usr/local/share/ocrd-resources/
+      #- ./models/ocrd-tesserocr-recognize:/usr/local/share/tessdata/
+      #- ./models/ocrd-calamari-recognize:/usr/local/share/ocrd-resources/
       # - TODO/custom/data
