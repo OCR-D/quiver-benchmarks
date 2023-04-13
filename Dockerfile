@@ -1,4 +1,4 @@
-FROM ocrd/all:maximum
+FROM ocrd/all:2023-02-07
 
 WORKDIR /app
 
