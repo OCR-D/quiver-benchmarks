@@ -30,7 +30,7 @@ def summarize_benchmarks_cli():
     summarize_to_one_file(get_json_files())
     print("Successfully summarized JSON files!")
 
-@cli.command('run-ocr-wf', help='…')
+@cli.command('run-ocr', help='…')
 @click.option('-wf', '--workflows', help='Worfklow to run. Default: all', default='all')
 def run_workflows(workflows):
     run_workflow(workflows)
