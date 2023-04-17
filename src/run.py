@@ -10,6 +10,7 @@ from fnmatch import fnmatch
 from pathlib import Path
 
 from .constants import WORKFLOW_DIR
+from .summarize_benchmarks import summarize_to_one_file, get_json_files
 
 
 def run_workflow(workflow):
@@ -22,6 +23,9 @@ def run_workflow(workflow):
         run_all_workflows()
     else:
         run_single_workflow(workflow)
+    summarize_to_one_file(get_json_files())
+    clean_up()
+
 
 def run_all_workflows():
     """Runs all OCR workflows available in workflows/ocrd_workflows
@@ -30,7 +34,7 @@ def run_all_workflows():
         wf_name = f'{Path(wf).stem}.txt'
         print(f'Processing workflow {wf_name}')
         run_single_workflow(wf_name)
-    clean_up()
+
 
 def run_single_workflow(workflow):
     """Runs a single OCR workflow
@@ -40,12 +44,12 @@ def run_single_workflow(workflow):
     """
     cmd = f'bash /app/workflows/run_workflow.sh {workflow}'
     subprocess.run(cmd, shell=True, check=True)
-    clean_up()
+
 
 def clean_up():
     """Cleans up intermediate directories
     """
-    print('Cleaning up …"')
+    print('Cleaning up …')
     rmtree('/app/workflows/workspaces')
     rmtree('/app/workflows/nf-results')
     rmtree('/app/workflows/results')
