@@ -40,6 +40,9 @@ download_models() {
 
 create_wf_specific_workspaces() {
     # execute this workflow on the existing data (incl. evaluation)
+    if [[ ! -d "$WORKSPACE_DIR" ]]; then
+        mkdir "$WORKSPACE_DIR"
+    fi
     cd "$WORKSPACE_DIR" || exit
 
     # create workspace for all OCR workflows.
@@ -49,10 +52,11 @@ create_wf_specific_workspaces() {
         DIR_NAME=$(basename "$DIR")
         if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
             echo "Create workflow specific workspace for $DIR_NAME."
-            WF_NAME=$(basename -s .txt.nf "$1".nf)
-            cp -r "$ROOT"/gt/"$DIR_NAME" "$WORKSPACE_DIR"/"$DIR_NAME"_"$WF_NAME"
-            cp "$OCRD_WORKFLOW_DIR"/"$1".nf "$WORKSPACE_DIR"/"$DIR_NAME"_"$WF_NAME"/data/*/
-            cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$WORKSPACE_DIR"/"$DIR_NAME"_"$WF_NAME"/data/*/
+            WF_NAME=$(basename -s .txt "$1")
+            DEST_DIR="$WORKSPACE_DIR"/"$DIR_NAME"_"$WF_NAME"
+            cp -r "$ROOT"/gt/"$DIR_NAME" "$DEST_DIR"
+            cp "$OCRD_WORKFLOW_DIR"/"$1".nf "$DEST_DIR"/data/*/
+            cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$DEST_DIR"/data/*/
         fi
     done
 }
@@ -65,15 +69,13 @@ execute_wfs_and_extract_benchmarks() {
         if [ -d "$WS_DIR" ]; then
             echo "Switching to $WS_DIR."
 
-            DIR_NAME=$(basename $WS_DIR)
-
-            OCR_WF_DIR=$(dirname "$WS_DIR"/data/*/*ocr.txt.nf)
-
+            DIR_NAME=$(basename "$WS_DIR")
             run "$WS_DIR"/data/*/*ocr.txt.nf "$DIR_NAME" "$WS_DIR" || echo "An error occurred while processing $WS_DIR. See the logs for more info."
             run "$WS_DIR"/data/*/*eval.txt.nf "$DIR_NAME" "$WS_DIR" || echo "An error occurred while evaluating $WS_DIR. See the logs for more info."
 
             # create a result JSON according to the specs          
             echo "Get Benchmark JSON …"
+            OCR_WF_DIR=$(dirname "$WS_DIR"/data/*/*ocr.txt.nf)
             quiver benchmarks-extraction "$WS_DIR"/data/* "$OCR_WF_DIR"/"$1".nf
             echo "Done."
 
