@@ -6,7 +6,8 @@ __all__ = [
     "METS",
     "OCRD",
     "QUIVER_MAIN",
-    "RESULTS"
+    "RESULTS",
+    "WORKFLOW_DIR"
 ]
 
 from ocrd_models.constants import NAMESPACES
