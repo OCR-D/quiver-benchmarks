@@ -9,20 +9,6 @@ WORKSPACE_DIR="$WORKFLOW_DIR"/workspaces
 
 set -euo pipefail
 
-clean_up_dirs() {
-    if [[ -d  workflows/workspaces ]]; then
-    rm -rf workflows/workspaces
-    fi
-
-    if [[ -d  workflows/nf-results ]]; then
-        rm -rf workflows/nf-results
-    fi
-
-    if [[ -d  workflows/results ]]; then
-        rm -rf workflows/results
-    fi
-}
-
 convert_ocrd_wfs_to_NextFlow() {
     cd "$OCRD_WORKFLOW_DIR" || exit
 
@@ -42,21 +28,18 @@ convert_ocrd_wfs_to_NextFlow() {
 
 download_models() {
     echo "Download the necessary models if not available"
-    if [[ ! -f /usr/local/share/ocrd-resources/ocrd-tesserocr-recognize/ ]]
+    if [[ ! -f /usr/local/share/tessdata/Fraktur_GT4HistOCR.traineddata ]]
     then
-        mkdir -p /usr/local/share/ocrd-resources/
         ocrd resmgr download ocrd-tesserocr-recognize '*'
     fi
     if [[ ! -d /usr/local/share/ocrd-resources/ocrd-calamari-recognize/qurator-gt4histocr-1.0 ]]
     then
-        mkdir -p /usr/local/share/ocrd-resources/
         ocrd resmgr download ocrd-calamari-recognize qurator-gt4histocr-1.0
     fi
 }
 
 create_wf_specific_workspaces() {
     # execute this workflow on the existing data (incl. evaluation)
-    mkdir -p "$WORKSPACE_DIR"/tmp
     cd "$WORKSPACE_DIR" || exit
 
     # create workspace for all OCR workflows.
@@ -67,24 +50,11 @@ create_wf_specific_workspaces() {
         if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
             echo "Create workflow specific workspace for $DIR_NAME."
             WF_NAME=$(basename -s .txt.nf "$1".nf)
-            cp -r "$ROOT"/gt/"$DIR_NAME" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"
-            cp "$OCRD_WORKFLOW_DIR"/"$1".nf "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"/data/*/
+            cp -r "$ROOT"/gt/"$DIR_NAME" "$WORKSPACE_DIR"/"$DIR_NAME"_"$WF_NAME"
+            cp "$OCRD_WORKFLOW_DIR"/"$1".nf "$WORKSPACE_DIR"/"$DIR_NAME"_"$WF_NAME"/data/*/
+            cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$WORKSPACE_DIR"/"$DIR_NAME"_"$WF_NAME"/data/*/
         fi
     done
-}
-
-clean_up_tmp_dirs() {
-    echo "Clean up intermediate dirs …"
-    for DIR in "$WORKSPACE_DIR"/tmp/*
-    do
-        echo "Cleaning up $DIR."
-        DIR_NAME=$(basename "$DIR")
-        mv "$DIR" "$WORKSPACE_DIR"/"$DIR_NAME"
-        cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$WORKSPACE_DIR"/"$DIR_NAME"/data/*/
-    done
-
-    rm -rf "$WORKSPACE_DIR"/tmp
-    rm -rf "$WORKSPACE_DIR"/log.log
 }
 
 execute_wfs_and_extract_benchmarks() {
@@ -163,23 +133,6 @@ save_workspaces() {
     mv "$WORKSPACE_DIR"/"$2".zip "$WORKFLOW_DIR"/results/"$2"_"$WORKFLOW_NAME".zip
 }
 
-summarize_to_data_json() {
-    # summarize JSONs
-    echo "Summarize JSONs to one file …"
-    quiver summarize-benchmarks
-    echo "Done."
-}
-
-
-final_clean_up() {
-    echo "Cleaning up …"
-    rm -rf "$WORKSPACE_DIR"
-    rm -rf "$ROOT"/work
-    rm -rf "$WORKFLOW_DIR"/nf-results
-    rm -rf "$WORKFLOW_DIR"/results
-    rm "$WORKFLOW_DIR"/ocrd_workflows/*.nf
-}
-
 check_and_run_webserver() {
     IS_WEBSERVER_PORT_OPEN=$(nc -z 127.0.0.1 8000; echo $?)
     if [[ ! "$IS_WEBSERVER_PORT_OPEN" ]]; then
@@ -187,11 +140,8 @@ check_and_run_webserver() {
     fi
 }
 
-clean_up_dirs
 convert_ocrd_wfs_to_NextFlow "$1"
 download_models
 create_wf_specific_workspaces "$1"
-clean_up_tmp_dirs
 check_and_run_webserver
 execute_wfs_and_extract_benchmarks "$1"
-summarize_to_data_json
