@@ -1,9 +1,9 @@
-from fastapi import FastAPI
 import json
-from typing import Union
-from typing import Dict
-from pathlib import Path
 from os import getcwd
+from pathlib import Path
+from typing import Dict, Union
+
+from fastapi import FastAPI
 
 app = FastAPI()
 
