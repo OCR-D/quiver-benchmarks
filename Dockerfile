@@ -31,5 +31,6 @@ RUN nextflow
 
 COPY workflows workflows
 COPY scripts scripts
+COPY data_srcs data_srcs
 
 ENTRYPOINT [ "bash" ]
