@@ -30,5 +30,6 @@ RUN pip3 install .
 RUN nextflow
 
 COPY workflows workflows
+COPY scripts scripts
 
 ENTRYPOINT [ "bash" ]

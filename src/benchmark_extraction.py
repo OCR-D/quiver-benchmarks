@@ -196,7 +196,8 @@ def get_nextflow_completed_process_file(workspace_path: str):
     return file
 
 def get_nextflow_time(workspace_path: str, time_type: str) -> float:
-    files = listdir(workspace_path)
+    highest_workspace_dir = '/'.join(workspace_path.split('/')[:-2])
+    files = listdir(highest_workspace_dir)
     logs = []
     for file in files:
         if '.command.log' in file:
@@ -204,7 +205,7 @@ def get_nextflow_time(workspace_path: str, time_type: str) -> float:
 
     time_per_workflow_step = []
     for log in logs:
-        with open(workspace_path + '/' + log, 'r', encoding='utf-8') as l:
+        with open(highest_workspace_dir + '/' + log, 'r', encoding='utf-8') as l:
             log_file = l.read()
             no_sec_s = re.search(rf'([0-9]+?\.[0-9]+?)s \({time_type}\)', log_file).group(1)
             time_per_workflow_step.append(float(no_sec_s))

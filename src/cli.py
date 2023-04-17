@@ -5,6 +5,7 @@ import click
 
 from .benchmark_extraction import make_result_json
 from .summarize_benchmarks import get_json_files, summarize_to_one_file
+from .run import run_workflow
 
 
 @click.group()
@@ -28,3 +29,8 @@ def benchmark_extraction_cli(workspace_path, workflow_path):
 def summarize_benchmarks_cli():
     summarize_to_one_file(get_json_files())
     print("Successfully summarized JSON files!")
+
+@cli.command('run-ocr-wf', help='…')
+@click.option('-wf', '--workflows', help='Worfklow to run. Default: all', default='all')
+def run_workflows(workflows):
+    run_workflow(workflows)
