@@ -31,10 +31,12 @@ convert_ocrd_wfs_to_NextFlow() {
     mkdir -p "$WORKFLOW_DIR/nf-results"
     FILES=( "$1" "dinglehopper_eval.txt" )
     for FILE in "${FILES[@]}"; do
-        oton convert -I "$FILE" -O "$FILE".nf
-        # the venv part is not needed since we execute this in an image derived from ocrd/all:maximum
-        sed -i 's/source "${params.venv_path}"//g' "$FILE".nf
-        sed -i 's/deactivate//g' "$FILE".nf
+        if [[ ! -f "$FILE".nf ]]; then
+            oton convert -I "$FILE" -O "$FILE".nf
+            # the venv part is not needed since we execute this in an image derived from ocrd/all:maximum
+            sed -i 's/source "${params.venv_path}"//g' "$FILE".nf
+            sed -i 's/deactivate//g' "$FILE".nf
+        fi
     done
 }
 
@@ -64,12 +66,9 @@ create_wf_specific_workspaces() {
         DIR_NAME=$(basename "$DIR")
         if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
             echo "Create workflow specific workspace for $DIR_NAME."
-            for WORKFLOW in "$OCRD_WORKFLOW_DIR"/*ocr.txt.nf
-            do
-                WF_NAME=$(basename -s .txt.nf "$WORKFLOW")
-                cp -r "$ROOT"/gt/"$DIR_NAME" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"
-                cp "$WORKFLOW" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"/data/*/
-            done
+            WF_NAME=$(basename -s .txt.nf "$1".nf)
+            cp -r "$ROOT"/gt/"$DIR_NAME" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"
+            cp "$OCRD_WORKFLOW_DIR"/"$1".nf "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"/data/*/
         fi
     done
 }
@@ -98,12 +97,14 @@ execute_wfs_and_extract_benchmarks() {
 
             DIR_NAME=$(basename $WS_DIR)
 
+            OCR_WF_DIR=$(dirname "$WS_DIR"/data/*/*ocr.txt.nf)
+
             run "$WS_DIR"/data/*/*ocr.txt.nf "$DIR_NAME" "$WS_DIR" || echo "An error occurred while processing $WS_DIR. See the logs for more info."
             run "$WS_DIR"/data/*/*eval.txt.nf "$DIR_NAME" "$WS_DIR" || echo "An error occurred while evaluating $WS_DIR. See the logs for more info."
 
             # create a result JSON according to the specs          
             echo "Get Benchmark JSON …"
-            quiver benchmarks-extraction "$WS_DIR"/data/* "$WORKFLOW"
+            quiver benchmarks-extraction "$WS_DIR"/data/* "$OCR_WF_DIR"/"$1".nf
             echo "Done."
 
             # move data to results dir
@@ -179,12 +180,18 @@ final_clean_up() {
     rm "$WORKFLOW_DIR"/ocrd_workflows/*.nf
 }
 
+check_and_run_webserver() {
+    IS_WEBSERVER_PORT_OPEN=$(nc -z 127.0.0.1 8000; echo $?)
+    if [[ ! "$IS_WEBSERVER_PORT_OPEN" ]]; then
+        uvicorn api:app --app-dir "$ROOT"/src & # start webserver for evaluation
+    fi
+}
+
 clean_up_dirs
 convert_ocrd_wfs_to_NextFlow "$1"
 download_models
-create_wf_specific_workspaces
+create_wf_specific_workspaces "$1"
 clean_up_tmp_dirs
-uvicorn api:app --app-dir "$ROOT"/src & # start webserver for evaluation
-execute_wfs_and_extract_benchmarks
+check_and_run_webserver
+execute_wfs_and_extract_benchmarks "$1"
 summarize_to_data_json
-final_clean_up

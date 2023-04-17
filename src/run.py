@@ -3,7 +3,10 @@ Runs one or all given workflows in /app/workflows/ocrd_workflows
 """
 
 import subprocess
-from os import listdir
+from glob import glob
+from shutil import rmtree
+from os import listdir, remove
+from fnmatch import fnmatch
 from pathlib import Path
 
 from .constants import WORKFLOW_DIR
@@ -23,8 +26,11 @@ def run_workflow(workflow):
 def run_all_workflows():
     """Runs all OCR workflows available in workflows/ocrd_workflows
     """
-    for wf in listdir(WORKFLOW_DIR):
-        pass
+    for wf in glob(f'{WORKFLOW_DIR}/*_ocr.txt'):
+        wf_name = f'{Path(wf).stem}.txt'
+        print(f'Processing workflow {wf_name}')
+        run_single_workflow(wf_name)
+    clean_up()
 
 def run_single_workflow(workflow):
     """Runs a single OCR workflow
@@ -34,3 +40,17 @@ def run_single_workflow(workflow):
     """
     cmd = f'bash /app/workflows/run_workflow.sh {workflow}'
     subprocess.run(cmd, shell=True, check=True)
+    clean_up()
+
+def clean_up():
+    """Cleans up intermediate directories
+    """
+    print('Cleaning up …"')
+    rmtree('/app/workflows/workspaces')
+    rmtree('/app/workflows/nf-results')
+    rmtree('/app/workflows/results')
+
+    for filename in listdir(WORKFLOW_DIR):
+        if fnmatch(filename, "*.nf"):
+            path = f'{WORKFLOW_DIR}/{filename}'
+            remove(path)
