@@ -6,6 +6,7 @@ ROOT=$PWD
 WORKFLOW_DIR="$ROOT"/workflows
 OCRD_WORKFLOW_DIR="$WORKFLOW_DIR"/ocrd_workflows
 WORKSPACE_DIR="$WORKFLOW_DIR"/workspaces
+WORKFLOW_NAME=$(basename -s .txt "$1")
 
 set -euo pipefail
 
@@ -51,9 +52,8 @@ create_wf_specific_workspaces() {
     for DIR in "$ROOT"/gt/*/; do
         DIR_NAME=$(basename "$DIR")
         if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
-            WF_NAME=$(basename -s .txt "$1")
-            echo "Create workflow specific workspace ""$DIR_NAME""_""$WF_NAME""."
-            DEST_DIR="$WORKSPACE_DIR"/"$DIR_NAME"_"$WF_NAME"
+            echo "Create workflow specific workspace ""$DIR_NAME""_""$WORKFLOW_NAME""."
+            DEST_DIR="$WORKSPACE_DIR"/"$DIR_NAME"_"$WORKFLOW_NAME"
             cp -r "$ROOT"/gt/"$DIR_NAME" "$DEST_DIR"
             cp "$OCRD_WORKFLOW_DIR"/"$1".nf "$DEST_DIR"/data/*/
             cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$DEST_DIR"/data/*/
@@ -67,8 +67,7 @@ execute_wfs_and_extract_benchmarks() {
     for WS_DIR in "$WORKSPACE_DIR"/*
     do
         DIR_NAME=$(basename "$WS_DIR")
-        PASSED_WF_NAME=$(basename -s .txt "$1")
-        if [[ -d "$WS_DIR" && $DIR_NAME == *"$PASSED_WF_NAME" ]]; then
+        if [[ -d "$WS_DIR" && $DIR_NAME == *"$WORKFLOW_NAME" ]]; then
             echo "Switching to $WS_DIR."
 
             DIR_NAME=$(basename "$WS_DIR")
@@ -98,9 +97,6 @@ rename_and_move_nextflow_result() {
     # rename NextFlow results in order to properly match them to the workflows
     # $1: $WORKFLOW
     # $2: $DIR_NAME
-    WORKFLOW_NAME=$(basename -s .txt.nf "$1")
-    rm "$WORKFLOW_DIR"/nf-results/*process_completed.json
-    mv "$WORKFLOW_DIR"/nf-results/*_completed.json "$WORKFLOW_DIR"/results/"$2"_"$WORKFLOW_NAME"_completed.json
     if [ "$WORKFLOW_NAME" != "dinglehopper_eval" ]; then
         for DIR in "$WORKSPACE_DIR"/work/*
         do
@@ -124,16 +120,14 @@ run() {
     adjust_workflow_settings "$1" "$2"
     nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/ || echo "Error while running $1."
     rename_and_move_nextflow_result "$1" "$2"
-    save_workspaces "$3"/data "$2" "$1"
+    save_workspaces "$3"/data "$2"
 }
 
 save_workspaces() {
     # $1: $WS_DIR
     # $2: $DIR_NAME
-    # $3: $WORKFLOW
     echo "Zipping workspace $1"
     ocrd -l ERROR zip bag -d "$DIR_NAME"/data/* -i "$DIR_NAME"/data/* "$DIR_NAME"
-    WORKFLOW_NAME=$(basename -s .txt.nf "$3")
     mv "$WORKSPACE_DIR"/"$2".zip "$WORKFLOW_DIR"/results/"$2"_"$WORKFLOW_NAME".zip
 }
 
