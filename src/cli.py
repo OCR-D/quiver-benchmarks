@@ -12,7 +12,7 @@ from .run import run_workflow
 def cli():
     pass
 
-@cli.command('benchmarks-extraction', help="...")
+@cli.command('benchmarks-extraction', help="Extracts all relevant metrics from the metadata and NextFlow files.")
 @click.argument('WORKSPACE_PATH')
 @click.argument('WORKFLOW_PATH')
 def benchmark_extraction_cli(workspace_path, workflow_path):
@@ -25,13 +25,13 @@ def benchmark_extraction_cli(workspace_path, workflow_path):
     with open(output, 'w', encoding='utf-8') as outfile:
         outfile.write(json_object)
 
-@cli.command('summarize-benchmarks', help="...")
+@cli.command('summarize-benchmarks', help="Summarizes all benchmarking results to data/workflows.json.")
 def summarize_benchmarks_cli():
     summarize_to_one_file(get_json_files())
     print("Successfully summarized JSON files!")
 
-@cli.command('run-ocr', help='…')
-@click.option('-wf', '--workflows', help='Worfklow to run. Default: all', default=['all'], multiple=True)
+@cli.command('run-ocr', help='Runs one or more OCR-D workflows on all data given in the Ground Truth directory (./gt).')
+@click.option('-wf', '--workflows', help='Worfklow(s) to run. May be passed multiple times. Default: all', default=['all'], multiple=True)
 def run_workflows(workflows):
     for wf in workflows:
         run_workflow(wf)
