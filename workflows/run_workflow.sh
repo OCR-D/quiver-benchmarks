@@ -51,8 +51,8 @@ create_wf_specific_workspaces() {
     for DIR in "$ROOT"/gt/*/; do
         DIR_NAME=$(basename "$DIR")
         if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
-            echo "Create workflow specific workspace for $DIR_NAME."
             WF_NAME=$(basename -s .txt "$1")
+            echo "Create workflow specific workspace ""$DIR_NAME""_""$WF_NAME""."
             DEST_DIR="$WORKSPACE_DIR"/"$DIR_NAME"_"$WF_NAME"
             cp -r "$ROOT"/gt/"$DIR_NAME" "$DEST_DIR"
             cp "$OCRD_WORKFLOW_DIR"/"$1".nf "$DEST_DIR"/data/*/
@@ -66,7 +66,9 @@ execute_wfs_and_extract_benchmarks() {
     # for all data sets…
     for WS_DIR in "$WORKSPACE_DIR"/*
     do
-        if [ -d "$WS_DIR" ]; then
+        DIR_NAME=$(basename "$WS_DIR")
+        PASSED_WF_NAME=$(basename -s .txt "$1")
+        if [[ -d "$WS_DIR" && $DIR_NAME == *"$PASSED_WF_NAME" ]]; then
             echo "Switching to $WS_DIR."
 
             DIR_NAME=$(basename "$WS_DIR")
@@ -80,7 +82,7 @@ execute_wfs_and_extract_benchmarks() {
             echo "Done."
 
             # move data to results dir
-            mv "$WS_DIR"/data/*/*.json "$WORKFLOW_DIR"/results
+            mv "$WS_DIR"/data/*/*result.json "$WORKFLOW_DIR"/results
         fi
     done
     cd "$ROOT" || exit

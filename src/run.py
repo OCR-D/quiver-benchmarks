@@ -30,8 +30,9 @@ def run_workflow(workflow):
 def run_all_workflows():
     """Runs all OCR workflows available in workflows/ocrd_workflows
     """
-    for wf in glob(f'{WORKFLOW_DIR}/*_ocr.txt'):
-        wf_name = f'{Path(wf).stem}.txt'
+    for workflow in glob(f'{WORKFLOW_DIR}/*_ocr.txt'):
+        wf_name = f'{Path(workflow).stem}.txt'
+        print('++++++++++++++++++++++++++++++')
         print(f'Processing workflow {wf_name}')
         run_single_workflow(wf_name)
 
