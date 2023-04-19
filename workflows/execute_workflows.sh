@@ -39,9 +39,9 @@ convert_ocrd_wfs_to_NextFlow() {
 
 download_models() {
     echo "Download the necessary models if not available"
-    if [[ ! -f /usr/local/share/ocrd-resources/ocrd-tesserocr-recognize/ ]]
+    if [[ ! -d /usr/local/share/tessdata ]]
     then
-        mkdir -p /usr/local/share/ocrd-resources/
+        #mkdir -p /usr/local/share/ocrd-resources/
         ocrd resmgr download ocrd-tesserocr-recognize '*'
     fi
     if [[ ! -d /usr/local/share/ocrd-resources/ocrd-calamari-recognize/qurator-gt4histocr-1.0 ]]
@@ -58,32 +58,15 @@ create_wf_specific_workspaces() {
 
     # create workspace for all OCR workflows.
     # each workflow has a separate workspace to work with.
-    echo "Create workflow specific workspaces for each dir in ./gt …"
     for DIR in "$ROOT"/gt/*/; do
         DIR_NAME=$(basename "$DIR")
-        if grep -q "multivolume work" <<< "$(cat $DIR/mets.xml)"; then
-            echo "$DIR_NAME is a multivolume work"
-
-            for WORKFLOW in "$OCRD_WORKFLOW_DIR"/*ocr.txt.nf
-            do
-                WF_NAME=$(basename -s .txt.nf "$WORKFLOW")
-                for SUB_WORK in $DIR/*/; do
-                    SUB_WORK_DIR_NAME=$(basename "$SUB_WORK")
-                    TARGET="$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$SUB_WORK_DIR_NAME"_"$WF_NAME"
-                    cp -r "$ROOT"/gt/"$DIR_NAME"/"$SUB_WORK_DIR_NAME" "$TARGET"
-                    if [[ -f "$ROOT"/gt/"$DIR_NAME"/metadata.json ]]; then
-                        cp -r "$ROOT"/gt/"$DIR_NAME"/metadata.json "$TARGET"/metadata.json
-                    fi
-                    cp "$WORKFLOW" "$TARGET"/data/
-                done
-
-            done
-        else
+        if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
+            echo "Create workflow specific workspace for $DIR_NAME."
             for WORKFLOW in "$OCRD_WORKFLOW_DIR"/*ocr.txt.nf
             do
                 WF_NAME=$(basename -s .txt.nf "$WORKFLOW")
                 cp -r "$ROOT"/gt/"$DIR_NAME" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"
-                cp "$WORKFLOW" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"/
+                cp "$WORKFLOW" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"/data/*/
             done
         fi
     done
@@ -93,11 +76,10 @@ clean_up_tmp_dirs() {
     echo "Clean up intermediate dirs …"
     for DIR in "$WORKSPACE_DIR"/tmp/*
     do
+        echo "Cleaning up $DIR."
         DIR_NAME=$(basename "$DIR")
         mv "$DIR" "$WORKSPACE_DIR"/"$DIR_NAME"
-        cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$WORKSPACE_DIR"/"$DIR_NAME"
-        ls "$WORKSPACE_DIR"/"$DIR_NAME"
-        cp -r "$WORKSPACE_DIR"/"$DIR_NAME"/data/* "$WORKSPACE_DIR"/"$DIR_NAME"/
+        cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$WORKSPACE_DIR"/"$DIR_NAME"/data/*/
     done
 
     rm -rf "$WORKSPACE_DIR"/tmp
@@ -114,16 +96,16 @@ execute_wfs_and_extract_benchmarks() {
 
             DIR_NAME=$(basename $WS_DIR)
 
-            run "$WS_DIR"/*ocr.txt.nf "$DIR_NAME" "$WS_DIR"
-            run "$WS_DIR"/*eval.txt.nf "$DIR_NAME" "$WS_DIR"
+            run "$WS_DIR"/data/*/*ocr.txt.nf "$DIR_NAME" "$WS_DIR"
+            run "$WS_DIR"/data/*/*eval.txt.nf "$DIR_NAME" "$WS_DIR"
 
             # create a result JSON according to the specs          
             echo "Get Benchmark JSON …"
-            quiver benchmarks-extraction "$WS_DIR" "$WORKFLOW"
+            quiver benchmarks-extraction "$WS_DIR"/data/* "$WORKFLOW"
             echo "Done."
 
             # move data to results dir
-            mv "$WS_DIR"/*.json "$WORKFLOW_DIR"/results
+            mv "$WS_DIR"/data/*/*.json "$WORKFLOW_DIR"/results
         fi
     done
     cd "$ROOT" || exit
@@ -132,7 +114,7 @@ execute_wfs_and_extract_benchmarks() {
 adjust_workflow_settings() {
     # $1: $WORKFLOW
     # $2: $DIR_NAME
-    sed -i "s CURRENT app/workflows/workspaces/$2 g" "$1"
+    sed -i "s CURRENT app/workflows/workspaces/$2/data/*/ g" "$1"
 }
 
 rename_and_move_nextflow_result() {
@@ -142,13 +124,13 @@ rename_and_move_nextflow_result() {
     WORKFLOW_NAME=$(basename -s .txt.nf "$1")
     rm "$WORKFLOW_DIR"/nf-results/*process_completed.json
     mv "$WORKFLOW_DIR"/nf-results/*_completed.json "$WORKFLOW_DIR"/results/"$2"_"$WORKFLOW_NAME"_completed.json
-    if [ $WORKFLOW_NAME != "dinglehopper_eval" ]; then
+    if [ "$WORKFLOW_NAME" != "dinglehopper_eval" ]; then
         for DIR in "$WORKSPACE_DIR"/work/*
         do
-            WORK_DIR_NAME=$(basename $DIR)
-            for SUB_WORK_DIR in $DIR/*
+            WORK_DIR_NAME=$(basename "$DIR")
+            for SUB_WORK_DIR in "$DIR"/*
             do
-                SUB_WORK_DIR_NAME=$(basename $SUB_WORK_DIR)
+                SUB_WORK_DIR_NAME=$(basename "$SUB_WORK_DIR")
                 mv "$WORKSPACE_DIR"/work/"$WORK_DIR_NAME"/"$SUB_WORK_DIR_NAME"/.command.log "$WORKSPACE_DIR"/"$2"/"$WORK_DIR_NAME"_"$SUB_WORK_DIR_NAME".command.log
             done
             
@@ -165,7 +147,7 @@ run() {
     adjust_workflow_settings "$1" "$2"
     nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/
     rename_and_move_nextflow_result "$1" "$2"
-    save_workspaces "$3" "$2" "$1"
+    save_workspaces "$3"/data "$2" "$1"
 }
 
 save_workspaces() {
@@ -173,7 +155,7 @@ save_workspaces() {
     # $2: $DIR_NAME
     # $3: $WORKFLOW
     echo "Zipping workspace $1"
-    ocrd zip bag -d $1 -i $1 $1
+    ocrd zip bag -d "$DIR_NAME"/data/* -i "$DIR_NAME"/data/* "$DIR_NAME"
     WORKFLOW_NAME=$(basename -s .txt.nf "$3")
     mv "$WORKSPACE_DIR"/"$2".zip "$WORKFLOW_DIR"/results/"$2"_"$WORKFLOW_NAME".zip
 }

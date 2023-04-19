@@ -6,7 +6,8 @@ workflows/workspaces
 work/
 workflows/nf-results/*
 workflows/results
-workflows/ocrd-workflows/*.nf
+workflows/ocrd_workflows/*.nf
 models
 .idea
 gt/*
+build/
