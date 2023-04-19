@@ -31,7 +31,11 @@ def summarize_benchmarks_cli():
     print("Successfully summarized JSON files!")
 
 @cli.command('run-ocr', help='Runs one or more OCR-D workflows on all data given in the Ground Truth directory (./gt).')
-@click.option('-wf', '--workflow', help='Worfklow(s) to run. May be passed multiple times. Default: all', default=['all'], multiple=True)
+@click.option('-wf', '--workflows', help='Worfklow(s) to run. May be passed multiple times. Default: all', default=['all'], multiple=True)
 def run_workflows(workflows):
     for wf in workflows:
         run_workflow(wf)
+
+@cli.command('test')
+def test():
+    print('ein test')
