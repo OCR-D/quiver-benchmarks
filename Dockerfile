@@ -1,4 +1,4 @@
-FROM ocrd/all:2023-02-07
+FROM ocrd/all:2023-03-26
 
 WORKDIR /app
 
@@ -20,8 +20,6 @@ RUN git submodule add https://github.com/MehmedGIT/OtoN_Converter submodules/oto
 RUN git submodule update --init
 
 RUN cd submodules/oton && \
-    sed -i 's \\\\$HOME/venv37-ocrd/bin/activate  g' oton/config.toml && \
-    sed -i "s \$projectDir/ocrd-workspace/ $WORKSPACE_DIR/CURRENT/ g" oton/config.toml && \
     pip install .
 
 RUN pip3 install -r requirements.txt
