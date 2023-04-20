@@ -91,10 +91,12 @@ execute_wfs_and_extract_benchmarks() {
     # for all data sets…
     for WS_DIR in "$WORKSPACE_DIR"/*
     do
-        if [ -d "$WS_DIR" ]; then
+        INNER_DIR=$(ls "$WS_DIR"/data/)
+
+        if [ -d "$WS_DIR" ] &&  ! grep -q "OCR-D-OCR" "$WS_DIR/data/$INNER_DIR/mets.xml" ; then
             echo "Switching to $WS_DIR."
 
-            DIR_NAME=$(basename $WS_DIR)
+            DIR_NAME=$(basename "$WS_DIR")
 
             run "$WS_DIR"/data/*/*ocr.txt.nf "$DIR_NAME" "$WS_DIR"
             run "$WS_DIR"/data/*/*eval.txt.nf "$DIR_NAME" "$WS_DIR"
