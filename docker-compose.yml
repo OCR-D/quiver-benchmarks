@@ -9,6 +9,7 @@ services:
     volumes:
       - ./data:/app/data # this will write the results to your host system
       - ./gt:/app/gt
+      - ./workflows:/app/workflows
       # mount your modules, custom workflows and data here
       #- ./models/ocrd-tesserocr-recognize:/usr/local/share/tessdata/
       #- ./models/ocrd-calamari-recognize:/usr/local/share/ocrd-resources/
