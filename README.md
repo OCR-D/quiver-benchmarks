@@ -10,6 +10,7 @@ QuiVer Benchmarks is based on `ocrd/all:maximum` and has all OCR-D processors at
 
 - Docker >= 23.0.0
 - [Docker Compose plugin](https://docs.docker.com/compose/install/linux/#install-using-the-repository)
+- make
 
 To speed up QuiVer Benchmarks you can mount already downloaded text recognition models to `/usr/local/share/ocrd-resources/` in `docker-compose.yml` by adding
 
@@ -24,11 +25,12 @@ Otherwise, the tool will download all `ocrd-tesserocr-recognize` models as well 
 
 - clone this repository and switch to the cloned directory
 - (optional) [customize](#custom-workflows-and-data) QuiVer Benchmarks according to your needs
-- build the image with `docker compose build`
-- spin up a container with `docker compose run -d app`
-- run `docker compose exec app bash scripts/prepare.sh`
-- run `docker compose exec app bash workflows/execute_workflows.sh`
+- build the image with `make build`
+- spin up a container with `make start`
+- run `make prepare-default-gt`
+- run `make run`
 - the benchmarks and the evaluation results will be available at `data/workflows.json` on your host system
+- when finished, run `make stop` to shut down and remove the Docker container you created previously
 
 ## Benchmarks Considered
 

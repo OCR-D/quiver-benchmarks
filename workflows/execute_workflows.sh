@@ -39,7 +39,7 @@ convert_ocrd_wfs_to_NextFlow() {
 
 download_models() {
     echo "Download the necessary models if not available"
-    if [[ ! -d /usr/local/share/tessdata ]]
+    if [[ ! -f /usr/local/share/tessdata/Fraktur_GT4HistOCR.traineddata ]]
     then
         #mkdir -p /usr/local/share/ocrd-resources/
         ocrd resmgr download ocrd-tesserocr-recognize '*'
@@ -91,10 +91,12 @@ execute_wfs_and_extract_benchmarks() {
     # for all data sets…
     for WS_DIR in "$WORKSPACE_DIR"/*
     do
-        if [ -d "$WS_DIR" ]; then
+        INNER_DIR=$(ls "$WS_DIR"/data/)
+
+        if [ -d "$WS_DIR" ] &&  ! grep -q "OCR-D-OCR" "$WS_DIR/data/$INNER_DIR/mets.xml" ; then
             echo "Switching to $WS_DIR."
 
-            DIR_NAME=$(basename $WS_DIR)
+            DIR_NAME=$(basename "$WS_DIR")
 
             run "$WS_DIR"/data/*/*ocr.txt.nf "$DIR_NAME" "$WS_DIR"
             run "$WS_DIR"/data/*/*eval.txt.nf "$DIR_NAME" "$WS_DIR"
@@ -155,7 +157,7 @@ save_workspaces() {
     # $2: $DIR_NAME
     # $3: $WORKFLOW
     echo "Zipping workspace $1"
-    ocrd zip bag -d "$DIR_NAME"/data/* -i "$DIR_NAME"/data/* "$DIR_NAME"
+    ocrd -l ERROR zip bag -d "$DIR_NAME"/data/* -i "$DIR_NAME"/data/* "$DIR_NAME"
     WORKFLOW_NAME=$(basename -s .txt.nf "$3")
     mv "$WORKSPACE_DIR"/"$2".zip "$WORKFLOW_DIR"/results/"$2"_"$WORKFLOW_NAME".zip
 }
