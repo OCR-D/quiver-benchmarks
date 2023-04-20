@@ -147,7 +147,7 @@ run() {
     # $2: $DIR_NAME
     # $3: $WS_DIR
     adjust_workflow_settings "$1" "$2"
-    nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/
+    nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/ --mets_path "/app/workflows/workspaces/$2/data/*/mets.xml"
     rename_and_move_nextflow_result "$1" "$2"
     save_workspaces "$3"/data "$2" "$1"
 }
