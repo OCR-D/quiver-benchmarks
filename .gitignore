@@ -11,3 +11,4 @@ models
 .idea
 gt/*
 build/
+logs
