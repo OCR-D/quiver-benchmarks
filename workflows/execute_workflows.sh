@@ -39,7 +39,7 @@ convert_ocrd_wfs_to_NextFlow() {
 
 download_models() {
     echo "Download the necessary models if not available"
-    if [[ ! -d /usr/local/share/tessdata ]]
+    if [[ ! -f /usr/local/share/tessdata/Fraktur_GT4HistOCR.traineddata ]]
     then
         #mkdir -p /usr/local/share/ocrd-resources/
         ocrd resmgr download ocrd-tesserocr-recognize '*'
