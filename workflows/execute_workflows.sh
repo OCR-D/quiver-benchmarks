@@ -60,8 +60,7 @@ create_wf_specific_workspaces() {
     # each workflow has a separate workspace to work with.
     for DIR in "$ROOT"/gt/*/; do
         DIR_NAME=$(basename "$DIR")
-        #if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
-        if [[ $DIR_NAME == "reichsanzeiger_many_ads" || $DIR_NAME == "reichsanzeiger_random" || $DIR_NAME == "reichsanzeiger_tables" || $DIR_NAME = "reichsanzeiger_title_pages" ]]; then
+        if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
             echo "Create workflow specific workspace for $DIR_NAME."
             for WORKFLOW in "$OCRD_WORKFLOW_DIR"/*ocr.txt.nf
             do
