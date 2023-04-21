@@ -60,7 +60,8 @@ create_wf_specific_workspaces() {
     # each workflow has a separate workspace to work with.
     for DIR in "$ROOT"/gt/*/; do
         DIR_NAME=$(basename "$DIR")
-        if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
+        #if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
+        if [[ $DIR_NAME == "reichsanzeiger_many_ads" || $DIR_NAME == "reichsanzeiger_random" || $DIR_NAME == "reichsanzeiger_tables" || $DIR_NAME = "reichsanzeiger_title_pages" ]]; then
             echo "Create workflow specific workspace for $DIR_NAME."
             for WORKFLOW in "$OCRD_WORKFLOW_DIR"/*ocr.txt.nf
             do
@@ -185,6 +186,8 @@ download_models
 create_wf_specific_workspaces
 clean_up_tmp_dirs
 uvicorn api:app --app-dir "$ROOT"/src & # start webserver for evaluation
+echo "Process is running. See logs at ./logs for more information."
 execute_wfs_and_extract_benchmarks
 summarize_to_data_json
 final_clean_up
+echo "All workflows have been run."
