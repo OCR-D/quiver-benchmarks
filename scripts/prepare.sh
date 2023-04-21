@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir gt
+mkdir -p gt
 
 echo "Prepare OCR-D Ground Truth …"
 

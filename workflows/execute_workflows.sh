@@ -185,6 +185,8 @@ download_models
 create_wf_specific_workspaces
 clean_up_tmp_dirs
 uvicorn api:app --app-dir "$ROOT"/src & # start webserver for evaluation
+echo "Process is running. See logs at ./logs for more information."
 execute_wfs_and_extract_benchmarks
 summarize_to_data_json
 final_clean_up
+echo "All workflows have been run."
