@@ -8,7 +8,7 @@ prepare-default-gt:
 	docker compose exec app bash scripts/prepare.sh
 
 run:
-	if [ ! -d logs ]; then mkdir logs; fi
+	mkdir -p logs
 	docker compose exec app bash workflows/execute_workflows.sh > logs/run_$$(date +"%s").log
 
 stop:
