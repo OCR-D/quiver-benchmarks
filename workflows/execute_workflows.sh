@@ -124,8 +124,6 @@ rename_and_move_nextflow_result() {
     # $1: $WORKFLOW
     # $2: $DIR_NAME
     WORKFLOW_NAME=$(basename -s .txt.nf "$1")
-    rm "$WORKFLOW_DIR"/nf-results/*process_completed.json
-    mv "$WORKFLOW_DIR"/nf-results/*_completed.json "$WORKFLOW_DIR"/results/"$2"_"$WORKFLOW_NAME"_completed.json
     if [ "$WORKFLOW_NAME" != "dinglehopper_eval" ]; then
         for DIR in "$WORKSPACE_DIR"/work/*
         do
@@ -185,7 +183,7 @@ download_models
 create_wf_specific_workspaces
 clean_up_tmp_dirs
 uvicorn api:app --app-dir "$ROOT"/src & # start webserver for evaluation
-echo "Process is running. See logs at ./logs for more information."
+sleep 2 && >&2 echo "Process is running. See logs at ./logs for more information."
 execute_wfs_and_extract_benchmarks
 summarize_to_data_json
 final_clean_up
