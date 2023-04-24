@@ -12,14 +12,15 @@ clean_up_dirs() {
     if [[ -d  workflows/nf-results ]]; then
         rm -rf workflows/nf-results
     fi
+    mkdir -p "$WORKSPACE_DIR"
+    mkdir -p "$RESULTS_DIR"
+    mkdir workflows/nf-results
 }
 
 convert_ocrd_wfs_to_NextFlow() {
     cd "$OCRD_WORKFLOW_DIR" || exit
 
     echo "Convert OCR-D workflows to NextFlow …"
-
-    mkdir -p "$WORKFLOW_DIR/nf-results"
 
     for FILE in *.txt
     do
@@ -35,7 +36,6 @@ download_models() {
     fi
     if [[ ! -d /usr/local/share/ocrd-resources/ocrd-calamari-recognize/qurator-gt4histocr-1.0 ]]
     then
-        mkdir -p /usr/local/share/ocrd-resources/
         ocrd resmgr download ocrd-calamari-recognize qurator-gt4histocr-1.0
     fi
 }
@@ -68,7 +68,6 @@ create_wf_specific_workspaces() {
 }
 
 execute_wfs_and_extract_benchmarks() {
-    mkdir -p "$ROOT"/workflows/results
     # for all data sets…
     for WS_DIR in "$WORKSPACE_DIR"/*
     do
@@ -84,6 +83,7 @@ execute_wfs_and_extract_benchmarks() {
 
             # create a result JSON according to the specs          
             echo "Get Benchmark JSON …"
+            WORKFLOW=$(basename -s .txt.nf "$DATA_DIR"/*/*ocr.txt.nf)
             quiver benchmarks-extraction "$DATA_DIR"/* "$WORKFLOW"
             echo "Done."
 
