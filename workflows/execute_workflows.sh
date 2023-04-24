@@ -75,8 +75,7 @@ execute_wfs_and_extract_benchmarks() {
         DIR_NAME=$(basename "$WS_DIR")
         INNER_DIR=$(ls "$DATA_DIR"/)
 
-        if [[ $WS_DIR == "/app/workflows/workspaces/alberti_pictura_1540_minimal_ocr" ]]; then
-        #if ! grep -q "OCR-D-OCR" "$WS_DIR/data/$INNER_DIR/mets.xml" ; then
+        if ! grep -q "OCR-D-OCR" "$WS_DIR/data/$INNER_DIR/mets.xml" ; then
             echo "Switching to $WS_DIR."            
 
             run "$DATA_DIR"/*/*ocr.txt.nf "$DIR_NAME"
@@ -85,7 +84,7 @@ execute_wfs_and_extract_benchmarks() {
             # create a result JSON according to the specs          
             echo "Get Benchmark JSON …"
             WORKFLOW=$(basename -s .txt.nf "$DATA_DIR"/*/*ocr.txt.nf)
-            quiver benchmarks-extraction "$DATA_DIR"/* "$WORKFLOW"
+            quiver benchmarks-extraction "$WS_DIR"/data/* "$WORKFLOW"
             echo "Done."
 
             # move data to results dir
