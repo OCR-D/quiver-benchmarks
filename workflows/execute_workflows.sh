@@ -155,16 +155,6 @@ summarize_to_data_json() {
     echo "Done."
 }
 
-
-final_clean_up() {
-    echo "Cleaning up …"
-    rm -rf "$WORKSPACE_DIR"
-    rm -rf "$ROOT"/work
-    rm -rf "$WORKFLOW_DIR"/nf-results
-    rm -rf "$RESULTS_DIR"
-    rm "$WORKFLOW_DIR"/ocrd_workflows/*.nf
-}
-
 clean_up_dirs
 convert_ocrd_wfs_to_NextFlow
 download_models
@@ -173,5 +163,4 @@ uvicorn api:app --app-dir "$ROOT"/src & # start webserver for evaluation
 sleep 2 && >&2 echo "Process is running. See logs at ./logs for more information."
 execute_wfs_and_extract_benchmarks
 summarize_to_data_json
-#final_clean_up
 echo "All workflows have been run."
