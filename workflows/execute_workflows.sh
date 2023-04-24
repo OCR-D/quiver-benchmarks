@@ -42,7 +42,6 @@ download_models() {
 
 create_wf_specific_workspaces() {
     # execute this workflow on the existing data (incl. evaluation)
-    mkdir -p "$WORKSPACE_DIR"/tmp
     cd "$WORKSPACE_DIR" || exit
 
     # create workspace for all OCR workflows.
