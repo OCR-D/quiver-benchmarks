@@ -24,9 +24,6 @@ convert_ocrd_wfs_to_NextFlow() {
     for FILE in *.txt
     do
         oton convert -I "$FILE" -O "$FILE".nf
-        # the venv part is not needed since we execute this in an image derived from ocrd/all:maximum
-        sed -i 's/source "${params.venv_path}"//g' "$FILE".nf
-        sed -i 's/deactivate//g' "$FILE".nf
     done
 }
 
@@ -34,7 +31,6 @@ download_models() {
     echo "Download the necessary models if not available"
     if [[ ! -f /usr/local/share/tessdata/Fraktur_GT4HistOCR.traineddata ]]
     then
-        #mkdir -p /usr/local/share/ocrd-resources/
         ocrd resmgr download ocrd-tesserocr-recognize '*'
     fi
     if [[ ! -d /usr/local/share/ocrd-resources/ocrd-calamari-recognize/qurator-gt4histocr-1.0 ]]
