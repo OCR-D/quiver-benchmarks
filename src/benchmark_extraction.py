@@ -207,7 +207,11 @@ def get_pages_per_minute(workspace_path: str) -> float:
     duration = get_nextflow_time(workspace_path, 'wall')
     no_pages = get_no_of_pages(workspace_path)
 
-    return no_pages / (duration / 60)
+    try:
+        return no_pages / (duration / 60)
+    except ZeroDivisionError:
+        print('ERROR: Division by zero.')
+        return None
 
 
 def get_mean_cer(workspace_path: str, gt_type: str) -> float:
