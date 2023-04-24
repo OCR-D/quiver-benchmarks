@@ -78,11 +78,11 @@ execute_wfs_and_extract_benchmarks() {
     for WS_DIR in "$WORKSPACE_DIR"/*
     do
         DATA_DIR="$WS_DIR"/data
+        DIR_NAME=$(basename "$WS_DIR")
+        INNER_DIR=$(ls "$DATA_DIR"/)
 
-        if [ -d "$WS_DIR" ] &&  ! find $WORKFLOW_DIR/results/ | grep -q "$WS_DIR"_dinglehopper_eval ; then
-            echo "Switching to $WS_DIR."
-
-            DIR_NAME=$(basename "$WS_DIR")
+        if ! grep -q "OCR-D-OCR" "$WS_DIR/data/$INNER_DIR/mets.xml" ; then
+            echo "Switching to $WS_DIR."            
 
             run "$DATA_DIR"/*/*ocr.txt.nf "$DIR_NAME" "$WS_DIR"
             run "$DATA_DIR"/*/*eval.txt.nf "$DIR_NAME" "$WS_DIR"
@@ -93,7 +93,9 @@ execute_wfs_and_extract_benchmarks() {
             echo "Done."
 
             # move data to results dir
-            mv "$DATA_DIR"/*/*.json "$RESULTS_DIR"
+            mv "$DATA_DIR"/*/*result.json "$RESULTS_DIR"
+        else
+            echo "$WS_DIR has already been processed."
         fi
     done
     cd "$ROOT" || exit
