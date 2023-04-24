@@ -19,3 +19,6 @@ clean-workspaces:
 
 clean-results:
 	docker compose exec app rm -rf workflows/nf-results workflows/results
+
+clean: clean-workspaces clean-results
+	@echo "Cleaning everything."
