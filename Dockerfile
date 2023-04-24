@@ -26,6 +26,4 @@ RUN pip3 install -r requirements.txt
 RUN pip3 install .
 RUN nextflow
 
-COPY workflows workflows
-
 ENTRYPOINT [ "bash" ]
