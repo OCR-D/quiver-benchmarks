@@ -101,12 +101,6 @@ execute_wfs_and_extract_benchmarks() {
     cd "$ROOT" || exit
 }
 
-adjust_workflow_settings() {
-    # $1: $WORKFLOW
-    # $2: $DIR_NAME
-    sed -i "s CURRENT app/workflows/workspaces/$2/data/*/ g" "$1"
-}
-
 rename_and_move_nextflow_result() {
     # rename NextFlow results in order to properly match them to the workflows
     # $1: $WORKFLOW
@@ -132,19 +126,18 @@ run() {
     # $1: $WORKFLOW
     # $2: $DIR_NAME
     # $3: $WS_DIR
-    adjust_workflow_settings "$1" "$2"
     nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/ --mets_path "/app/workflows/workspaces/$2/data/*/mets.xml"
     rename_and_move_nextflow_result "$1" "$2"
     save_workspaces "$3"/data "$2" "$1"
 }
 
 save_workspaces() {
-    # $1: $WS_DIR
+    # $1: $WORKFLOW
     # $2: $DIR_NAME
-    # $3: $WORKFLOW
-    echo "Zipping workspace $1"
+    # $3: $WS_DIR
+    echo "Zipping workspace $3"
     ocrd -l ERROR zip bag -d "$DIR_NAME"/data/* -i "$DIR_NAME"/data/* "$DIR_NAME"
-    WORKFLOW_NAME=$(basename -s .txt.nf "$3")
+    WORKFLOW_NAME=$(basename -s .txt.nf "$1")
     mv "$WORKSPACE_DIR"/"$2".zip "$RESULTS_DIR"/"$2"_"$WORKFLOW_NAME".zip
 }
 
