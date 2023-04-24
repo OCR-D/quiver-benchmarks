@@ -4,20 +4,13 @@ ROOT=$PWD
 WORKFLOW_DIR="$ROOT"/workflows
 OCRD_WORKFLOW_DIR="$WORKFLOW_DIR"/ocrd_workflows
 WORKSPACE_DIR="$WORKFLOW_DIR"/workspaces
+RESULTS_DIR="$WORKFLOW_DIR"/results
 
 set -euo pipefail
 
 clean_up_dirs() {
-    if [[ -d  workflows/workspaces ]]; then
-    rm -rf workflows/workspaces
-    fi
-
     if [[ -d  workflows/nf-results ]]; then
         rm -rf workflows/nf-results
-    fi
-
-    if [[ -d  workflows/results ]]; then
-        rm -rf workflows/results
     fi
 }
 
@@ -65,25 +58,18 @@ create_wf_specific_workspaces() {
             for WORKFLOW in "$OCRD_WORKFLOW_DIR"/*ocr.txt.nf
             do
                 WF_NAME=$(basename -s .txt.nf "$WORKFLOW")
-                cp -r "$ROOT"/gt/"$DIR_NAME" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"
-                cp "$WORKFLOW" "$WORKSPACE_DIR"/tmp/"$DIR_NAME"_"$WF_NAME"/data/*/
+                TARGET_DIR="$WORKSPACE_DIR"/"$DIR_NAME"_"$WF_NAME"
+                if [[ ! -d "$TARGET_DIR" ]]; then
+                    cp -r "$ROOT"/gt/"$DIR_NAME" "$TARGET_DIR"
+                    cp "$WORKFLOW" "$TARGET_DIR"/data/*/
+                    cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$TARGET_DIR"/data/*/
+                    rm -rf "$WORKSPACE_DIR"/log.log
+                else
+                    echo "$TARGET_DIR already exists. Skipping."
+                fi
             done
         fi
     done
-}
-
-clean_up_tmp_dirs() {
-    echo "Clean up intermediate dirs …"
-    for DIR in "$WORKSPACE_DIR"/tmp/*
-    do
-        echo "Cleaning up $DIR."
-        DIR_NAME=$(basename "$DIR")
-        mv "$DIR" "$WORKSPACE_DIR"/"$DIR_NAME"
-        cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$WORKSPACE_DIR"/"$DIR_NAME"/data/*/
-    done
-
-    rm -rf "$WORKSPACE_DIR"/tmp
-    rm -rf "$WORKSPACE_DIR"/log.log
 }
 
 execute_wfs_and_extract_benchmarks() {
@@ -91,23 +77,23 @@ execute_wfs_and_extract_benchmarks() {
     # for all data sets…
     for WS_DIR in "$WORKSPACE_DIR"/*
     do
-        INNER_DIR=$(ls "$WS_DIR"/data/)
+        DATA_DIR="$WS_DIR"/data
 
-        if [ -d "$WS_DIR" ] &&  ! grep -q "OCR-D-OCR" "$WS_DIR/data/$INNER_DIR/mets.xml" ; then
+        if [ -d "$WS_DIR" ] &&  ! find $WORKFLOW_DIR/results/ | grep -q "$WS_DIR"_dinglehopper_eval ; then
             echo "Switching to $WS_DIR."
 
             DIR_NAME=$(basename "$WS_DIR")
 
-            run "$WS_DIR"/data/*/*ocr.txt.nf "$DIR_NAME" "$WS_DIR"
-            run "$WS_DIR"/data/*/*eval.txt.nf "$DIR_NAME" "$WS_DIR"
+            run "$DATA_DIR"/*/*ocr.txt.nf "$DIR_NAME" "$WS_DIR"
+            run "$DATA_DIR"/*/*eval.txt.nf "$DIR_NAME" "$WS_DIR"
 
             # create a result JSON according to the specs          
             echo "Get Benchmark JSON …"
-            quiver benchmarks-extraction "$WS_DIR"/data/* "$WORKFLOW"
+            quiver benchmarks-extraction "$DATA_DIR"/* "$WORKFLOW"
             echo "Done."
 
             # move data to results dir
-            mv "$WS_DIR"/data/*/*.json "$WORKFLOW_DIR"/results
+            mv "$DATA_DIR"/*/*.json "$RESULTS_DIR"
         fi
     done
     cd "$ROOT" || exit
@@ -157,7 +143,7 @@ save_workspaces() {
     echo "Zipping workspace $1"
     ocrd -l ERROR zip bag -d "$DIR_NAME"/data/* -i "$DIR_NAME"/data/* "$DIR_NAME"
     WORKFLOW_NAME=$(basename -s .txt.nf "$3")
-    mv "$WORKSPACE_DIR"/"$2".zip "$WORKFLOW_DIR"/results/"$2"_"$WORKFLOW_NAME".zip
+    mv "$WORKSPACE_DIR"/"$2".zip "$RESULTS_DIR"/"$2"_"$WORKFLOW_NAME".zip
 }
 
 summarize_to_data_json() {
@@ -173,7 +159,7 @@ final_clean_up() {
     rm -rf "$WORKSPACE_DIR"
     rm -rf "$ROOT"/work
     rm -rf "$WORKFLOW_DIR"/nf-results
-    rm -rf "$WORKFLOW_DIR"/results
+    rm -rf "$RESULTS_DIR"
     rm "$WORKFLOW_DIR"/ocrd_workflows/*.nf
 }
 
@@ -181,10 +167,9 @@ clean_up_dirs
 convert_ocrd_wfs_to_NextFlow
 download_models
 create_wf_specific_workspaces
-clean_up_tmp_dirs
 uvicorn api:app --app-dir "$ROOT"/src & # start webserver for evaluation
 sleep 2 && >&2 echo "Process is running. See logs at ./logs for more information."
 execute_wfs_and_extract_benchmarks
 summarize_to_data_json
-final_clean_up
+#final_clean_up
 echo "All workflows have been run."
