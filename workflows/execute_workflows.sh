@@ -69,28 +69,30 @@ create_wf_specific_workspaces() {
 
 execute_wfs_and_extract_benchmarks() {
     # for all data sets…
-    for WS_DIR in "$WORKSPACE_DIR"/*
+    for WS_DIR in "$WORKSPACE_DIR"/*/
     do
-        DATA_DIR="$WS_DIR"/data
-        DIR_NAME=$(basename "$WS_DIR")
-        INNER_DIR=$(ls "$DATA_DIR"/)
+        if [ "$WS_DIR" != "/app/workflows/workspaces/work/" ]; then
+            DATA_DIR="$WS_DIR"/data
+            DIR_NAME=$(basename "$WS_DIR")
+            INNER_DIR=$(ls "$DATA_DIR"/)
 
-        if ! grep -q "OCR-D-OCR" "$WS_DIR/data/$INNER_DIR/mets.xml" ; then
-            echo "Switching to $WS_DIR."            
+            if ! grep -q "OCR-D-OCR" "$WS_DIR/data/$INNER_DIR/mets.xml"; then
+                echo "Switching to $WS_DIR."
 
-            run "$DATA_DIR"/*/*ocr.txt.nf "$DIR_NAME"
-            run "$DATA_DIR"/*/*eval.txt.nf "$DIR_NAME"
+                run "$DATA_DIR"/*/*ocr.txt.nf "$DIR_NAME"
+                run "$DATA_DIR"/*/*eval.txt.nf "$DIR_NAME"
 
-            # create a result JSON according to the specs          
-            echo "Get Benchmark JSON …"
-            WORKFLOW=$(basename -s .txt.nf "$DATA_DIR"/*/*ocr.txt.nf)
-            quiver benchmarks-extraction "$WS_DIR"/data/* "$WORKFLOW"
-            echo "Done."
+                # create a result JSON according to the specs          
+                echo "Get Benchmark JSON …"
+                WORKFLOW=$(basename -s .txt.nf "$DATA_DIR"/*/*ocr.txt.nf)
+                quiver benchmarks-extraction "$WS_DIR"/data/* "$WORKFLOW"
+                echo "Done."
 
-            # move data to results dir
-            mv "$DATA_DIR"/*/*result.json "$RESULTS_DIR"
-        else
-            echo "$WS_DIR has already been processed."
+                # move data to results dir
+                mv "$DATA_DIR"/*/*result.json "$RESULTS_DIR"
+            else
+                echo "$WS_DIR has already been processed."
+            fi
         fi
     done
     cd "$ROOT" || exit
