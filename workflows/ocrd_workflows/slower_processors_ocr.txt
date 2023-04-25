@@ -1,6 +1,6 @@
 ocrd process \
   "cis-ocropy-binarize -I OCR-D-IMG -O OCR-D-BIN" \
-  "anybaseocr-crop -I OCR-D-BIN -O OCR-D-CROP" \
+  "tesserocr-crop -I OCR-D-BIN -O OCR-D-CROP" \
   "cis-ocropy-denoise -I OCR-D-CROP -O OCR-D-BIN-DENOISE -P level-of-operation page" \
   "tesserocr-deskew -I OCR-D-BIN-DENOISE -O OCR-D-BIN-DENOISE-DESKEW -P operation_level page" \
   "tesserocr-segment -I OCR-D-BIN-DENOISE-DESKEW -O OCR-D-SEG" \

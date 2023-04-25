@@ -69,28 +69,30 @@ create_wf_specific_workspaces() {
 
 execute_wfs_and_extract_benchmarks() {
     # for all data sets…
-    for WS_DIR in "$WORKSPACE_DIR"/*
+    for WS_DIR in "$WORKSPACE_DIR"/*/
     do
-        DATA_DIR="$WS_DIR"/data
-        DIR_NAME=$(basename "$WS_DIR")
-        INNER_DIR=$(ls "$DATA_DIR"/)
+        if [ "$WS_DIR" != "/app/workflows/workspaces/work/" ]; then
+            DATA_DIR="$WS_DIR"/data
+            DIR_NAME=$(basename "$WS_DIR")
+            INNER_DIR=$(ls "$DATA_DIR"/)
 
-        if ! grep -q "OCR-D-OCR" "$WS_DIR/data/$INNER_DIR/mets.xml" ; then
-            echo "Switching to $WS_DIR."            
+            if ! grep -q "OCR-D-OCR" "$WS_DIR/data/$INNER_DIR/mets.xml"; then
+                echo "Switching to $WS_DIR."
 
-            run "$DATA_DIR"/*/*ocr.txt.nf "$DIR_NAME" "$WS_DIR"
-            run "$DATA_DIR"/*/*eval.txt.nf "$DIR_NAME" "$WS_DIR"
+                run "$DATA_DIR"/*/*ocr.txt.nf "$DIR_NAME"
+                run "$DATA_DIR"/*/*eval.txt.nf "$DIR_NAME"
 
-            # create a result JSON according to the specs          
-            echo "Get Benchmark JSON …"
-            WORKFLOW=$(basename -s .txt.nf "$DATA_DIR"/*/*ocr.txt.nf)
-            quiver benchmarks-extraction "$DATA_DIR"/* "$WORKFLOW"
-            echo "Done."
+                # create a result JSON according to the specs          
+                echo "Get Benchmark JSON …"
+                WORKFLOW=$(basename -s .txt.nf "$DATA_DIR"/*/*ocr.txt.nf)
+                quiver benchmarks-extraction "$WS_DIR"/data/* "$WORKFLOW"
+                echo "Done."
 
-            # move data to results dir
-            mv "$DATA_DIR"/*/*result.json "$RESULTS_DIR"
-        else
-            echo "$WS_DIR has already been processed."
+                # move data to results dir
+                mv "$DATA_DIR"/*/*result.json "$RESULTS_DIR"
+            else
+                echo "$WS_DIR has already been processed."
+            fi
         fi
     done
     cd "$ROOT" || exit
@@ -120,20 +122,22 @@ rename_and_move_nextflow_result() {
 run() {
     # $1: $WORKFLOW
     # $2: $DIR_NAME
-    # $3: $WS_DIR
     nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/ --mets_path "/app/workflows/workspaces/$2/data/*/mets.xml"
     rename_and_move_nextflow_result "$1" "$2"
-    save_workspaces "$3"/data "$2" "$1"
+    save_workspaces "$1" "$2"
 }
 
 save_workspaces() {
     # $1: $WORKFLOW
     # $2: $DIR_NAME
-    # $3: $WS_DIR
-    echo "Zipping workspace $3"
-    ocrd -l ERROR zip bag -d "$DIR_NAME"/data/* -i "$DIR_NAME"/data/* "$DIR_NAME"
-    WORKFLOW_NAME=$(basename -s .txt.nf "$1")
-    mv "$WORKSPACE_DIR"/"$2".zip "$RESULTS_DIR"/"$2"_"$WORKFLOW_NAME".zip
+    echo "Zipping workspace $2"
+    DATA_DIR="$2/data/"
+    if basename -s .txt.nf "$1" | grep "eval"; then
+        WORKFLOW_NAME=$(basename -s .txt.nf "$1")
+        ocrd -l ERROR zip bag -d "$DATA_DIR"/* -i "$DATA_DIR"/* "$RESULTS_DIR"/"$2"_"$WORKFLOW_NAME".zip
+    else
+        ocrd -l ERROR zip bag -d "$DATA_DIR"/* -i "$DATA_DIR"/* "$RESULTS_DIR"/"$2".zip
+    fi
 }
 
 summarize_to_data_json() {

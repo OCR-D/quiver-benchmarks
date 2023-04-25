@@ -7,7 +7,6 @@ import xml.etree.ElementTree as ET
 from os import listdir, scandir
 from statistics import stdev, median
 from typing import Any, Dict, List, Union
-
 from .constants import METS, RESULTS, QUIVER_MAIN, OCRD
 
 
@@ -198,8 +197,11 @@ def get_nextflow_time(workspace_path: str, time_type: str) -> float:
     for log in logs:
         with open(highest_workspace_dir + '/' + log, 'r', encoding='utf-8') as l:
             log_file = l.read()
-            no_sec_s = re.search(rf'([0-9]+?\.[0-9]+?)s \({time_type}\)', log_file).group(1)
-            time_per_workflow_step.append(float(no_sec_s))
+            try:
+                no_sec_s = re.search(rf'([0-9]+?\.[0-9]+?)s \({time_type}\)', log_file).group(1)
+                time_per_workflow_step.append(float(no_sec_s))
+            except AttributeError:
+                print(f'No wall time found in {highest_workspace_dir}/{log}. Skipping.')
     return sum(time_per_workflow_step)
 
 
@@ -207,7 +209,11 @@ def get_pages_per_minute(workspace_path: str) -> float:
     duration = get_nextflow_time(workspace_path, 'wall')
     no_pages = get_no_of_pages(workspace_path)
 
-    return no_pages / (duration / 60)
+    try:
+        return no_pages / (duration / 60)
+    except ZeroDivisionError:
+        print('ERROR: Division by zero.')
+        return None
 
 
 def get_mean_cer(workspace_path: str, gt_type: str) -> float:
