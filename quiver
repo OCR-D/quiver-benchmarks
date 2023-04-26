@@ -1,0 +1,35 @@
+#!/bin/bash
+
+case $1 in
+    build)
+        docker compose build
+        ;;
+    clean)
+        docker compose exec app rm -rf workflows/workspaces workflows/results workflows/nf-results
+        ;;
+    prepare-default-gt)
+        docker compose exec app bash scripts/prepare.sh
+        ;;
+    run)
+        echo "Starting to process and collect benchmarks."
+        DATE=$(date +"%F-%H:%M:%S")
+        echo "See logs/run_$DATE.log for more specific info."
+        mkdir -p logs
+	    docker compose exec app quiver run-ocr > logs/run_"$DATE".log
+        echo "Done."
+        exit 0
+        ;;
+    start)
+        echo "Starting up a container for QuiVer. ID:"
+        docker compose run -d app
+        ;;
+    stop)
+        echo "Stopping all running QuiVer containers."
+        CONTAINER_ID=$(docker ps | grep quiver | cut -d' ' -f1)
+        docker container stop "$CONTAINER_ID" && docker container remove "$CONTAINER_ID"
+        ;;
+    *)
+        echo "Error: Unrecognized command. Please refer to the documentation for all functionality."
+        exit 1
+        ;;
+esac
