@@ -4,10 +4,12 @@ benchmarking. It extracts the relevant information from the NextFlow processes. 
 import json
 import re
 import xml.etree.ElementTree as ET
+from datetime import datetime
 from os import listdir, scandir
-from statistics import stdev, median
+from statistics import median, stdev
 from typing import Any, Dict, List, Union
-from .constants import METS, RESULTS, QUIVER_MAIN, OCRD
+
+from .constants import METS, OCRD, QUIVER_MAIN, RESULTS
 
 
 def make_result_json(workspace_path: str, mets_path: str) -> Dict[str, Union[str, Dict]]:
@@ -32,7 +34,8 @@ def make_metadata(workspace_path: str, mets_path: str) -> Dict[str, Union[str, D
             'workflow_steps': get_workflow_steps(mets_path),
             'workflow_model': get_workflow_model(mets_path),
             'eval_tool': get_eval_tool(mets_path),
-            'document_metadata': get_document_metadata(workspace_path)
+            'document_metadata': get_document_metadata(workspace_path),
+            'timestamp': datetime.today().strftime('%Y-%m-%d')
         }
 
 def get_workflow(workspace_path: str, wf_type: str) -> Dict[str, str]:
