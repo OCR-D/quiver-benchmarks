@@ -28,9 +28,33 @@ Otherwise, the tool will download all `ocrd-tesserocr-recognize` models as well 
 - build the image with `make build`
 - spin up a container with `make start`
 - run `make prepare-default-gt`
-- run `make run`
+- run `make run` to run all workflows. In order to run 1 or more worfklows, see [quiver CLI](#quiver-cli).
 - the benchmarks and the evaluation results will be available at `data/workflows.json` on your host system
 - when finished, run `make stop` to shut down and remove the Docker container you created previously
+
+### quiver CLI
+
+The `quiver` CLI tool enables users to choose which OCR-D workflows are run on the Ground Truth provided.
+After each run of an OCR-D workflow, an evaluation workflow (`dinglehopper_eval.txt`) is executed to obtain the relevant metrics.
+
+**Note:** All workflows have to be placed in `workflows/ocrd_worflows`. See also [Adding New OCR-D Workflows](#adding-new-ocr-d-workflows).
+
+Parameters:
+
+- `-wf / --workflow` the workflows to be executed on the data. Defaults to `all` where all available workflows are executed. Repeatable.
+
+Sample calls:
+
+```bash
+# runs all workflows in workflows/ocrd_worflows on all data in gt/
+docker compose exec app quiver run-ocr
+
+# runs all workflows/ocrd_worflows/minimal_ocr.txt on all data in gt/
+docker compose exec app quiver run-ocr -wf minimal_ocr.txt
+
+# runs both minimal_ocr.txt and slower_processors_or.txt on all data in gt/
+docker compose exec app quiver run-ocr -wf minimal_ocr.txt -wf slower_processors_ocr.txt 
+```
 
 ## Benchmarks Considered
 

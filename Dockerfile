@@ -6,6 +6,7 @@ COPY requirements.txt requirements.txt
 
 RUN apt install git
 RUN apt install -y jq
+RUN apt install -y netcat
 RUN apt-get update
 RUN apt-get install -y --fix-missing openjdk-11-jre
 

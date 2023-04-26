@@ -11,6 +11,7 @@ def get_json_files():
     return file_list
 
 def summarize_to_one_file(json_files):
+    print("Summarize JSONs to one file …")
     result = []
     for file in json_files:
         with open(file, 'r', encoding='utf-8') as f:
@@ -19,5 +20,4 @@ def summarize_to_one_file(json_files):
     output_path = getcwd() + '/data/workflows.json'
     json_str = json.dumps(result, indent=4)
     Path(output_path).write_text(json_str, encoding='utf-8')
-
-    
+    print("Done.")
