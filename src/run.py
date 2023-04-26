@@ -51,9 +51,7 @@ def clean_up():
     """Cleans up intermediate directories
     """
     print('Cleaning up …')
-    rmtree('/app/workflows/workspaces')
     rmtree('/app/workflows/nf-results')
-    rmtree('/app/workflows/results')
 
     for filename in listdir(WORKFLOW_DIR):
         if fnmatch(filename, "*.nf"):

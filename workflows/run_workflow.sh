@@ -7,22 +7,28 @@ WORKFLOW_DIR="$ROOT"/workflows
 OCRD_WORKFLOW_DIR="$WORKFLOW_DIR"/ocrd_workflows
 WORKSPACE_DIR="$WORKFLOW_DIR"/workspaces
 WORKFLOW_NAME=$(basename -s .txt "$1")
+RESULTS_DIR="$WORKFLOW_DIR"/results
 
 set -euo pipefail
+
+prepare_dirs() {
+    if [[ -d  workflows/nf-results ]]; then
+        rm -rf workflows/nf-results
+    fi
+    mkdir -p "$WORKSPACE_DIR"
+    mkdir -p "$RESULTS_DIR"
+    mkdir workflows/nf-results
+}
 
 convert_ocrd_wfs_to_NextFlow() {
     cd "$OCRD_WORKFLOW_DIR" || exit
 
     echo "Convert OCR-D workflows to NextFlow …"
 
-    mkdir -p "$WORKFLOW_DIR/nf-results"
     FILES=( "$1" "dinglehopper_eval.txt" )
     for FILE in "${FILES[@]}"; do
         if [[ ! -f "$FILE".nf ]]; then
             oton convert -I "$FILE" -O "$FILE".nf
-            # the venv part is not needed since we execute this in an image derived from ocrd/all:maximum
-            sed -i 's/source "${params.venv_path}"//g' "$FILE".nf
-            sed -i 's/deactivate//g' "$FILE".nf
         fi
     done
 }
@@ -41,9 +47,6 @@ download_models() {
 
 create_wf_specific_workspaces() {
     # execute this workflow on the existing data (incl. evaluation)
-    if [[ ! -d "$WORKSPACE_DIR" ]]; then
-        mkdir "$WORKSPACE_DIR"
-    fi
     cd "$WORKSPACE_DIR" || exit
 
     # create workspace for all OCR workflows.
@@ -54,49 +57,54 @@ create_wf_specific_workspaces() {
         if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
             echo "Create workflow specific workspace ""$DIR_NAME""_""$WORKFLOW_NAME""."
             DEST_DIR="$WORKSPACE_DIR"/"$DIR_NAME"_"$WORKFLOW_NAME"
-            cp -r "$ROOT"/gt/"$DIR_NAME" "$DEST_DIR"
-            cp "$OCRD_WORKFLOW_DIR"/"$1".nf "$DEST_DIR"/data/*/
-            cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$DEST_DIR"/data/*/
+            if [[ ! -d "$DEST_DIR" ]]; then
+                cp -r "$ROOT"/gt/"$DIR_NAME" "$DEST_DIR"
+                cp "$OCRD_WORKFLOW_DIR"/"$1".nf "$DEST_DIR"/data/*/
+                cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$DEST_DIR"/data/*/
+            else
+                echo "$DEST_DIR already exists. Skipping."
+            fi
         fi
     done
 }
 
 execute_wfs_and_extract_benchmarks() {
-    mkdir -p "$ROOT"/workflows/results
     # for all data sets…
-    for WS_DIR in "$WORKSPACE_DIR"/*
+    for WS_DIR in "$WORKSPACE_DIR"/*/
     do
+	if [ "$WS_DIR" != "/app/workflows/workspaces/work/" ]; then
+        DATA_DIR="$WS_DIR"/data
         DIR_NAME=$(basename "$WS_DIR")
-        if [[ -d "$WS_DIR" && $DIR_NAME == *"$WORKFLOW_NAME" ]]; then
-            echo "Switching to $WS_DIR."
+        INNER_DIR=$(ls "$DATA_DIR"/)
+        if [[ -d "$WS_DIR" && $DIR_NAME == *"$WORKFLOW_NAME" ]] ; then
+            if ! grep -q "OCR-D-OCR" "$WS_DIR/data/$INNER_DIR/mets.xml"; then
+                echo "Switching to $WS_DIR."
 
-            DIR_NAME=$(basename "$WS_DIR")
-            run "$WS_DIR"/data/*/*ocr.txt.nf "$DIR_NAME" "$WS_DIR" || echo "An error occurred while processing $WS_DIR. See the logs for more info."
-            run "$WS_DIR"/data/*/*eval.txt.nf "$DIR_NAME" "$WS_DIR" || echo "An error occurred while evaluating $WS_DIR. See the logs for more info."
+                run "$DATA_DIR"/*/*ocr.txt.nf "$DIR_NAME"
+                run "$DATA_DIR"/*/*eval.txt.nf "$DIR_NAME"
 
-            # create a result JSON according to the specs          
-            echo "Get Benchmark JSON …"
-            OCR_WF_DIR=$(dirname "$WS_DIR"/data/*/*ocr.txt.nf)
-            quiver benchmarks-extraction "$WS_DIR"/data/* "$OCR_WF_DIR"/"$1".nf
-            echo "Done."
+                # create a result JSON according to the specs          
+                echo "Get Benchmark JSON …"
+                OCR_WF_DIR=$(dirname "$WS_DIR"/data/*/*ocr.txt.nf)
+                quiver benchmarks-extraction "$WS_DIR"/data/* "$OCR_WF_DIR"/"$1".nf
+                echo "Done."
 
-            # move data to results dir
-            mv "$WS_DIR"/data/*/*result.json "$WORKFLOW_DIR"/results
+                # move data to results dir
+                mv "$DATA_DIR"/*/*result.json "$RESULTS_DIR"
+            else
+                echo "$WS_DIR has already been processed."
+            fi
         fi
+	fi
     done
     cd "$ROOT" || exit
-}
-
-adjust_workflow_settings() {
-    # $1: $WORKFLOW
-    # $2: $DIR_NAME
-    sed -i "s CURRENT app/workflows/workspaces/$2/data/*/ g" "$1"
 }
 
 rename_and_move_nextflow_result() {
     # rename NextFlow results in order to properly match them to the workflows
     # $1: $WORKFLOW
     # $2: $DIR_NAME
+    WORKFLOW_NAME=$(basename -s .txt.nf "$1")
     if [ "$WORKFLOW_NAME" != "dinglehopper_eval" ]; then
         for DIR in "$WORKSPACE_DIR"/work/*
         do
@@ -116,19 +124,22 @@ rename_and_move_nextflow_result() {
 run() {
     # $1: $WORKFLOW
     # $2: $DIR_NAME
-    # $3: $WS_DIR
-    adjust_workflow_settings "$1" "$2"
-    nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/ || echo "Error while running $1."
+    nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/ --mets_path "/app/workflows/workspaces/$2/data/*/mets.xml"
     rename_and_move_nextflow_result "$1" "$2"
-    save_workspaces "$3"/data "$2"
+    save_workspaces "$1" "$2"
 }
 
 save_workspaces() {
-    # $1: $WS_DIR
+    # $1: $WORKFLOW
     # $2: $DIR_NAME
-    echo "Zipping workspace $1"
-    ocrd -l ERROR zip bag -d "$DIR_NAME"/data/* -i "$DIR_NAME"/data/* "$DIR_NAME"
-    mv "$WORKSPACE_DIR"/"$2".zip "$WORKFLOW_DIR"/results/"$2"_"$WORKFLOW_NAME".zip
+    echo "Zipping workspace $2"
+    DATA_DIR="$2/data/"
+    if basename -s .txt.nf "$1" | grep "eval"; then
+        WORKFLOW_NAME=$(basename -s .txt.nf "$1")
+        ocrd -l ERROR zip bag -d "$DATA_DIR"/* -i "$DATA_DIR"/* "$RESULTS_DIR"/"$2"_"$WORKFLOW_NAME".zip
+    else
+        ocrd -l ERROR zip bag -d "$DATA_DIR"/* -i "$DATA_DIR"/* "$RESULTS_DIR"/"$2".zip
+    fi
 }
 
 check_and_run_webserver() {
@@ -138,6 +149,7 @@ check_and_run_webserver() {
     fi
 }
 
+prepare_dirs
 convert_ocrd_wfs_to_NextFlow "$1"
 download_models
 create_wf_specific_workspaces "$1"
