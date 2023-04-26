@@ -9,7 +9,7 @@ prepare-default-gt:
 
 run:
 	mkdir -p logs
-	docker compose exec app quiver run-ocr > logs/run_$$(date +"%s").log
+	docker compose exec app quiver run-ocr > logs/run_$$(date +"%F-%H:%M:%S").log
 
 stop:
 	CONTAINER_ID=$$(docker ps | grep quiver | cut -d' ' -f1); docker container stop $$CONTAINER_ID && docker container remove $$CONTAINER_ID
