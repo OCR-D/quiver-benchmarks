@@ -35,7 +35,3 @@ def summarize_benchmarks_cli():
 def run_workflows(workflows):
     for wf in workflows:
         run_workflow(wf)
-
-@cli.command('test')
-def test():
-    print('ein test')

@@ -28,7 +28,7 @@ Otherwise, the tool will download all `ocrd-tesserocr-recognize` models as well 
 - build the image with `make build`
 - spin up a container with `make start`
 - run `make prepare-default-gt`
-- run `make run`
+- run `make run` to run all workflows. In order to run 1 or more worfklows, see [quiver CLI](#quiver-cli).
 - the benchmarks and the evaluation results will be available at `data/workflows.json` on your host system
 - when finished, run `make stop` to shut down and remove the Docker container you created previously
 
@@ -47,13 +47,13 @@ Sample calls:
 
 ```bash
 # runs all workflows in workflows/ocrd_worflows on all data in gt/
-quiver run-ocr
+docker compose exec app quiver run-ocr
 
 # runs all workflows/ocrd_worflows/minimal_ocr.txt on all data in gt/
-quiver run-ocr -wf minimal_ocr.txt
+docker compose exec app quiver run-ocr -wf minimal_ocr.txt
 
 # runs both minimal_ocr.txt and slower_processors_or.txt on all data in gt/
-quiver run-ocr -wf minimal_ocr.txt -wf slower_processors_ocr.txt 
+docker compose exec app quiver run-ocr -wf minimal_ocr.txt -wf slower_processors_ocr.txt 
 ```
 
 ## Benchmarks Considered

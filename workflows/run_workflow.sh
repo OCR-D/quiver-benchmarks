@@ -55,9 +55,9 @@ create_wf_specific_workspaces() {
     for DIR in "$ROOT"/gt/*/; do
         DIR_NAME=$(basename "$DIR")
         if [[ ! $DIR_NAME == "reichsanzeiger-gt" ]]; then
-            echo "Create workflow specific workspace ""$DIR_NAME""_""$WORKFLOW_NAME""."
             DEST_DIR="$WORKSPACE_DIR"/"$DIR_NAME"_"$WORKFLOW_NAME"
             if [[ ! -d "$DEST_DIR" ]]; then
+                echo "Create workflow specific workspace ""$DEST_DIR""."
                 cp -r "$ROOT"/gt/"$DIR_NAME" "$DEST_DIR"
                 cp "$OCRD_WORKFLOW_DIR"/"$1".nf "$DEST_DIR"/data/*/
                 cp "$OCRD_WORKFLOW_DIR"/*eval.txt.nf "$DEST_DIR"/data/*/
@@ -104,8 +104,8 @@ rename_and_move_nextflow_result() {
     # rename NextFlow results in order to properly match them to the workflows
     # $1: $WORKFLOW
     # $2: $DIR_NAME
-    WORKFLOW_NAME=$(basename -s .txt.nf "$1")
-    if [ "$WORKFLOW_NAME" != "dinglehopper_eval" ]; then
+    LOCAL_WORKFLOW_NAME=$(basename -s .txt.nf "$1")
+    if [ "$LOCAL_WORKFLOW_NAME" != "dinglehopper_eval" ]; then
         for DIR in "$WORKSPACE_DIR"/work/*
         do
             WORK_DIR_NAME=$(basename "$DIR")
@@ -135,8 +135,8 @@ save_workspaces() {
     echo "Zipping workspace $2"
     DATA_DIR="$2/data/"
     if basename -s .txt.nf "$1" | grep "eval"; then
-        WORKFLOW_NAME=$(basename -s .txt.nf "$1")
-        ocrd -l ERROR zip bag -d "$DATA_DIR"/* -i "$DATA_DIR"/* "$RESULTS_DIR"/"$2"_"$WORKFLOW_NAME".zip
+        LOCAL_WORKFLOW_NAME=$(basename -s .txt.nf "$1")
+        ocrd -l ERROR zip bag -d "$DATA_DIR"/* -i "$DATA_DIR"/* "$RESULTS_DIR"/"$2"_"$LOCAL_WORKFLOW_NAME".zip
     else
         ocrd -l ERROR zip bag -d "$DATA_DIR"/* -i "$DATA_DIR"/* "$RESULTS_DIR"/"$2".zip
     fi
