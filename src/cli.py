@@ -4,7 +4,7 @@ from pathlib import Path
 import click
 
 from .benchmark_extraction import make_result_json
-from .summarize_benchmarks import get_json_files, summarize_to_one_file, make_id_map_json
+from .summarize_benchmarks import process_results
 from .run import run_workflow
 
 
@@ -27,8 +27,7 @@ def benchmark_extraction_cli(workspace_path, workflow_path):
 
 @cli.command('summarize', help="Summarizes all benchmarking results to data/workflows.json.")
 def summarize_benchmarks_cli():
-    make_id_map_json()
-    summarize_to_one_file(get_json_files())
+    process_results()
     print("Successfully summarized JSON files!")
 
 @cli.command('run-ocr', help='Runs one or more OCR-D workflows on all data given in the Ground Truth directory (./gt).')
