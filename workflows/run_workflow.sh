@@ -18,6 +18,8 @@ prepare_dirs() {
     mkdir -p "$WORKSPACE_DIR"
     mkdir -p "$RESULTS_DIR"
     mkdir workflows/nf-results
+    mkdir -p data/files
+    touch data/id_map.json
 }
 
 convert_ocrd_wfs_to_NextFlow() {
