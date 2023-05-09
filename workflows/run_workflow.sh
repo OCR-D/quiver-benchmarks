@@ -17,6 +17,7 @@ prepare_dirs() {
     fi
     mkdir -p "$WORKSPACE_DIR"
     mkdir -p "$RESULTS_DIR"
+    mkdir -p "$RESULTS_DIR"/archive
     mkdir workflows/nf-results
     mkdir -p data/files
     touch data/id_map.json

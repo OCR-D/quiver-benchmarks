@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import json
-from os import getcwd, listdir, stat
+from os import getcwd, listdir, replace, stat
 from pathlib import Path
 
 ID_MAP_PATH = Path('/app/data/id_map.json')
@@ -31,7 +31,7 @@ def make_id_map_json(file_list):
             print('Add new workspaces to ID file.')
             with open(ID_MAP_PATH, 'w', encoding='utf-8') as outfile:
                 for entry in new_entries_list:
-                    new_entry = {entry: target_file}
+                    new_entry = {entry: f'data/files/{entry}.json'}
                     id_map_data.update(new_entry)
                     json.dump(id_map_data, outfile)
 
@@ -58,7 +58,7 @@ def get_result_json_files():
     return file_list
 
 def summarize(json_files):
-    print("Copy results to their corresponding files at data/files/…")
+    print("Copy results to their corresponding files at data/files/… and move old ones to results/archive.")
     for file in json_files:
         with open(file, 'r', encoding='utf-8') as f:
             new_data = json.load(f)
@@ -75,4 +75,5 @@ def summarize(json_files):
         with open(target, 'w', encoding='utf-8') as target_file:
             target_data.append(new_data)
             json.dump(target_data, target_file)
+        replace(file, getcwd() + f'/workflows/results/archive/{file_name}.json')
     print("Done.")
