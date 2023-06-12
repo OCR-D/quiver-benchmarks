@@ -1,5 +1,7 @@
 version: '3.4'
 
+name: quiver
+
 services:
   app:
     build:
@@ -7,10 +9,17 @@ services:
       dockerfile: Dockerfile
     working_dir: /app
     volumes:
-      - ./data:/app/data # this will write the results to your host system
       - ./gt:/app/gt
       - ./workflows:/app/workflows
       # mount your modules, custom workflows and data here
-      #- ./models/ocrd-tesserocr-recognize:/usr/local/share/tessdata/
-      #- ./models/ocrd-calamari-recognize:/usr/local/share/ocrd-resources/
+      - ./models/ocrd-tesserocr-recognize:/usr/local/share/tessdata/
+      - ./models/ocrd-calamari-recognize:/usr/local/share/ocrd-resources/
       # - TODO/custom/data
+
+  mongodb:
+    image: mongodb/mongodb-community-server
+    volumes:
+      - mongo:/data/db
+
+volumes:
+  mongo:

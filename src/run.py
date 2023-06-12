@@ -10,7 +10,6 @@ from fnmatch import fnmatch
 from pathlib import Path
 
 from .constants import WORKFLOW_DIR
-from .summarize_benchmarks import process_results
 
 
 def run_workflow(workflow):
@@ -23,7 +22,6 @@ def run_workflow(workflow):
         run_all_workflows()
     else:
         run_single_workflow(workflow)
-    process_results()
     clean_up()
 
 

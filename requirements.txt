@@ -5,3 +5,4 @@ fastapi
 requests
 pyaml
 nextflow
+pymongo[srv]

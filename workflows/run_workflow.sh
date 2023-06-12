@@ -88,12 +88,8 @@ execute_wfs_and_extract_benchmarks() {
 
                 # create a result JSON according to the specs          
                 echo "Get Benchmark JSON …"
-                OCR_WF_DIR=$(dirname "$WS_DIR"/data/*/*ocr.txt.nf)
-                quiver benchmarks-extraction "$WS_DIR"/data/* "$OCR_WF_DIR"/"$1".nf
+                quiver benchmarks-extraction "$WS_DIR"/data/*
                 echo "Done."
-
-                # move data to results dir
-                mv "$DATA_DIR"/*/*result.json "$RESULTS_DIR"
             else
                 echo "$WS_DIR has already been processed."
             fi
