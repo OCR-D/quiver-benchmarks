@@ -9,7 +9,7 @@ from os import listdir, remove
 from fnmatch import fnmatch
 from pathlib import Path
 
-from .constants import WORKFLOW_DIR
+from ..constants import WORKFLOW_DIR
 
 
 def run_workflow(workflow):

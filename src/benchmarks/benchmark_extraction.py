@@ -9,7 +9,7 @@ from os import listdir, scandir
 from statistics import median, stdev
 from typing import Any, Dict, List, Union
 
-from .constants import METS, OCRD, QUIVER_MAIN, RESULTS
+from ..constants import METS, OCRD, QUIVER_MAIN, RESULTS
 
 
 def make_result_json(workspace_path: str, mets_path: str) -> Dict[str, Union[str, Dict]]:

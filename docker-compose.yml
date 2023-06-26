@@ -31,7 +31,7 @@ services:
     ports:
       - "8084:8084"
     volumes:
-      - ./src/mongodb_api.py:/code/mongodb_api.py
+      - ./src/webserver/mongodb_api.py:/code/mongodb_api.py
 
 volumes:
   mongo:

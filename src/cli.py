@@ -2,9 +2,9 @@ from pathlib import Path
 
 import click
 
-from .benchmark_extraction import make_result_json
-from .mongodb import post_to_mongodb
-from .run import run_workflow
+from .benchmarks.benchmark_extraction import make_result_json
+from .mongodb.mongodb import post_to_mongodb
+from .benchmarks.run import run_workflow
 
 
 @click.group()
