@@ -1,8 +1,12 @@
 # QuiVer Benchmarks
 
-This repository holds everything you need to automatically execute different OCR-D workflows on images and evaluate the outcomes.
-It creates benchmarks for (your) OCR-D data in a containerized environment.
-You can run QuiVer Benchmarks either locally on your machine or in an automated workflow, e.g. in a CI/CD environment.
+QuiVer Benchmarks is a tool that helps you decide which OCR-D workflows are most suitable for your data.
+It executes preset workflows on [different kinds of Ground Truth](#ground-truth-used) and evaluates the result.
+The results with the most recent version of [ocrd_all](https://github.com/OCR-D/ocrd_all) can be viewed at [https://ocr-d.de/quiver-frontend](https://ocr-d.de/quiver-frontend/#/workflows?view=list).
+
+This repository holds everything needed to automatically execute different OCR-D workflows on images and evaluate the outcomes.
+It creates benchmarks for OCR-D data in a containerized environment.
+QuiVer Benchmarks currently runs in an automated workflow (CI/CD).
 
 QuiVer Benchmarks is based on `ocrd/all:maximum` and has all OCR-D processors at hand that a workflow might use.
 
@@ -21,10 +25,9 @@ To speed up QuiVer Benchmarks you can mount already downloaded text recognition 
 to the `volumes` section.
 Otherwise, the tool will download all `ocrd-tesserocr-recognize` models as well as `ocrd-calamari-recognize qurator-gt4histocr-1.0` on each run.
 
-## Usage
+## Usage (For Development)
 
 - clone this repository and switch to the cloned directory
-- (optional) [customize](#custom-workflows-and-data) QuiVer Benchmarks according to your needs
 - build the image with `make build`
 - spin up a container with `make start`
 - run `make prepare-default-gt`
@@ -45,13 +48,30 @@ The relevant benchmarks gathered by QuiVer Benchmarks are defined in [OCR-D's Qu
 - wall time
 - processed pages per minute
 
-## Custom Workflows and Data
+## Ground Truth Used
 
-The default behaviour of QuiVer Benchmarks is to collect OCR-D's sample Ground Truth workspaces (currently stored in [quiver-data](https://github.com/OCR-D/quiver-data)), execute the [recommended standard workflows](https://ocr-d.de/en/workflows#recommendations) on these and obtain the relevant [benchmarks](#benchmarks-considered) for each workflow.
+QuiVer Benchmarks currently uses the following Ground Truth:
 
-You can, however, customize QuiVer Benchmarks to run your own workflows on the sample workspaces or your own OCR-D workspaces.
+- [https://github.com/tboenig/16_frak_simple](https://github.com/tboenig/16_frak_simple)
+- [https://github.com/tboenig/17_frak_simple](https://github.com/tboenig/17_frak_simple)
+- [https://github.com/tboenig/17_frak_complex](https://github.com/tboenig/17_frak_complex)
+- [https://github.com/tboenig/18_frak_simple](https://github.com/tboenig/18_frak_simple)
+- [https://github.com/tboenig/18_frak_complex](https://github.com/tboenig/18_frak_complex)
+- [https://github.com/tboenig/19_frak_simple](https://github.com/tboenig/19_frak_simple)
+- [https://github.com/tboenig/16_ant_simple](https://github.com/tboenig/16_ant_simple)
+- [https://github.com/tboenig/16_ant_complex](https://github.com/tboenig/16_ant_complex)
+- [https://github.com/tboenig/18_ant_simple](https://github.com/tboenig/18_ant_simple)
+- [https://github.com/tboenig/19_ant_simple](https://github.com/tboenig/19_ant_simple)
+- [https://github.com/tboenig/17_fontmix_simple](https://github.com/tboenig/17_fontmix_simple)
+- [https://github.com/tboenig/18_fontmix_complex](https://github.com/tboenig/18_fontmix_complex)
+- [Reichsanzeiger GT](https://github.com/UB-Mannheim/reichsanzeiger-gt) with many ads
+- [Reichsanzeiger GT](https://github.com/UB-Mannheim/reichsanzeiger-gt) with many tables
+- [Reichsanzeiger GT](https://github.com/UB-Mannheim/reichsanzeiger-gt) title pages only
+- [Reichsanzeiger GT](https://github.com/UB-Mannheim/reichsanzeiger-gt) random selection of pages
 
-### Adding New OCR-D Workflows
+A detailed list of images used for the Reichsanzeiger GT sets can be found in the `data_src` directory.
+
+### Adding New OCR-D Workflows (For Development)
 
 Add new OCR-D workflows to the directory `workflows/ocrd_worflows` according to the following conventions:
 
@@ -69,15 +89,11 @@ in the `volumes` section and spin up a new run with `docker compose up`.
 
 ### Removing OCR-D Workflows
 
-Delete the respective TXT files from `workflows/ocrd_workflows` and either rebuild the image or mount the directory as volume as described [above](#adding-new-ocr-d-workflows).
-
-### Using Custom Data
-
-+++ TODO +++
-
-## Development
+Delete the respective TXT files from `workflows/ocrd_workflows` and either rebuild the image or mount the directory as volume as described [above](#adding-new-ocr-d-workflows-for-development).
 
 ## Outlook
+
+- enable users to use their own Ground Truth and workflows
 
 ## License
 
