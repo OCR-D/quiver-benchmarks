@@ -44,9 +44,6 @@ def get_all_results():
     """
 
     client = MongoClient('quiver-mongodb-1', 27017)
-
-    # database and collection code goes here
-
     db = client.results
     coll = db.quiver
 
