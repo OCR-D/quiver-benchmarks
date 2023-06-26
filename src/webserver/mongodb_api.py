@@ -3,12 +3,13 @@ API server for querying MongoDB.
 To be used by the front end.
 """
 
-from fastapi import FastAPI
-from pymongo import MongoClient
-from datetime import datetime
-from bson import json_util
 import json
 import re
+from datetime import datetime
+
+from bson import json_util
+from fastapi import FastAPI
+from pymongo import MongoClient
 
 CLIENT = MongoClient('quiver-mongodb-1', 27017)
 DB = CLIENT.results
@@ -43,7 +44,6 @@ def get_all_results():
     """
     Get results of all runs.
     """
-
     cursor = COLL.find()
 
     # iterate code goes here
@@ -59,4 +59,3 @@ def get_results_for_gt(gt_name: str):
     cursor = COLL.find({'metadata.gt_workspace.@id': regex})
 
     return json.loads(json_util.dumps(cursor))
-
