@@ -9,6 +9,7 @@ services:
       dockerfile: Dockerfile
     working_dir: /app
     volumes:
+      - ./src:/app/src
       - ./gt:/app/gt
       - ./workflows:/app/workflows
       # mount your modules, custom workflows and data here
@@ -18,8 +19,19 @@ services:
 
   mongodb:
     image: mongodb/mongodb-community-server
+    ports:
+      - "27017:27017"
     volumes:
       - mongo:/data/db
+
+  webserver:
+    build:
+      context: .
+      dockerfile: Dockerfile.uvicorn
+    ports:
+      - "8084:8084"
+    volumes:
+      - ./src/mongodb_api.py:/code/mongodb_api.py
 
 volumes:
   mongo:
