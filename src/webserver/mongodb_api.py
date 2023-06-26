@@ -60,6 +60,3 @@ def get_results_for_gt(gt_name: str):
 
     return json.loads(json_util.dumps(cursor))
 
-if __name__ == '__main__':
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8084)
