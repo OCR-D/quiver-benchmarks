@@ -115,6 +115,10 @@ in the `volumes` section and spin up a new run with `docker compose up`.
 
 Delete the respective TXT files from `workflows/ocrd_workflows` and either rebuild the image or mount the directory as volume as described [above](#adding-new-ocr-d-workflows-for-development).
 
+## Architecture
+
+![A diagram showing the interplay of the different QuiVer components](quiver_benchmarks_architecture.svg "QuiVer Benchmarks Architecture")
+
 ## Outlook
 
 - enable users to use their own Ground Truth and workflows
