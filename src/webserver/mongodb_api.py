@@ -53,8 +53,7 @@ def get_all_results():
     cursor = coll.find()
 
     # iterate code goes here
-    return type(cursor)
-    # Close the connection to MongoDB when you're done.
+    return json.loads(json_util.dumps(cursor))
 
 
 @app.get('/results/{gt_name}')
