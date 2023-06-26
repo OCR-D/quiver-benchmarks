@@ -15,7 +15,7 @@ from .constants import METS, OCRD, QUIVER_MAIN, RESULTS
 def make_result_json(workspace_path: str, mets_path: str) -> Dict[str, Union[str, Dict]]:
     data_name = get_workspace_name(workspace_path)
     return {
-        'eval_workflow_id': 'wf-data'+ data_name + '-eval',
+        'eval_workflow_id': 'wf-data-'+ data_name + '-eval',
         'label': 'Workflow on data ' + data_name,
         'metadata': make_metadata(workspace_path, mets_path),
         'evaluation_results': extract_benchmarks(workspace_path, mets_path)
