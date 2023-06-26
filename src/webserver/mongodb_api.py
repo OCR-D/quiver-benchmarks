@@ -8,6 +8,7 @@ from pymongo import MongoClient
 from datetime import datetime
 from bson import json_util
 import json
+import re
 
 app = FastAPI()
 
@@ -58,7 +59,14 @@ def get_results_for_gt(gt_name: str):
     """
     Get all results for a specific set of Ground Truth.
     """
-    pass
+    client = MongoClient('quiver-mongodb-1', 27017)
+    db = client.results
+    coll = db.quiver
+
+    regex = re.compile(gt_name)
+    cursor = coll.find({'metadata.gt_workspace.@id': regex})
+
+    return json.loads(json_util.dumps(cursor))
 
 if __name__ == '__main__':
     import uvicorn
