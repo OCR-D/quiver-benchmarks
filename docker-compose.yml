@@ -24,14 +24,5 @@ services:
     volumes:
       - mongo:/data/db
 
-  webserver:
-    build:
-      context: .
-      dockerfile: Dockerfile.uvicorn
-    ports:
-      - "8084:8084"
-    volumes:
-      - ./src/webserver/mongodb_api.py:/code/mongodb_api.py
-
 volumes:
   mongo:
