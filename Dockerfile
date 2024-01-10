@@ -4,9 +4,9 @@ WORKDIR /app
 
 COPY requirements.txt requirements.txt
 
-RUN apt install git
-RUN apt install -y jq
 RUN apt-get update
+RUN apt-get install git
+RUN apt-get install -y jq
 RUN apt-get install -y --fix-missing openjdk-11-jre
 
 COPY src src
