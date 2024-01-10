@@ -73,7 +73,7 @@ A detailed list of images used for the Reichsanzeiger GT sets can be found in th
 
 ### Adding New OCR-D Workflows (For Development)
 
-Add new OCR-D workflows to the directory `workflows/ocrd_worflows` according to the following conventions:
+Add new OCR-D workflows to the directory `workflows/ocrd_workflows` according to the following conventions:
 
 - OCR workflows have to end with `_ocr.txt`, evaluation workflows with `_eval.txt`. The files will be converted by [OtoN](https://github.com/MehmedGIT/OtoN_Converter) to Nextflow files after the container has started.
 - workflows have to be TXT files
