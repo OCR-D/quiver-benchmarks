@@ -1,4 +1,4 @@
-FROM ocrd/all:2023-03-26
+FROM docker.io/ocrd/all:2023-03-26
 
 WORKDIR /app
 
