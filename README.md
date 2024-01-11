@@ -37,7 +37,7 @@ Otherwise, the tool will download all `ocrd-tesserocr-recognize` models as well 
 
 ## Benchmarks Considered
 
-The relevant benchmarks gathered by QuiVer Benchmarks are defined in [OCR-D's Quality Assurance specification](https://ocr-d.de/en/spec/eval) and comprise
+The relevant benchmarks gathered by QuiVer Benchmarks are defined in [OCR-D's Quality Assurance specification](https://ocr-d.de/en/spec/ocrd_eval) and comprise
 
 - CER (per page and document wide), incl.
   - median
