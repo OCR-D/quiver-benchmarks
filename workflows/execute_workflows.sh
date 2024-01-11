@@ -24,7 +24,7 @@ convert_ocrd_wfs_to_NextFlow() {
 
     for FILE in *.txt
     do
-        oton convert -I "$FILE" -O "$FILE".nf
+        test -f "$FILE".nf || oton convert -I "$FILE" -O "$FILE".nf
     done
 }
 
