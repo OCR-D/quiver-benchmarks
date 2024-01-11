@@ -14,7 +14,7 @@ run:
 	docker compose exec app bash workflows/execute_workflows.sh > logs/run_$$(date +"%s").log
 
 stop:
-	CONTAINER_ID=$$(docker ps | grep quiver | cut -d' ' -f1); docker container stop $$CONTAINER_ID && docker container rm $$CONTAINER_ID
+	docker container stop quiver-benchmarks_app && docker container rm quiver-benchmarks_app
 
 clean-workspaces:
 	docker compose exec app rm -rf workflows/workspaces
