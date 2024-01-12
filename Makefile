@@ -14,7 +14,7 @@ build:
 	$(DOCKER_COMPOSE) build
 
 start:
-	$(DOCKER_COMPOSE) run -d app
+	$(DOCKER_COMPOSE) run -d --name quiver-benchmarks_app app
 
 prepare-default-gt:
 	$(DOCKER_COMPOSE) exec app bash scripts/prepare.sh
