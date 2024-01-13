@@ -1,3 +1,5 @@
+.PHONY: build clean clean-results clean-workspaces prepare-default-gt run start stop
+
 build:
 	docker compose build
 
