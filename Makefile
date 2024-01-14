@@ -27,10 +27,10 @@ stop:
 	$(DOCKER) container stop quiver-benchmarks_app && $(DOCKER) container rm quiver-benchmarks_app
 
 clean-workspaces:
-	$(DOCKER_COMPOSE) exec app rm -rf workflows/workspaces
+	rm -rf workflows/workspaces
 
 clean-results:
-	$(DOCKER_COMPOSE) exec app rm -rf workflows/nf-results workflows/results
+	rm -rf workflows/nf-results workflows/results
 
 clean: clean-workspaces clean-results
-	@echo "Cleaning everything."
+	@echo "Cleaned everything."
