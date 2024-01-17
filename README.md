@@ -37,7 +37,7 @@ Otherwise, the tool will download all `ocrd-tesserocr-recognize` models as well 
 
 ## Benchmarks Considered
 
-The relevant benchmarks gathered by QuiVer Benchmarks are defined in [OCR-D's Quality Assurance specification](https://ocr-d.de/en/spec/eval) and comprise
+The relevant benchmarks gathered by QuiVer Benchmarks are defined in [OCR-D's Quality Assurance specification](https://ocr-d.de/en/spec/ocrd_eval) and comprise
 
 - CER (per page and document wide), incl.
   - median
@@ -73,7 +73,7 @@ A detailed list of images used for the Reichsanzeiger GT sets can be found in th
 
 ### Adding New OCR-D Workflows (For Development)
 
-Add new OCR-D workflows to the directory `workflows/ocrd_worflows` according to the following conventions:
+Add new OCR-D workflows to the directory `workflows/ocrd_workflows` according to the following conventions:
 
 - OCR workflows have to end with `_ocr.txt`, evaluation workflows with `_eval.txt`. The files will be converted by [OtoN](https://github.com/MehmedGIT/OtoN_Converter) to Nextflow files after the container has started.
 - workflows have to be TXT files
