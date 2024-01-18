@@ -20,7 +20,8 @@ Instead of Docker it is also possible to use podman and podman-compose.
 Install them on Debian or Ubuntu with `apt install podman podman-compose`.
 
 Note: Debian bookworm installs an older version (1.0.3) of `podman-compose`
-which is unusable. Therefore `podman-compose` must be installed from PyPI.
+which is unusable. Therefore `podman-compose` must be installed from PyPI
+unless a newer Linux distribution with `podman-compose` 1.0.6 is used.
 
 To speed up QuiVer Benchmarks you can mount already downloaded text recognition models to `/usr/local/share/ocrd-resources/` in `docker-compose.yml` by adding
 
