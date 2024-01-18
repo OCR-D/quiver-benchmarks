@@ -16,6 +16,13 @@ QuiVer Benchmarks is based on `ocrd/all:maximum` and has all OCR-D processors at
 - [Docker Compose plugin](https://docs.docker.com/compose/install/linux/#install-using-the-repository)
 - make
 
+Instead of Docker it is also possible to use podman and podman-compose.
+Install them on Debian or Ubuntu with `apt install podman podman-compose`.
+
+Note: Debian bookworm installs an older version (1.0.3) of `podman-compose`
+which is unusable. Therefore `podman-compose` must be installed from PyPI
+unless a newer Linux distribution with `podman-compose` 1.0.6 is used.
+
 To speed up QuiVer Benchmarks you can mount already downloaded text recognition models to `/usr/local/share/ocrd-resources/` in `docker-compose.yml` by adding
 
 ```yml
@@ -79,13 +86,13 @@ Add new OCR-D workflows to the directory `workflows/ocrd_workflows` according to
 - workflows have to be TXT files
 - all workflows have to use [`ocrd process`](https://ocr-d.de/en/user_guide#ocrd-process)
 
-You can then either rebuild the Docker image via `docker compose build` or mount the directory to the container via
+You can then either rebuild the Docker image via `make build` or mount the directory to the container via
 
 ```yml
 - ./workflows/ocrd_workflows:/app/workflows/ocrd_workflows
 ```
 
-in the `volumes` section and spin up a new run with `docker compose up`.
+in the `volumes` section and spin up a new run with `docker compose up` or `podman-compose up`.
 
 ### Removing OCR-D Workflows
 

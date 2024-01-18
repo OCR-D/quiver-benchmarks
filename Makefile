@@ -1,26 +1,36 @@
+ifeq ($(shell type podman-compose >/dev/null 2>&1 && echo y),)
+# Use docker / docker compose
+DOCKER_COMPOSE=docker compose
+DOCKER=docker
+else
+# Use podman / podman-compose
+DOCKER_COMPOSE=podman-compose
+DOCKER=podman
+endif
+
 .PHONY: build clean clean-results clean-workspaces prepare-default-gt run start stop
 
 build:
-	docker compose build
+	$(DOCKER_COMPOSE) build
 
 start:
-	docker compose run -d app
+	$(DOCKER_COMPOSE) run -d --name quiver-benchmarks_app app
 
 prepare-default-gt:
-	docker compose exec app bash scripts/prepare.sh
+	$(DOCKER_COMPOSE) exec app bash scripts/prepare.sh
 
 run:
 	mkdir -p logs
-	docker compose exec app bash workflows/execute_workflows.sh > logs/run_$$(date +"%s").log
+	$(DOCKER_COMPOSE) exec app bash workflows/execute_workflows.sh > logs/run_$$(date +"%s").log 2>&1
 
 stop:
-	CONTAINER_ID=$$(docker ps | grep quiver | cut -d' ' -f1); docker container stop $$CONTAINER_ID && docker container rm $$CONTAINER_ID
+	$(DOCKER) container stop quiver-benchmarks_app && $(DOCKER) container rm quiver-benchmarks_app
 
 clean-workspaces:
-	docker compose exec app rm -rf workflows/workspaces
+	rm -rf workflows/workspaces
 
 clean-results:
-	docker compose exec app rm -rf workflows/nf-results workflows/results
+	rm -rf workflows/nf-results workflows/results
 
 clean: clean-workspaces clean-results
-	@echo "Cleaning everything."
+	@echo "Cleaned everything."
