@@ -20,7 +20,6 @@ prepare_dirs() {
     mkdir -p "$RESULTS_DIR"/archive
     mkdir workflows/nf-results
     mkdir -p data/files
-    touch data/id_map.json
 }
 
 convert_ocrd_wfs_to_NextFlow() {
@@ -88,7 +87,7 @@ execute_wfs_and_extract_benchmarks() {
 
                 # create a result JSON according to the specs          
                 echo "Get Benchmark JSON …"
-                quiver benchmarks-extraction "$WS_DIR"data/*
+                quiver benchmarks-extraction "$WS_DIR"data/* "$WORKFLOW_NAME"
                 echo "Done."
             else
                 echo "$WS_DIR has already been processed."

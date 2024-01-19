@@ -11,10 +11,10 @@ services:
     #environment:
     #  - RELEASE_TAG=${RELEASE_TAG}
     volumes:
+      - ./data:/app/data
       - ./gt:/app/gt
+      - ./logs:/app/logs
       - ./workflows:/app/workflows
       # mount your modules, custom workflows and data here
       - ./models/ocrd-tesserocr-recognize:/usr/local/share/tessdata/
       - ./models/ocrd-calamari-recognize:/usr/local/share/ocrd-resources/
-      - ./logs:/app/logs
-      - ./src:/app/src

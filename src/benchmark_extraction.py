@@ -4,16 +4,22 @@ benchmarking. It extracts the relevant information from the NextFlow processes. 
 import json
 import re
 import xml.etree.ElementTree as ET
-from os import listdir, scandir
-from statistics import stdev, median
+from datetime import datetime
+from os import listdir, scandir, getenv
+from statistics import median, stdev
 from typing import Any, Dict, List, Union
-from .constants import METS, RESULTS, QUIVER_MAIN, OCRD
+import requests
 
+from .constants import METS, OCRD, QUIVER_MAIN, RESULTS
+
+#RELEASE_TAG = getenv('RELEASE_TAG')
 
 def make_result_json(workspace_path: str, mets_path: str) -> Dict[str, Union[str, Dict]]:
     data_name = get_workspace_name(workspace_path)
+    workflow_name = get_workflow(workspace_path, 'ocr')['@id'].split('.')[-2].split('/')[-1]
+    current_date = datetime.now().strftime('%Y-%m-%d')
     return {
-        'eval_workflow_id': 'wf-data'+ data_name + '-eval',
+        'eval_workflow_id': f'wf-data-{data_name}-{workflow_name}-{current_date}-eval',
         'label': 'Workflow on data ' + data_name,
         'metadata': make_metadata(workspace_path, mets_path),
         'evaluation_results': extract_benchmarks(workspace_path, mets_path)
@@ -23,6 +29,7 @@ def get_workspace_name(workspace_path: str) -> str:
     return workspace_path.split('/')[-1]
 
 def make_metadata(workspace_path: str, mets_path: str) -> Dict[str, Union[str, Dict]]:
+    current_date_time = datetime.today()
     return {
             'ocr_workflow': get_workflow(workspace_path, 'ocr'),
             'eval_workflow': get_workflow(workspace_path, 'eval'),
@@ -32,8 +39,21 @@ def make_metadata(workspace_path: str, mets_path: str) -> Dict[str, Union[str, D
             'workflow_steps': get_workflow_steps(mets_path),
             'workflow_model': get_workflow_model(mets_path),
             'eval_tool': get_eval_tool(mets_path),
-            'document_metadata': get_document_metadata(workspace_path)
+            'document_metadata': get_document_metadata(workspace_path),
+            'timestamp': current_date_time.strftime('%Y-%m-%dT%H:%M:%S'),
+            #'release_info': get_release_info(RELEASE_TAG)
         }
+
+def get_release_info(release_tag: str) -> dict:
+    """
+    Returns release information from the GitHub API by release
+    tag.
+    """
+    github_url = f'https://api.github.com/repos/OCR-D/ocrd_all/releases/tags/{release_tag}'
+    release = requests.get(github_url, timeout=10).text
+    release_json = json.loads(release)
+    return release_json
+
 
 def get_workflow(workspace_path: str, wf_type: str) -> Dict[str, str]:
     if wf_type == 'eval':
@@ -108,6 +128,7 @@ def get_gt_workspace(workspace_path: str) -> Dict[str, str]:
     url = 'https://github.com/OCR-D/quiver-data/blob/main/' + current_workspace + '.ocrd.zip'
     label = f'GT workspace {current_workspace}'
     return {
+        'id': current_workspace,
         '@id': url,
         'label': label
     }
@@ -123,7 +144,10 @@ def get_document_metadata(workspace_path: str) -> Dict[str, Dict[str, str]]:
             'layout': ''
         }
     }
-    with open(workspace_path + '/metadata.json', 'r', encoding='utf-8') as file:
+
+    splits = workspace_path.split('/')
+    workspace_path_top_level = '/'.join(splits[0:len(splits)-2])
+    with open(workspace_path_top_level + '/metadata.json', 'r', encoding='utf-8') as file:
         metadata = json.load(file)
         scripts = metadata['script']
         fonts = []
