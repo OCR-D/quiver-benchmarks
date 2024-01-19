@@ -11,7 +11,7 @@ prepare-default-gt:
 
 run:
 	mkdir -p logs
-	docker compose exec app bash workflows/execute_workflows.sh > logs/run_$$(date +"%s").log
+	docker compose exec app bash workflows/execute_workflows.sh > logs/run_$$(date +"%F-%H:%M:%S").log
 
 stop:
 	CONTAINER_ID=$$(docker ps | grep quiver | cut -d' ' -f1); docker container stop $$CONTAINER_ID && docker container rm $$CONTAINER_ID
