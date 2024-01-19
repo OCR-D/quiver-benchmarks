@@ -147,12 +147,18 @@ summarize_to_data_json() {
     echo "Done."
 }
 
+check_and_run_webserver() {
+    IS_WEBSERVER_PORT_OPEN=$(nc -z 127.0.0.1 8000; echo $?)
+    if [[ ! "$IS_WEBSERVER_PORT_OPEN" ]]; then
+        uvicorn api:app --app-dir "$ROOT"/src & # start webserver for evaluation
+    fi
+}
+
 clean_up_dirs
 convert_ocrd_wfs_to_NextFlow
 download_models
 create_wf_specific_workspaces
-uvicorn api:app --app-dir "$ROOT"/src & # start webserver for evaluation
-sleep 2 && >&2 echo "Process is running. See logs at ./logs for more information."
+check_and_run_webserver
 execute_wfs_and_extract_benchmarks
-summarize_to_data_json
-echo "All workflows have been run."
+#summarize_to_data_json
+#echo "All workflows have been run."
