@@ -11,5 +11,7 @@ workflows/ocrd_workflows/ocrd.log
 models
 .idea
 gt/*
+workflows/ocrd_workflows/*.nf
 build/
 logs
+zips
