@@ -8,13 +8,12 @@ fi
 
 cd .. || exit
 
+ROOT=$PWD
+
 
 PREFIX="data_srcs"
 files=(
-    "$PREFIX"/reichsanzeiger_many_ads.list
     "$PREFIX"/reichsanzeiger_random.list
-    "$PREFIX"/reichsanzeiger_tables.list
-    "$PREFIX"/reichsanzeiger_title_pages.list
 )
 
 for FILE in "${files[@]}"; do
@@ -58,11 +57,11 @@ L3JlaWNoc2FuemVpZ2VyL2ZpbG0vCg==" | base64 -d)
         done
     fi
 
-    if [ ! -f gt/"$NAME"/data/"$NAME"/metadata.json ]; then
-        cp /app/gt/reichsanzeiger-gt/METADATA.yml /app/gt/"$NAME"/data/"$NAME"/METADATA.yml
-        python3 /app/scripts/convert-yml-to-json.py --indent 2 /app/gt/"$NAME"/data/"$NAME"/METADATA.yml /app/gt/"$NAME"/data/"$NAME"/metadata.json
+    if [ ! -f "$ROOT"/gt/"$NAME"/data/"$NAME"/metadata.json ]; then
+        cp "$ROOT"/gt/reichsanzeiger-gt/METADATA.yml "$ROOT"/gt/"$NAME"/data/"$NAME"/METADATA.yml
+        python3 "$ROOT"/scripts/convert-yml-to-json.py --indent 2 "$ROOT"/gt/"$NAME"/data/"$NAME"/METADATA.yml "$ROOT"/gt/"$NAME"/data/"$NAME"/metadata.json
     fi
-    cd /app || exit
+    cd "$ROOT" || exit
 done
 
 echo "Preparation of Reichsanzeiger GT subsets done."

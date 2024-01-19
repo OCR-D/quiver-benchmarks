@@ -1,55 +1,70 @@
 #!/bin/bash
 
 mkdir -p gt
+mkdir -p zips
 
+ROOT=$PWD
 echo "Prepare OCR-D Ground Truth …"
 
 while IFS= read -r URL; do
     OWNER=$(echo "$URL" | cut -d'/' -f4)
     REPO=$(echo "$URL" | cut -d'/' -f5)
-    if [[ ! -f gt/"$REPO".zip ]]; then
+    if [[ ! -d zips/"$REPO" ]]; then
         echo "Downloading $REPO …"
         RESULT=$(curl -L \
         -H "Accept: application/vnd.github+json" \
         -H "X-GitHub-Api-Version: 2022-11-28" \
         https://api.github.com/repos/"$OWNER"/"$REPO"/releases/latest)
-        ZIP_URL=$(echo  "$RESULT" | jq -r '.assets | .[].browser_download_url')
-        curl -L -o gt/"$REPO".zip "$ZIP_URL"
+        ZIP_URLS=$(echo  "$RESULT" | jq -r '.assets | .[].browser_download_url')
+        mkdir -p zips/"$REPO"
+        for URL in $ZIP_URLS; do
+            ZIP_NAME=$(echo $URL | rev | cut -d'/' -f1 | rev)
+            if [[ ! -f zips/"$REPO"/"$ZIP_NAME" ]]; then
+                echo "Downloading $ZIP_NAME"
+                curl -L -o zips/"$REPO"/"$ZIP_NAME".zip "$URL"
+            fi
+        done
     fi
 done < data_srcs/default_data_sources.txt
 
-cd gt || exit
 # the default data is structured like this:
-# repository_name.zip
-# |___ subordinate_work_1.zip
-# |___ subordinate_work_2.zip
+# repository_name
+# |___ subordinate_work_1.ocrd.zip.zip
+# |___ subordinate_work_2.ocrd.zip.zip
 # |___ ...
-# $ZIP refers to the release itself which is on level "repository_name.zip"
-# the subordinate works are also OCR-D BagIts / zips. these are referred to by $INNER_ZIP.
-for ZIP in *.zip; do
-    NAME=$(echo "$ZIP" | cut -d"." -f1)
-    echo "Processing $NAME"
-    if [[ ! -d  $NAME && $NAME != "reichsanzeiger-gt" ]]; then 
-        unzip -qq -d "$NAME" "$ZIP"
-        mv "$NAME"/ocrdzip_out/* "$NAME" && rm -r "$NAME"/ocrdzip_out
-        for INNER_ZIP in "$NAME"/*.zip; do
-            echo "Dealing with inner zip files …"
-            INNER_ZIP_NAME=$(basename "$INNER_ZIP" .ocrd.zip)
-            unzip -qq -d "$NAME"/"$INNER_ZIP_NAME" "$INNER_ZIP" && rm "$INNER_ZIP"
+# |___ metadata-v1234.zip.zip
+for REPO in $PWD/zips/*; do
+    for ZIP in $REPO/*.zip; do
+        echo "Extracting $ZIP…"
+        ID=$(echo "$ZIP" | cut -d'.' -f1 | rev | cut -d'/' -f1 | rev)
+        unzip -qq -o "$ZIP" -d "$REPO"/"$ID"
+    done
 
-            echo "Recreate required directory structure for $INNER_ZIP_NAME."
-            mkdir "$NAME"/"$INNER_ZIP_NAME"/data/"$INNER_ZIP_NAME"
-            mv "$NAME"/"$INNER_ZIP_NAME"/data/OCR-* "$NAME"/"$INNER_ZIP_NAME"/data/"$INNER_ZIP_NAME"
-            mv "$NAME"/"$INNER_ZIP_NAME"/data/mets.xml "$NAME"/"$INNER_ZIP_NAME"/data/"$INNER_ZIP_NAME"
-            cp "$NAME"/metadata.json "$NAME"/"$INNER_ZIP_NAME"/data/"$INNER_ZIP_NAME"/metadata.json
+    for DIR in "$REPO"/*/; do
+        #rm -rf $DIR
+        if [[ ! -f "$DIR"/metadata.json ]]; then
+            cp "$REPO"/metadata*/metadata_out/metadata.json "$DIR"/metadata.json
+        fi
+        if [[ "$DIR" =~ "metadata" ]]; then
+            echo "Skipping $DIR"
+        else
+            ID=$(echo "$DIR" | rev | cut -d'/' -f2 | rev)
+            mkdir "$DIR"tmp
+            mv "$DIR"data/* "$DIR"tmp
+            mkdir -p "$DIR"data/"$ID"
+            mv "$DIR"tmp/* "$DIR"data/"$ID"
+            rm -rf "$DIR"tmp
+            mv "$DIR" "$ROOT"/gt
+        fi
+    done
 
-            echo "Moving $INNER_ZIP_NAME higher in dir structure."
-            mv "$NAME"/"$INNER_ZIP_NAME" .
-            echo "Done."
-        done
-        rm -rf "$NAME"
-    fi
+    for DIR in "$REPO"/*/; do
+        if [[ "$DIR" =~ "metadata" ]]; then
+            rm -rf "$DIR"
+        fi
+    done
 done
+
 
 echo "Prepare Reichsanzeiger GT …"
 
@@ -60,7 +75,7 @@ if [[ $1 == "ra-full" ]]; then
         git clone https://github.com/UB-Mannheim/reichsanzeiger-gt
     fi
 
-    RA_GT=/app/gt/reichsanzeiger-gt
+    RA_GT=/gt/reichsanzeiger-gt
     DATA_DIR=/$RA_GT/data
     cd $DATA_DIR|| exit
     
@@ -87,12 +102,12 @@ if [[ $1 == "ra-full" ]]; then
       ocrd workspace add -G $FILEGRP -i ${FILEGRP}_"${BASE}" -g P_"${BASE}" -m $MEDIATYPE "${i}";
     done
     
-    python3 /app/scripts/convert-yml-to-json.py --indent 2 $RA_GT/METADATA.yml $RA_GT/metadata.json
+    python3 scripts/convert-yml-to-json.py --indent 2 $RA_GT/METADATA.yml $RA_GT/metadata.json
     
     echo " … and ready to go!"
    
 else
     echo "Prepare smaller sets of Reichsanzeiger GT."
-    cd /app || exit
-    bash /app/scripts/prepare_reichsanzeiger_sets.sh
+    cd $ROOT || exit
+    bash scripts/prepare_reichsanzeiger_sets.sh
 fi
