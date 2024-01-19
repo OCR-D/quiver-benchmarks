@@ -1,15 +1,15 @@
-FROM docker.io/ocrd/all
+FROM docker.io/ocrd/all:maximum
 
 WORKDIR /app
 
 COPY requirements.txt requirements.txt
 
-RUN apt-get update
 RUN apt-get install git
-RUN apt-get install -y jq netcat
+RUN apt-get install -y jq
+RUN apt-get install -y netcat
+RUN apt-get update
 RUN apt-get install -y --fix-missing openjdk-11-jre
 
-COPY src src
 COPY setup.py setup.py
 COPY README.md README.md
 COPY scripts scripts
@@ -23,7 +23,10 @@ RUN cd submodules/oton && \
     pip install .
 
 RUN pip3 install -r requirements.txt
+COPY src src
 RUN pip3 install .
 RUN nextflow
+RUN nextflow plugin install nf-weblog
 
 ENTRYPOINT [ "bash" ]
+#CMD [ "bash", "scripts/run_trigger.sh" ]
