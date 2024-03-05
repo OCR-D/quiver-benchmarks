@@ -12,7 +12,7 @@ import requests
 
 from .constants import METS, OCRD, QUIVER_MAIN, RESULTS
 
-#RELEASE_TAG = getenv('RELEASE_TAG')
+RELEASE_TAG = getenv('RELEASE_TAG')
 
 def make_result_json(workspace_path: str, mets_path: str) -> Dict[str, Union[str, Dict]]:
     data_name = get_workspace_name(workspace_path)
@@ -41,7 +41,7 @@ def make_metadata(workspace_path: str, mets_path: str) -> Dict[str, Union[str, D
             'eval_tool': get_eval_tool(mets_path),
             'document_metadata': get_document_metadata(workspace_path),
             'timestamp': current_date_time.strftime('%Y-%m-%dT%H:%M:%S'),
-            #'release_info': get_release_info(RELEASE_TAG)
+            'release_info': get_release_info(RELEASE_TAG)
         }
 
 def get_release_info(release_tag: str) -> dict:

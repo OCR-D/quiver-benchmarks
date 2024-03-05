@@ -8,8 +8,8 @@ services:
       context: .
       dockerfile: Dockerfile
     working_dir: /app
-    #environment:
-    #  - RELEASE_TAG=${RELEASE_TAG}
+    environment:
+      - RELEASE_TAG=v2024-02-01
     volumes:
       - ./data:/app/data
       - ./gt:/app/gt
@@ -18,3 +18,27 @@ services:
       # mount your modules, custom workflows and data here
       - ./models/ocrd-tesserocr-recognize:/usr/local/share/tessdata/
       - ./models/ocrd-calamari-recognize:/usr/local/share/ocrd-resources/
+
+  mongodb:
+    image: mongodb/mongodb-community-server
+    volumes:
+      - mongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=some_passwrd
+
+  api:
+    image: docker.gitlab.gwdg.de/subugoe/ocr-d/quiver-mongoapi-local:main-3a3bcbfb
+    environment:
+      - USERNAME=mongoadmin
+      - PASSWORD=some_passwrd
+    ports:
+    - "8084:8084"
+
+  frontend:
+    image: docker.gitlab.gwdg.de/subugoe/ocr-d/quiver-frontend-local:main-ff7bd442
+    ports:
+    - "5173:80"
+
+volumes:
+  mongo:
