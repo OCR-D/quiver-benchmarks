@@ -11,6 +11,6 @@ def post_to_mongodb(result: dict) -> int:
     """
     # Replace the uri string with your MongoDB deployment's connection string.
 
-    url = 'http://localhost:8084/api/runs'
+    url = 'http://quiver-api-1:8084/api/runs'
     res = requests.post(url, json=result, timeout=10)
     return res.status_code
