@@ -28,5 +28,5 @@ RUN pip3 install .
 RUN nextflow
 RUN nextflow plugin install nf-weblog
 
-ENTRYPOINT [ "bash" ]
-#CMD [ "bash", "scripts/run_trigger.sh" ]
+#ENTRYPOINT [ "bash" ]
+CMD [ "bash", "scripts/run_trigger.sh" ]
