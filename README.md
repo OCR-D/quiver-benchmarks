@@ -1,7 +1,7 @@
 # QuiVer Benchmarks – Local
 
 "QuiVer Benchmarks – Local" is a tool that helps you decide which OCR-D workflows are most suitable for your data.
-It executes preset or custom workflows on [Ground Truth](#ground-truth-used) and evaluates the result with [`dinglehopper`](https://github.com/qurator-spk/dinglehopper).
+It executes preset or custom workflows on [Ground Truth](#getting-ground-truth-into-the-database) and evaluates the result with [`dinglehopper`](https://github.com/qurator-spk/dinglehopper).
 
 This repository holds everything needed to automatically execute different OCR-D workflows on images and evaluate the outcomes.
 It creates benchmarks for OCR-D data in a containerized environment.
@@ -63,7 +63,11 @@ To load the default Ground Truth, simply run `make start` and `make prepare-defa
 
 ##### Use Custom Ground Truth
 
+TODO
+
 #### Getting Your Workflows into the Database
+
+TODO
 
 ### Running QuiVer Benchmarks – Local
 
