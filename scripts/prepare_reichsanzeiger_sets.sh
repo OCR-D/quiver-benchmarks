@@ -57,9 +57,9 @@ L3JlaWNoc2FuemVpZ2VyL2ZpbG0vCg==" | base64 -d)
         done
     fi
 
-    if [ ! -f "$ROOT"/gt/"$NAME"/data/"$NAME"/metadata.json ]; then
+    if [ ! -f "$ROOT"/gt/"$NAME"/metadata.json ]; then
         cp "$ROOT"/gt/reichsanzeiger-gt/METADATA.yml "$ROOT"/gt/"$NAME"/data/"$NAME"/METADATA.yml
-        python3 "$ROOT"/scripts/convert-yml-to-json.py --indent 2 "$ROOT"/gt/"$NAME"/data/"$NAME"/METADATA.yml "$ROOT"/gt/"$NAME"/data/"$NAME"/metadata.json
+        python3 "$ROOT"/scripts/convert-yml-to-json.py --indent 2 "$ROOT"/gt/"$NAME"/data/"$NAME"/METADATA.yml "$ROOT"/gt/"$NAME"/metadata.json
     fi
     cd "$ROOT" || exit
 done

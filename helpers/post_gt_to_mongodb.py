@@ -17,7 +17,7 @@ def post_gt():
     files_in_gt_dir = os.listdir(GT_DIR)
     gt = []
     for file in files_in_gt_dir:
-        if not 'zip' in file or file == 'reichsanzeiger-gt':
+        if not ('zip' in file or file == 'reichsanzeiger-gt'):
             d = {'gt_workspace':
                  {'@id': file,
                   'label': make_label(file),
