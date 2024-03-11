@@ -30,4 +30,5 @@ RUN nextflow plugin install nf-weblog
 
 ENV OCRD_METS_CACHING=0
 
-CMD [ "bash", "scripts/run_trigger.sh" ]
+ENTRYPOINT [ "bash" ]
+#CMD [ "bash", "scripts/run_trigger.sh" ]
