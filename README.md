@@ -1,22 +1,21 @@
-# QuiVer Benchmarks
+# QuiVer Benchmarks – Local
 
-QuiVer Benchmarks is a tool that helps you decide which OCR-D workflows are most suitable for your data.
-It executes preset workflows on [different kinds of Ground Truth](#ground-truth-used) and evaluates the result.
-The results with the most recent version of [ocrd_all](https://github.com/OCR-D/ocrd_all) can be viewed at [https://ocr-d.de/quiver-frontend](https://ocr-d.de/quiver-frontend/#/workflows?view=list).
+"QuiVer Benchmarks – Local" is a tool that helps you decide which OCR-D workflows are most suitable for your data.
+It executes preset or custom workflows on [Ground Truth](#ground-truth-used) and evaluates the result with [`dinglehopper`](https://github.com/qurator-spk/dinglehopper).
 
 This repository holds everything needed to automatically execute different OCR-D workflows on images and evaluate the outcomes.
 It creates benchmarks for OCR-D data in a containerized environment.
-QuiVer Benchmarks currently runs in an automated workflow (CI/CD).
 
-QuiVer Benchmarks is based on `ocrd/all:maximum` and has all OCR-D processors at hand that a workflow might use.
+QuiVer Benchmarks – Local is based on `ocrd/all:maximum` and has all OCR-D processors at hand that a workflow might use.
 
 ## Requirements
 
 - Docker >= 23.0.0
 - [Docker Compose plugin](https://docs.docker.com/compose/install/linux/#install-using-the-repository)
 - make
+- python3
 
-To speed up QuiVer Benchmarks you can mount already downloaded text recognition models to `/usr/local/share/ocrd-resources/` in `docker-compose.yml` by adding
+To speed up QuiVer Benchmarks – Local you can mount already downloaded text recognition models to `/usr/local/share/ocrd-resources/` in `docker-compose.yml` by adding
 
 ```yml
 - path/to/your/models:/usr/local/share/ocrd-resources/
@@ -25,15 +24,52 @@ To speed up QuiVer Benchmarks you can mount already downloaded text recognition 
 to the `volumes` section.
 Otherwise, the tool will download all `ocrd-tesserocr-recognize` models as well as `ocrd-calamari-recognize qurator-gt4histocr-1.0` on each run.
 
-## Usage (For Development)
+## General Setup Information
 
-- clone this repository and switch to the cloned directory
+QuiVer Benchmarks – Local consists of several Docker services that are definded in the `docker-compose.yaml`, each with a specific purpose:
+
+- `ocr`: This service executes the OCR-D workflows, evaluates their results and posts all relevant information to the `mongodb` container.
+- `mongodb`: The database where information about the Ground Truth data, the workflows and the results of the runs are stored.
+- `api`: This service runs a Uvicorn server with a FastAPI application that is responsible for getting data in and out of the database. `ocr` uses it to post data to and `frontend` requests the API the obtain data from the MongoDB. The API is available at `localhost:8084`; its documentation can be viewed at `localhost:8084/docs`.
+- `frontend`: A vue.js application where the results of QuiVer Benchmarks – Local can be viewed. The front end is available at `localhost:5173`.
+
+## Usage
+
+### Initial Setup
+
+- clone this repository: `git clone git@github.com:OCR-D/quiver-benchmarks.git`
+- switch to the cloned directory: `cd quiver-benchmarks`
 - build the image with `make build`
-- spin up a container with `make start`
-- run `make prepare-default-gt`
-- run `make run`
-- the benchmarks and the evaluation results will be available at `data/workflows.json` on your host system
-- when finished, run `make stop` to shut down and remove the Docker container you created previously
+
+#### Defining Your Own Workflows
+
+Add new OCR-D workflows to the directory `workflows/ocrd_workflows` according to the following conventions:
+
+- OCR workflows have to end with `_ocr.txt`, evaluation workflows with `_eval.txt`. The files will be converted by [OtoN](https://github.com/MehmedGIT/OtoN_Converter) to Nextflow files after the container has started.
+- workflows have to be TXT files
+- all workflows have to use [`ocrd process`](https://ocr-d.de/en/user_guide#ocrd-process)
+
+Since the whole `workflows` directory is mounted as a volume, new workflows will be considered without rebuilding the Docker image.
+
+To remove a workflow from QuiVer Benchmarks – Local just delete the respective *.txt file.
+
+#### Getting Ground Truth into the Database
+
+You can either use OCR-D's default Ground Truth, your own or a mix of both.
+
+##### Use the Default Ground Truth
+
+To load the default Ground Truth, simply run `make start` and `make prepare-default-gt`.
+
+##### Use Custom Ground Truth
+
+#### Getting Your Workflows into the Database
+
+### Running QuiVer Benchmarks – Local
+
+After you have completed the [inital setup](#initial-setup), you can start the actual OCR process and its evaluation via `make run`. (Run `make start` if your container setup is not up yet.)
+
+Logging for the process is available in the `logs` directory. The results of the runs are available in the front end (`localhost:5173`) or via the API in JSON (`localhost:8084/api/runs`).
 
 ## Benchmarks Considered
 
@@ -48,9 +84,9 @@ The relevant benchmarks gathered by QuiVer Benchmarks are defined in [OCR-D's Qu
 - wall time
 - processed pages per minute
 
-## Ground Truth Used
+## OCR-D Default Ground Truth
 
-QuiVer Benchmarks currently uses the following Ground Truth:
+The OCR-D Default Ground Truth consists of the following repositories:
 
 - [https://github.com/tboenig/16_frak_simple](https://github.com/tboenig/16_frak_simple)
 - [https://github.com/tboenig/17_frak_simple](https://github.com/tboenig/17_frak_simple)
@@ -70,30 +106,6 @@ QuiVer Benchmarks currently uses the following Ground Truth:
 - [Reichsanzeiger GT](https://github.com/UB-Mannheim/reichsanzeiger-gt) random selection of pages
 
 A detailed list of images used for the Reichsanzeiger GT sets can be found in the `data_src` directory.
-
-### Adding New OCR-D Workflows (For Development)
-
-Add new OCR-D workflows to the directory `workflows/ocrd_workflows` according to the following conventions:
-
-- OCR workflows have to end with `_ocr.txt`, evaluation workflows with `_eval.txt`. The files will be converted by [OtoN](https://github.com/MehmedGIT/OtoN_Converter) to Nextflow files after the container has started.
-- workflows have to be TXT files
-- all workflows have to use [`ocrd process`](https://ocr-d.de/en/user_guide#ocrd-process)
-
-You can then either rebuild the Docker image via `docker compose build` or mount the directory to the container via
-
-```yml
-- ./workflows/ocrd_workflows:/app/workflows/ocrd_workflows
-```
-
-in the `volumes` section and spin up a new run with `docker compose up`.
-
-### Removing OCR-D Workflows
-
-Delete the respective TXT files from `workflows/ocrd_workflows` and either rebuild the image or mount the directory as volume as described [above](#adding-new-ocr-d-workflows-for-development).
-
-## Outlook
-
-- enable users to use their own Ground Truth and workflows
 
 ## License
 
