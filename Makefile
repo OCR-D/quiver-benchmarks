@@ -9,10 +9,11 @@ start:
 
 prepare-default-gt:
 	docker compose exec ocr bash scripts/prepare.sh
+	python3 helpers/post_gt_to_mongodb.py
 
 run:
 	mkdir -p logs
-	docker compose exec ocr quiver run-ocr > logs/run_$$(date +"%F-%H:%M:%S").log
+	docker compose exec ocr bash scripts/run_trigger.sh
 
 reinstall:
 	docker compose exec ocr pip install -e .
