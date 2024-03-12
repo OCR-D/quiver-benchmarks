@@ -1,0 +1,554 @@
+[
+    {
+        "id": "ocrd-anybaseocr-binarize",
+        "params": {
+            "nocheck": false,
+            "show": false, 
+            "raw_copy": false,
+            "gray": false,
+            "bignore": 0.1,
+            "debug": 0,
+            "escale": 1.0,
+            "hi":90,
+            "lo": 5,
+            "perc": 80,
+            "range": 20,
+            "threshold":0.5,
+            "zoom": 0.5,
+            "operation_level": "page"
+        }
+    },
+    {
+        "id": "ocrd-anybaseocr-block-segmentation",
+        "params": {
+            "block_segmentation_weights": "block_segmentation_weights.h5",
+            "overwrite": false,
+            "th": 15,
+            "active_classes": "page-number,paragraph,catch-word,heading,drop-capital,signature-mark,marginalia,caption",
+            "post_process": true,
+            "use_masks": true,
+            "min_confidence": 0.9,
+            "min_share_drop": 0.9,
+            "min_share_merge": 0.8,
+            "min_iou_drop": 0.8,
+            "min_iou_merge": 0.2
+        }
+    },
+    {
+        "id": "ocrd-anybaseocr-crop",
+        "params": {
+            "dpi": 0,
+            "rulerRatioMax": 50,
+            "rulerRatioMin": 3,
+            "rulerAreaMax": 0.3,
+            "rulerAreaMin": 0.01,
+            "rulerWidthMax": 0.95,
+            "columnAreaMin": 0.05,
+            "columnSepWidthMax": 0.04,
+            "marginTop": 0.25,
+            "marginBottom": 0.75,
+            "marginLeft": 0.3,
+            "marginRight": 0.7,
+            "padding": 10
+        }
+    },
+    {
+        "id": "ocrd-anybaseocr-deskew",
+        "params": {
+            "escale": 1,
+            "bignore": 0.1,
+            "threshold": 0.5,
+            "maxskew": 1,
+            "skewsteps": 8,
+            "debug": 0,
+            "parallel": 0,
+            "lo": 5,
+            "hi": 90,
+            "operation_level": "page"
+        }
+    },
+    {
+        "id": "ocrd-anybaseocr-dewarp",
+        "params": {
+            "resize_mode": "resize_and_crop",
+            "resize_height": 1024,
+            "resize_width": 1024,
+            "model_path": "latest_net_G.pth",
+            "gpu_id": -1,
+            "operation_level": "page"
+        }
+    },
+    {
+        "id": "ocrd-anybaseocr-layout-analysis",
+        "params": {
+            "batch_size": 4,
+            "model_path": "structure_analysis",
+            "class_mapping_path": "mapping_densenet.pickle"
+        }
+    },
+    {
+        "id": "ocrd-anybaseocr-textline",
+        "params": {
+            "minscale":   12.0, 
+            "maxlines":    300, 
+            "scale":       0.0, 
+            "hscale":      1.0, 
+            "vscale":      1.7,
+            "threshold":   0.2,
+            "noise":       8,
+            "usegauss":    false,
+            "maxseps":      2,
+            "sepwiden":     10,
+            "blackseps":   false,
+            "maxcolseps":   2,
+            "csminaspect":  1.1,
+            "csminheight":  6.5,
+            "pad":          3,
+            "expand":       3,
+            "parallel":     0,
+            "libpath":     ".",
+            "operation_level": "region",
+            "overwrite":   false
+        }
+    },
+    {
+        "id": "ocrd-anybaseocr-tiseg",
+        "params": {
+            "use_deeplr": true,
+            "seg_weights": "seg_model"
+        }
+    },
+    {
+        "id": "ocrd-calamari-recognize",
+        "params": {
+            "checkpoint_dir": "qurator-gt4histocr-1.0",
+            "voter": "confidence_voter_default_ctc",
+            "textequiv_level": "line",
+            "glyph_conf_cutoff": 0.001
+        }
+    },
+    {
+        "id": "ocrd-cis-align", 
+        "params": {}
+    },
+    {
+        "id": "ocrd-cis-data",
+        "params": {}
+    },
+    {
+        "id": "ocrd-cis-ocropy-binarize",
+        "params": {
+            "method": "ocropy",
+            "threshold": 0.5,
+            "grayscale": false,
+            "maxskew": 0,
+            "noise_maxsize": 0,
+            "dpi": 0,
+            "level-of-operation": "page"
+        }
+    },
+    {
+        "id": "ocrd-cis-ocropy-clip",
+        "params": {
+            "level-of-operation": "region",
+            "dpi": 0,
+            "min_fraction": 0.7
+        }
+    },
+    {
+        "id": "ocrd-cis-ocropy-denoise",
+        "params": {
+            "noise_maxsize": 3,
+            "dpi": 0,
+            "level-of-operation": "page"
+        }
+    },
+    {
+        "id": "ocrd-cis-ocropy-deskew",
+        "params": {
+            "maxskew": 5,
+            "level-of-operation": "region"
+        }
+    },
+    {
+        "id": "ocrd-cis-ocropy-dewarp",
+        "params": {
+            "dpi": 0,
+            "range": 4,
+            "smoothness": 1,
+            "max_neighbour": 0.05
+        }
+    },
+    {
+        "id": "ocrd-cis-ocropy-recognize",
+        "params": {
+            "textequiv_level":"line",
+            "model":""
+        }
+    },
+    {
+        "id": "ocrd-cis-ocropy-resegment",
+        "params": {
+            "level-of-operation": "page",
+            "method": "lineest",
+            "baseline_only": false,
+            "dpi": 0,
+            "min_fraction": 0.75,
+            "extend_margins": 3
+        }
+    },
+    {
+        "id": "ocrd-cis-ocropy-segment",
+        "params": {
+            "dpi": 0,
+            "level-of-operation": "region",
+            "maxcolseps": 20,
+            "maxseps": 20,
+            "maximages": 10,
+            "csminheight": 4,
+            "hlminwidth": 10,
+            "gap_height": 0.01,
+            "gap_width": 1.5,
+            "overwrite_order": true,
+            "overwrite_separators": true,
+            "overwrite_regions": true,
+            "overwrite_lines": true,
+            "spread": 2.4
+        }
+    },
+    {
+        "id": "ocrd-cis-ocropy-train",
+        "params": {
+            "textequiv_level": "line",
+            "model": "",
+            "ntrain": 1000000,
+            "outputpath": ""
+        }
+    },
+    {
+        "id": "ocrd-cis-postcorrect",
+        "params": {
+            "maxCandidates": 10,
+            "profilerPath": "",
+            "profilerConfig": "",
+            "model": "",
+            "nOCR": 1,
+            "runLE": false
+        }
+    },
+    {
+        "id": "ocrd-cor-asv-ann-align",
+        "params": {
+            "method": "majority"
+        }
+    },
+    {
+        "id": "ocrd-cor-asv-ann-evaluate",
+        "params": {
+            "metric": "Levenshtein-fast",
+            "gt_level": 1,
+            "confusion": 0,
+            "histogram": false
+        }
+    },
+    {
+        "id": "ocrd-cor-asv-ann-join",
+        "params": {
+            "add-filegrp-comments": false,
+            "match-on":"id"
+        }
+    },
+    {
+        "id": "ocrd-cor-asv-ann-mark",
+        "params": {
+            "command": "",
+            "normalization": {},
+            "format": "conf"
+        }
+    },
+    {
+        "id": "ocrd-cor-asv-ann-process",
+        "params": {
+            "model_file": "",
+            "textequiv_level": "glyph",
+            "charmap": {},
+            "rejection_threshold": 0.5,
+            "relative_beam_width": 0.2,
+            "fixed_beam_width": 15,
+            "fast_mode": false
+        }
+    },
+    {
+        "id": "ocrd-olena-binarize",
+        "params": {
+            "impl": "sauvola-ms-split",
+            "k": 0.34,
+            "win-size": 0,
+            "dpi": 0
+        }
+    },
+    {
+        "id": "ocrd-page-transform",
+        "params": {
+            "xsl": "",
+            "xslt-params": "",
+            "pretty-print": 0,
+            "mimetype": "application/vnd.prima.page+xml"
+        }
+    },
+    {
+        "id": "ocrd-pagetopdf",
+        "params": {
+            "font": "",
+            "outlines": "",
+            "textequiv_level": "",
+            "negative2zero": false,
+            "ext": ".pdf",
+            "multipage": "",
+            "pagelabel": "pageId",
+            "script-args": ""
+        }
+    },
+    {
+        "id": "ocrd-preprocess-image",
+        "params": {
+            "level-of-operation": "page",
+            "input_feature_selector": "",
+            "input_feature_filter": "",
+            "output_feature_added": "",
+            "input_mimetype": "image/png",
+            "output_mimetype": "image/png",
+            "command": ""
+        }
+    },
+    {
+        "id": "ocrd-repair-inconsistencies",
+        "params": {}
+    },
+    {
+        "id": "ocrd-sbb-binarize",
+        "params": {
+            "operation_level": "page",
+            "model": ""
+        }
+    },
+    {
+        "id": "ocrd-segment-evaluate",
+        "params": {
+            "level-of-operation":"region",
+            "only-fg": false,
+            "ignore-subtype": false,
+            "for-categories": ""
+        }
+    },
+    {
+        "id": "ocrd-segment-extract-glyphs",
+        "params": {
+            "feature_filter":"",
+            "mimetype":"image/png",
+            "transparency":true
+        }
+    },
+    {
+        "id": "ocrd-segment-extract-lines",
+        "params": {
+            "feature_filter":"",
+            "mimetype":"image/png",
+            "transparency":true,
+            "output-types": ["text","json","xlsx"],
+            "library-conecntion": "none",
+            "min-line-length": 0,
+            "min-line-width": 1,
+            "min-line-height": 1,
+            "textequiv-index": "first"
+        }
+    },
+    {
+        "id": "ocrd-segment-extract-pages",
+        "params": {
+            "feature_filter": "",
+            "mimetype": "image/png",
+            "transparency": true,
+            "plot_overlay": false,
+            "plot_segmasks": [],
+            "colordict": {}
+        }
+    },
+    {
+        "id": "ocrd-segment-extract-regions",
+        "params": {
+            "feature_filter": "",
+            "classes": [],
+            "mimetype": "image/png",
+            "transparency":true
+        }
+    },
+    {
+        "id": "ocrd-segment-extract-words",
+        "params": {
+            "feature_filter":"",
+            "mimetype":"image/png",
+            "transparency":true
+        }
+    },
+    {
+        "id": "ocrd-segment-from-coco",
+        "params": {}
+    },
+    {
+        "id": "ocrd-segment-from-masks",
+        "params": {
+            "colordict": {}
+        }
+    },
+    {
+        "id": "ocrd-segment-project",
+        "params": {
+            "level-of-operation": "page",
+            "padding": 10
+        }
+    },
+    {
+        "id": "ocrd-segment-repair",
+        "params": {
+            "simplify": 0,
+            "plausibilize": false,
+            "plausibilize_merge_min_overlap": 0.9,
+            "sanitize": false,
+            "sanitize_padding": 5
+        }
+    },
+    {
+        "id": "ocrd-segment-replace-original",
+        "params": {
+            "feature_selector": "",
+            "feature_filter": "",
+            "transform_coordinates": true
+        }
+    },
+    {
+        "id": "ocrd-segment-replace-page",
+        "params": {
+            "transform_coordinates":true
+        }
+    },
+    {
+        "id": "ocrd-segment-replace-text",
+        "params": {
+            "file_glob": "*.gt.txt"
+        }
+    },
+    {
+        "id": "ocrd-skimage-binarize",
+        "params": {
+            "level-of-operation": "page",
+            "dpi": 0,
+            "method": "sauvola",
+            "window_size": 0,
+            "k": 0.34
+        }
+    },
+    {
+        "id": "ocrd-skimage-denoise",
+        "params": {
+            "level-of-operation": "page",
+            "dpi": 0,
+            "protect": 0,
+            "maxsize": 1
+        }
+    },
+    {
+        "id": "ocrd-skimage-denoise-raw",
+        "params": {
+            "level-of-operation": "page",
+            "dpi": 0,
+            "method": "VisuShrink"
+        }
+    },
+    {
+        "id": "ocrd-skimage-normalize",
+        "params": {
+            "level-of-operation": "page",
+            "dpi": 0,
+            "black-point": 1,
+            "white-point": 7,
+            "method": "stretch"
+        }
+    },
+    {
+        "id": "ocrd-tesserocr-binarize",
+        "params": {
+            "dpi": 0,
+            "operation_level":"page",
+            "tiseg": false
+        }
+    },
+    {
+        "id": "ocrd-tesserocr-crop",
+        "params": {
+            "dpi": 0,
+            "padding": 4
+        }
+    },
+    {
+        "id": "ocrd-tesserocr-deskew",
+        "params": {
+            "dpi": 0,
+            "operation_level": "region",
+            "min_orientation_confidence": 1.5
+        }
+    },
+    {
+        "id": "ocrd-tesserocr-fontshape",
+        "params": {
+            "dpi": 0,
+            "padding": 0,
+            "model": "osd"
+        }
+    },
+    {
+        "id": "ocrd-tesserocr-recognize",
+        "params": {
+            "dpi": 0,
+            "padding": 0,
+            "segmentation_level": "word",
+            "textequiv_level": "word",
+            "overwrite_segments": false,
+            "overwrite_text": true,
+            "shrink_polygons": false,
+            "block_polygons": false,
+            "find_tables": true,
+            "find_staves": false,
+            "sparse_text": false,
+            "raw_lines": false,
+            "char_whitelist": "",
+            "char_blacklist": "",
+            "char_unblacklist": "",
+            "tesseract_parameters": {},
+            "xpath_parameters": {},
+            "xpath_model": {},
+            "auto_model": false,
+            "model": "",
+            "oem": "DEFAULT"
+        }
+    },
+    {
+        "id": "ocrd-tesserocr-segment",
+        "params": {
+            "dpi": 0,
+            "padding": 4,
+            "shrink_polygons": false,
+            "block_polygons": false,
+            "find_tables": true,
+            "find_staves": false,
+            "sparse_text": false
+        }
+    },
+    {
+        "id": "ocrd-dinglehopper",
+        "params": {
+            "metrics": true,
+            "textequiv_level": "region"
+        }
+    }
+]
