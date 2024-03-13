@@ -1,12 +1,19 @@
+"""
+A script to import all of the workflows given in a directory
+into QuiVer Benchmarks – Local's MongoDB.
+"""
+
 import os
 import requests
 import json
 
-# insert the full path to the directory that hold your workflows,
-# respectively.
+# insert the full path to the directory that hold your workflows
 WF_DIR = './workflows/ocrd_workflows'
 
 def get_model(procs: str) -> str:
+    """
+    Returns the model used for OCRing the text.
+    """
     recog_proc = find_recognition_proc(procs)
     if recog_proc:
         tokens = recog_proc.split()
@@ -19,11 +26,19 @@ def get_model(procs: str) -> str:
     return ""
 
 def find_recognition_proc(procs: list) -> str:
+    """
+    Returns the processor line in which the OCR happens.
+    """
     for proc in procs:
         if "recognize" in proc:
             return proc
 
 def get_steps(procs: list, processor_json: list) -> list:
+    """
+    Returns the workflow steps for a workflow.
+    Each workflow step consists of the name of the processor as well as its
+    parameters. Default parameters are overriden by parameters set in the workflow definition.
+    """
     steps = []
     for proc in procs:
         tokens = proc.split()
@@ -47,11 +62,17 @@ def get_steps(procs: list, processor_json: list) -> list:
     return steps
 
 def find_processor(proc_name: str, processor_json: list) -> dict:
+    """
+    Returns the apt processor entry from the processor list.
+    """
     for entry in processor_json:
         if entry["id"] == proc_name:
             return entry
 
 def sanitize(lines: list) -> list:
+    """
+    Normalizes the lines of the workflow TXT.
+    """
     sanitized = []
     for line in lines:
         sanitized.append(line.strip().replace('"', '').replace('\\', ''))
@@ -60,6 +81,9 @@ def sanitize(lines: list) -> list:
     return sanitized[1:]
 
 def post_wf():
+    """
+    Assembles the necessary infos about the workflow and posts it to the database.
+    """
     files_in_wf_dir = os.listdir(WF_DIR)
     with open('helpers/ocrd_processors.json', mode='r', encoding='utf-8') as f:
         processor_json = json.load(f)
