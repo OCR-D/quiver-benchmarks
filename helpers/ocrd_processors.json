@@ -3,17 +3,17 @@
         "id": "ocrd-anybaseocr-binarize",
         "params": {
             "nocheck": false,
-            "show": false, 
+            "show": false,
             "raw_copy": false,
             "gray": false,
             "bignore": 0.1,
             "debug": 0,
             "escale": 1.0,
-            "hi":90,
+            "hi": 90,
             "lo": 5,
             "perc": 80,
             "range": 20,
-            "threshold":0.5,
+            "threshold": 0.5,
             "zoom": 0.5,
             "operation_level": "page"
         }
@@ -89,26 +89,26 @@
     {
         "id": "ocrd-anybaseocr-textline",
         "params": {
-            "minscale":   12.0, 
-            "maxlines":    300, 
-            "scale":       0.0, 
-            "hscale":      1.0, 
-            "vscale":      1.7,
-            "threshold":   0.2,
-            "noise":       8,
-            "usegauss":    false,
-            "maxseps":      2,
-            "sepwiden":     10,
-            "blackseps":   false,
-            "maxcolseps":   2,
-            "csminaspect":  1.1,
-            "csminheight":  6.5,
-            "pad":          3,
-            "expand":       3,
-            "parallel":     0,
-            "libpath":     ".",
+            "minscale": 12.0,
+            "maxlines": 300,
+            "scale": 0.0,
+            "hscale": 1.0,
+            "vscale": 1.7,
+            "threshold": 0.2,
+            "noise": 8,
+            "usegauss": false,
+            "maxseps": 2,
+            "sepwiden": 10,
+            "blackseps": false,
+            "maxcolseps": 2,
+            "csminaspect": 1.1,
+            "csminheight": 6.5,
+            "pad": 3,
+            "expand": 3,
+            "parallel": 0,
+            "libpath": ".",
             "operation_level": "region",
-            "overwrite":   false
+            "overwrite": false
         }
     },
     {
@@ -128,7 +128,7 @@
         }
     },
     {
-        "id": "ocrd-cis-align", 
+        "id": "ocrd-cis-align",
         "params": {}
     },
     {
@@ -182,8 +182,8 @@
     {
         "id": "ocrd-cis-ocropy-recognize",
         "params": {
-            "textequiv_level":"line",
-            "model":""
+            "textequiv_level": "line",
+            "model": ""
         }
     },
     {
@@ -255,7 +255,7 @@
         "id": "ocrd-cor-asv-ann-join",
         "params": {
             "add-filegrp-comments": false,
-            "match-on":"id"
+            "match-on": "id"
         }
     },
     {
@@ -335,7 +335,7 @@
     {
         "id": "ocrd-segment-evaluate",
         "params": {
-            "level-of-operation":"region",
+            "level-of-operation": "region",
             "only-fg": false,
             "ignore-subtype": false,
             "for-categories": ""
@@ -344,18 +344,22 @@
     {
         "id": "ocrd-segment-extract-glyphs",
         "params": {
-            "feature_filter":"",
-            "mimetype":"image/png",
-            "transparency":true
+            "feature_filter": "",
+            "mimetype": "image/png",
+            "transparency": true
         }
     },
     {
         "id": "ocrd-segment-extract-lines",
         "params": {
-            "feature_filter":"",
-            "mimetype":"image/png",
-            "transparency":true,
-            "output-types": ["text","json","xlsx"],
+            "feature_filter": "",
+            "mimetype": "image/png",
+            "transparency": true,
+            "output-types": [
+                "text",
+                "json",
+                "xlsx"
+            ],
             "library-conecntion": "none",
             "min-line-length": 0,
             "min-line-width": 1,
@@ -380,15 +384,15 @@
             "feature_filter": "",
             "classes": [],
             "mimetype": "image/png",
-            "transparency":true
+            "transparency": true
         }
     },
     {
         "id": "ocrd-segment-extract-words",
         "params": {
-            "feature_filter":"",
-            "mimetype":"image/png",
-            "transparency":true
+            "feature_filter": "",
+            "mimetype": "image/png",
+            "transparency": true
         }
     },
     {
@@ -429,7 +433,7 @@
     {
         "id": "ocrd-segment-replace-page",
         "params": {
-            "transform_coordinates":true
+            "transform_coordinates": true
         }
     },
     {
@@ -479,7 +483,7 @@
         "id": "ocrd-tesserocr-binarize",
         "params": {
             "dpi": 0,
-            "operation_level":"page",
+            "operation_level": "page",
             "tiseg": false
         }
     },
@@ -549,6 +553,200 @@
         "params": {
             "metrics": true,
             "textequiv_level": "region"
+        }
+    },
+    {
+        "id": "ocrd-detectron2-segment",
+        "params": {
+            "operation_level": "page",
+            "categories": [],
+            "model_config": "",
+            "model_weights": "",
+            "min_confidence": 0.5,
+            "postprocessing": "full",
+            "debug_img": "none",
+            "device": "cuda"
+        }
+    },
+    {
+        "id": "ocrd-docstruct",
+        "params": {
+            "mode": "dfg",
+            "type": "article"
+        }
+    },
+    {
+        "id": "ocrd-doxa-binarize",
+        "params": {
+            "dpi": 0,
+            "level-of-operation": "page",
+            "algorithm": "ISauvola",
+            "parameters": {}
+        }
+    },
+    {
+        "id": "ocrd-dummy",
+        "params": {
+            "copy_files": false
+        }
+    },
+    {
+        "id": "ocrd-eynollah-segment",
+        "params": {
+            "models": "",
+            "dpi": 0,
+            "full_layout": true,
+            "tables": false,
+            "curved_line": false,
+            "allow_scaling": false,
+            "headers_off": false
+        }
+    },
+    {
+        "id": "ocrd-fileformat-transform",
+        "params": {
+            "from-to": "page alto",
+            "ext": "",
+            "script-args": ""
+        }
+    },
+    {
+        "id": "ocrd-froc-recognize",
+        "params": {
+            "ocr_method": "none",
+            "replace_textstyle": true,
+            "network": "",
+            "fast_cocr": true,
+            "adaptive_treshold": 95,
+            "font_class_priors": []
+        }
+    },
+    {
+        "id": "ocrd-im6convert",
+        "params": {
+            "input-options": "",
+            "output-format": "",
+            "output-options": ""
+        }
+    },
+    {
+        "id": "ocrd-import",
+        "params": {}
+    },
+    {
+        "id": "ocrd-keraslm-rate",
+        "params": {
+            "model_file": "",
+            "textequiv_level": "glyph",
+            "alternative_decoding": true,
+            "beam_width": 10,
+            "lm_weight": 0.5
+        }
+    },
+    {
+        "id": "ocrd-kraken-binarize",
+        "params": {
+            "level-of-operation": "page"
+        }
+    },
+    {
+        "id": "ocrd-kraken-recognize",
+        "params": {
+            "model": "en_best.mlmodel",
+            "pad": 16,
+            "bidi-reordering": true,
+            "device": "cuda:0"
+        }
+    },
+    {
+        "id": "ocrd-kraken-segment",
+        "params": {
+            "text_direction": "horizontal-lr",
+            "maxcolseps": 2,
+            "scale": 0,
+            "black_colseps": false,
+            "remove_hlines": "true",
+            "blla_model": "blla.mlmodel",
+            "blla_classes": {
+                "text": "TextRegion",
+                "image": "ImageRegion",
+                "line drawing": "LineDrawingRegion",
+                "graphic": "GraphicRegion",
+                "table": "TableRegion",
+                "chart": "ChartRegion",
+                "map": "MapRegion",
+                "separator": "SeparatorRegion",
+                "maths": "MathsRegion",
+                "chem": "ChemRegion",
+                "music": "MusicRegion",
+                "advert": "AdvertRegion",
+                "noise": "NoiseRegion",
+                "unknown": "UnknownRegion",
+                "custom": "CustomRegion"
+            },
+            "device": "cuda:0",
+            "use_legacy": false
+        }
+    },
+    {
+        "id": "ocrd-make",
+        "params": {}
+    },
+    {
+        "id": "ocrd-nmalign-merge",
+        "params": {
+            "normalization": {},
+            "allow_splits": false
+        }
+    },
+    {
+        "id": "ocrd-olahd-client",
+        "params": {
+            "endpoint": "",
+            "strict": true,
+            "username": "",
+            "password": "",
+            "pid_previous_version": ""
+        }
+    },
+    {
+        "id": "ocrd-tesserocr-segment-line",
+        "params": {
+            "dpi": 0,
+            "overwrite_lines": true,
+            "padding": 0,
+            "shrink_polygons": false
+        }
+    },
+    {
+        "id": "ocrd-tesserocr-segment-region",
+        "params": {
+            "dpi": 0,
+            "overwrite_lines": true,
+            "padding": 0,
+            "shrink_polygons": false,
+            "crop_polygons": false,
+            "find_tables": true,
+            "find_staves": false,
+            "sparse_text": false
+        }
+    },
+    {
+        "id": "ocrd-tesserocr-segment-table",
+        "params": {
+            "dpi": 0,
+            "overwrite_cells": true,
+            "padding": 0,
+            "shrink_polygons": false
+        }
+    },
+    {
+        "id": "ocrd-tesserocr-segment-word",
+        "params": {
+            "dpi": 0,
+            "overwrite_words": true,
+            "padding": 0,
+            "shrink_polygons": false
         }
     }
 ]
