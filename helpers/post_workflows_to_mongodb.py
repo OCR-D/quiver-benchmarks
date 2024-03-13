@@ -4,8 +4,8 @@ into QuiVer Benchmarks – Local's MongoDB.
 """
 
 import os
-import requests
 import json
+import requests
 
 # insert the full path to the directory that hold your workflows
 WF_DIR = './workflows/ocrd_workflows'
