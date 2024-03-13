@@ -34,7 +34,8 @@ restart:
 	make start
 
 stop:
-	CONTAINER_ID=$$($(DOCKER) ps | grep quiver | cut -d' ' -f1); $(DOCKER) container stop $$CONTAINER_ID && $(DOCKER) container rm $$CONTAINER_ID
+	CONTAINER_ID=$$($(DOCKER) ps | grep quiver | cut -d' ' -f1); test -n "$$CONTAINER_ID" && $(DOCKER) container stop $$CONTAINER_ID || true
+	CONTAINER_ID=$$($(DOCKER) ps -a | grep quiver | cut -d' ' -f1); test -n "$$CONTAINER_ID" && $(DOCKER) container rm $$CONTAINER_ID || true
 
 clean-workspaces:
 	rm -rf workflows/workspaces
