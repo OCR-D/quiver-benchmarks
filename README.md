@@ -63,17 +63,37 @@ To load the default Ground Truth, simply run `make start` and `make prepare-defa
 
 ##### Use Custom Ground Truth
 
-TODO
+Custom Ground Truth has to comply to the [directory structure](https://github.com/OCR-D/gt-repo-template?tab=readme-ov-file#--organization-of-directories-and-files-in-the-gt-repo) defined by OCR-D's [gt-repo-template](https://github.com/OCR-D/gt-repo-template) to work with QuiVer.
+
+After having established this, place your Ground Truth in a directory `gt` in QuiVer's home directory and run `make custom-gt`. This takes charge of making OCR-D workspaces from your GT and posts information about the GT to QuiVer's MongoDB.
 
 #### Getting Your Workflows into the Database
 
-TODO
+After [having defined your own workflows](#defining-your-own-workflows) they have to be posted to QuiVer's MongoDB so that the front end can display information about the parameters etc.
+
+Run `make post-workflows` when QuiVer is up to achieve that.
 
 ### Running QuiVer Benchmarks – Local
 
 After you have completed the [inital setup](#initial-setup), you can start the actual OCR process and its evaluation via `make run`. (Run `make start` if your container setup is not up yet.)
 
 Logging for the process is available in the `logs` directory. The results of the runs are available in the front end (`localhost:5173`) or via the API in JSON (`localhost:8084/api/runs`).
+
+### Sample Workflow Using QuiVer Benchmarks – Local
+
+```bash
+# build QuiVer and start it
+make build && make start
+
+# prepare default GT
+make prepare-default-gt
+
+# post workflows to MongoDB
+make post-workflows
+
+# run the actual text recognition + evaluation
+make run
+```
 
 ## Benchmarks Considered
 
