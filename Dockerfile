@@ -1,4 +1,4 @@
-FROM ocrd/all:2024-05-27
+FROM ocrd/all:maximum
 
 WORKDIR /app
 
@@ -6,7 +6,7 @@ COPY . /app
 
 RUN apt-get install -y git jq netcat && apt-get update && apt-get install -y --fix-missing openjdk-11-jre && \
     git init &&  \
-    git submodule add https://github.com/MehmedGIT/OtoN_Converter submodules/oton && \
+    git submodule add https://github.com/mweidling/OtoN_Converter submodules/oton && \
     git submodule update --init && \
     cd submodules/oton && \
     pip install . && \
