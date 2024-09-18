@@ -75,12 +75,13 @@ execute_wfs_and_extract_benchmarks() {
     for WS_DIR in "$WORKSPACE_DIR"/*/
     do
 	if [ "$WS_DIR" != "/app/workflows/workspaces/work/" ]; then
-        DATA_DIR="$WS_DIR"/data
+        DATA_DIR="$WS_DIR"data
         DIR_NAME=$(basename "$WS_DIR")
         INNER_DIR=$(ls "$DATA_DIR"/)
         if [[ -d "$WS_DIR" && $DIR_NAME == *"$WORKFLOW_NAME" ]] ; then
             if ! grep -q "OCR-D-OCR" "$WS_DIR/data/$INNER_DIR/mets.xml"; then
                 echo "Switching to $WS_DIR."
+                date
 
                 run "$DATA_DIR"/*/*ocr.txt.nf "$DIR_NAME"
                 run "$DATA_DIR"/*/*eval.txt.nf "$DIR_NAME"
@@ -98,32 +99,17 @@ execute_wfs_and_extract_benchmarks() {
     cd "$ROOT" || exit
 }
 
-rename_and_move_nextflow_result() {
-    # rename NextFlow results in order to properly match them to the workflows
-    # $1: $WORKFLOW
-    # $2: $DIR_NAME
-    LOCAL_WORKFLOW_NAME=$(basename -s .txt.nf "$1")
-    if [ "$LOCAL_WORKFLOW_NAME" != "dinglehopper_eval" ]; then
-        for DIR in "$WORKSPACE_DIR"/work/*
-        do
-            WORK_DIR_NAME=$(basename "$DIR")
-            for SUB_WORK_DIR in "$DIR"/*
-            do
-                SUB_WORK_DIR_NAME=$(basename "$SUB_WORK_DIR")
-                mv "$WORKSPACE_DIR"/work/"$WORK_DIR_NAME"/"$SUB_WORK_DIR_NAME"/.command.log "$WORKSPACE_DIR"/"$2"/"$WORK_DIR_NAME"_"$SUB_WORK_DIR_NAME".command.log
-            done
-            
-        done
-    fi
-    rm -rf "$WORKSPACE_DIR"/work/*
-    rm "$WORKSPACE_DIR"/.nextflow.log
-}
-
 run() {
     # $1: $WORKFLOW
     # $2: $DIR_NAME
-    nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/ --mets_path "/app/workflows/workspaces/$2/data/*/mets.xml"
-    rename_and_move_nextflow_result "$1" "$2"
+    cd "$2"
+    # no tracing necessary for the evaluation
+    if [[ "$1" =~ "dinglehopper" ]]; then
+        nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/ --mets_path "/app/workflows/workspaces/$2/data/*/mets.xml"
+    else
+        nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/ -c "$WORKFLOW_DIR/nf-config/config.txt" --mets_path "/app/workflows/workspaces/$2/data/*/mets.xml"
+    fi
+    cd ..
     save_workspaces "$1" "$2"
 }
 
