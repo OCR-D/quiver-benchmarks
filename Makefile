@@ -11,10 +11,6 @@ prepare-default-gt:
 	docker compose exec ocr bash scripts/prepare.sh
 	python3 helpers/post_gt_to_mongodb.py
 
-custom-gt:
-# TODO: GT --> OCR-D workspaces
-	python3 helpers/post_gt_to_mongodb.py
-
 post-workflows:
 	python3 helpers/post_workflows_to_mongodb.py
 

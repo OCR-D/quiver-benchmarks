@@ -65,7 +65,7 @@ To load the default Ground Truth, simply run `make start` and `make prepare-defa
 
 Custom Ground Truth has to comply to the [directory structure](https://github.com/OCR-D/gt-repo-template?tab=readme-ov-file#--organization-of-directories-and-files-in-the-gt-repo) defined by OCR-D's [gt-repo-template](https://github.com/OCR-D/gt-repo-template) to work with QuiVer.
 
-After having established this, place your Ground Truth in a directory `gt` in QuiVer's home directory and run `make custom-gt`. This takes charge of making OCR-D workspaces from your GT and posts information about the GT to QuiVer's MongoDB.
+After having established this, place your Ground Truth in a directory `gt` in QuiVer's home directory and run `make start && make post-gt` (or simply `make post-gt` if the containers are already running). This takes charge of posting information about the GT to QuiVer's MongoDB.
 
 #### Getting Your Workflows into the Database
 
