@@ -4,7 +4,6 @@
 workflows/workspaces
 .nextflow*
 work/
-workflows/nf-results/*
 workflows/results
 workflows/ocrd_workflows/*.nf
 workflows/ocrd_workflows/ocrd.log

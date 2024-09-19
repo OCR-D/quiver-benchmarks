@@ -12,13 +12,9 @@ RESULTS_DIR="$WORKFLOW_DIR"/results
 set -euo pipefail
 
 prepare_dirs() {
-    if [[ -d  workflows/nf-results ]]; then
-        rm -rf workflows/nf-results
-    fi
     mkdir -p "$WORKSPACE_DIR"
     mkdir -p "$RESULTS_DIR"
     mkdir -p "$RESULTS_DIR"/archive
-    mkdir workflows/nf-results
     mkdir -p data/files
 }
 
@@ -105,9 +101,9 @@ run() {
     cd "$2"
     # no tracing necessary for the evaluation
     if [[ "$1" =~ "dinglehopper" ]]; then
-        nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/ --mets_path "/app/workflows/workspaces/$2/data/*/mets.xml"
+        nextflow run "$1" --mets_path "/app/workflows/workspaces/$2/data/*/mets.xml"
     else
-        nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/ -c "$WORKFLOW_DIR/nf-config/config.txt" --mets_path "/app/workflows/workspaces/$2/data/*/mets.xml"
+        nextflow run "$1" -c "$WORKFLOW_DIR/nf-config/config.txt" --mets_path "/app/workflows/workspaces/$2/data/*/mets.xml"
     fi
     cd ..
     rename_and_move_nextflow_result "$1" "$2"
@@ -149,16 +145,8 @@ save_workspaces() {
     fi
 }
 
-check_and_run_webserver() {
-    IS_WEBSERVER_PORT_OPEN=$(nc -z 127.0.0.1 8000; echo $?)
-    if [[ ! "$IS_WEBSERVER_PORT_OPEN" ]]; then
-        uvicorn api:app --app-dir "$ROOT"/src & # start webserver for evaluation
-    fi
-}
-
 prepare_dirs
 convert_ocrd_wfs_to_NextFlow "$1"
 download_models
 create_wf_specific_workspaces "$1"
-check_and_run_webserver
 execute_wfs_and_extract_benchmarks "$1"

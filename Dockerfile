@@ -12,7 +12,7 @@ RUN apt-get install -y git jq netcat && apt-get update && apt-get install -y --f
     pip install . && \
     cd /app && \
     pip3 install -r requirements.txt && pip3 install . && \
-    nextflow && nextflow plugin install nf-weblog
+    nextflow
 
 ENV OCRD_METS_CACHING=0
 

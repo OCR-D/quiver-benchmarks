@@ -4,5 +4,5 @@
 # application
 mkdir -p logs
 echo "Clean up everything."
-rm -rf workflows/workspaces workflows/nf-results workflows/results
+rm -rf workflows/workspaces workflows/results
 quiver run-ocr > logs/run_$(date +"%F-%H:%M:%S").log
