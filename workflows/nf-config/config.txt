@@ -1,2 +1,4 @@
-trace.enabled = 'true'
-trace.fields = 'task_id,process,name,realtime,%cpu,%mem,peak_rss,peak_vmem'
+trace.enabled = true
+trace.raw = true
+trace.file = 'trace.txt'
+trace.fields = 'task_id,name,realtime,%cpu,%mem,peak_rss,peak_vmem'

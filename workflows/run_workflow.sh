@@ -110,7 +110,30 @@ run() {
         nextflow run "$1" -with-weblog http://127.0.0.1:8000/nextflow/ -c "$WORKFLOW_DIR/nf-config/config.txt" --mets_path "/app/workflows/workspaces/$2/data/*/mets.xml"
     fi
     cd ..
+    rename_and_move_nextflow_result "$1" "$2"
     save_workspaces "$1" "$2"
+}
+
+
+rename_and_move_nextflow_result() {
+    # rename NextFlow results in order to properly match them to the workflows
+    # $1: $WORKFLOW
+    # $2: $DIR_NAME
+    LOCAL_WORKFLOW_NAME=$(basename -s .txt.nf "$1")
+    if [ "$LOCAL_WORKFLOW_NAME" != "dinglehopper_eval" ]; then
+        for DIR in "$2"/work/*
+        do
+            WORK_DIR_NAME=$(basename "$DIR")
+            for SUB_WORK_DIR in "$DIR"/*
+            do
+                SUB_WORK_DIR_NAME=$(basename "$SUB_WORK_DIR")
+                mv "$2"/work/"$WORK_DIR_NAME"/"$SUB_WORK_DIR_NAME"/.command.log "$2"/"$WORK_DIR_NAME"_command.log
+            done
+            
+        done
+    fi
+    rm -rf "$2"/work
+    rm "$2"/.nextflow.log
 }
 
 save_workspaces() {

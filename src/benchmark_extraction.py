@@ -2,6 +2,7 @@
 benchmarking. It extracts the relevant information from the NextFlow processes. """
 
 import json
+import pandas as pd
 import re
 import xml.etree.ElementTree as ET
 from datetime import datetime
@@ -186,8 +187,8 @@ def extract_benchmarks(workspace_path: str, mets_path: str) -> Dict[str, Dict[st
 
 def make_document_wide_eval_results(workspace_path: str) -> Dict[str, Union[float, List[float]]]:
     return {
-        'wall_time': get_nextflow_time(workspace_path, 'wall'),
-        'cpu_time': get_nextflow_time(workspace_path, 'CPU'),
+        'wall_time': get_walltime(workspace_path),
+        'cpu_time': get_cpu_time(workspace_path,),
         'cer_mean': get_mean_cer(workspace_path, 'SEG-LINE'),
         'cer_median': get_cer_median(workspace_path, 'SEG-LINE'),
         'cer_range': get_cer_range(workspace_path, 'SEG-LINE'),
@@ -196,6 +197,26 @@ def make_document_wide_eval_results(workspace_path: str) -> Dict[str, Union[floa
         'pages_per_minute': get_pages_per_minute(workspace_path)
     }
 
+
+def get_walltime(workspace_path: str) -> float:
+    highest_workspace_dir = '/'.join(workspace_path.split('/')[:-2])
+    files = listdir(highest_workspace_dir)
+    for file in files:
+        if 'trace' in file:
+            with open(f'{highest_workspace_dir}/{file}', mode='r', encoding='utf-8') as f:
+                txt = f.read()
+            lines = []
+            for line in txt.split('\n'):
+                if line.startswith('task_id'): continue
+                if line == '': continue
+                data = [i.strip() for i in line.split()]
+                lines.append(data)
+            df = pd.DataFrame(lines, columns=['task_id', 'name', 'realtime', '%cpu', 
+                                              '%mem', 'peak_rss', 'peak_vmem'])
+            realtime_str = df['realtime']
+            ints = [int(field) for field in realtime_str]
+            return sum(ints)/1000
+    return None
 
 def get_nextflow_completed_process_file(workspace_path: str):
     result_path = workspace_path + RESULTS
@@ -209,28 +230,31 @@ def get_nextflow_completed_process_file(workspace_path: str):
         file = json.load(f)
     return file
 
-def get_nextflow_time(workspace_path: str, time_type: str) -> float:
+def get_cpu_time(workspace_path: str) -> float:
     highest_workspace_dir = '/'.join(workspace_path.split('/')[:-2])
     files = listdir(highest_workspace_dir)
     logs = []
     for file in files:
-        if '.command.log' in file:
+        if 'command.log' in file:
             logs.append(file)
-
     time_per_workflow_step = []
+    all_times_available = True
     for log in logs:
-        with open(highest_workspace_dir + '/' + log, 'r', encoding='utf-8') as l:
+        with open(f'{highest_workspace_dir}/{log}', mode='r', encoding='utf-8') as l:
             log_file = l.read()
             try:
-                no_sec_s = re.search(rf'([0-9]+?\.[0-9]+?)s \({time_type}\)', log_file).group(1)
+                no_sec_s = re.search(rf'([0-9]+?\.[0-9]+?)s \(CPU\)', log_file).group(1)
                 time_per_workflow_step.append(float(no_sec_s))
             except AttributeError:
+                all_times_available = False
                 print(f'No wall time found in {highest_workspace_dir}/{log}. Skipping.')
-    return sum(time_per_workflow_step)
+    if all_times_available:
+        return sum(time_per_workflow_step)
+    return None
 
 
 def get_pages_per_minute(workspace_path: str) -> float:
-    duration = get_nextflow_time(workspace_path, 'wall')
+    duration = get_walltime(workspace_path)
     no_pages = get_no_of_pages(workspace_path)
 
     try:
