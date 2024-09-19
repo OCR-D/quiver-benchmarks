@@ -16,3 +16,4 @@ build/
 logs
 zips
 data
+venv
