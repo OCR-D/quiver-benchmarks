@@ -26,7 +26,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=some_passwrd
 
   api:
-    image: docker.gitlab.gwdg.de/subugoe/ocr-d/quiver-mongoapi-local:main-3a3bcbfb
+    image: ocrd/quiver-mongoapi-local:v1.0.1
     environment:
       - USERNAME=mongoadmin
       - PASSWORD=some_passwrd
